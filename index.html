@@ -372,17 +372,11 @@
       line-height: 1.35;
     }
 
-    .recommendation-intro {
-      margin: 8px 0 20px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
     .recommendation-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
+      margin-top: 20px;
     }
 
     .recommendation-card {
@@ -402,32 +396,6 @@
     .recommendation-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 16px 34px rgba(38,51,74,.13);
-    }
-
-    .recommendation-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
-      color: #778197;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .content-type {
-      display: inline-flex;
-      align-items: center;
-      min-height: 25px;
-      padding: 3px 9px;
-      color: var(--pink-dark);
-      background: var(--pink-pale);
-      border-radius: 999px;
-    }
-
-    .recommendation-card.video .content-type {
-      color: var(--blue);
-      background: var(--blue-pale);
     }
 
     .recommendation-card h4 {
@@ -661,7 +629,6 @@
       <section class="recommendations" aria-labelledby="recommendation-title">
         <p class="recommendation-kicker">接著看看</p>
         <h3 id="recommendation-title">也想多理解孩子一點？</h3>
-        <p class="recommendation-intro" id="recommendation-intro"></p>
         <div class="recommendation-grid" id="recommendation-grid"></div>
       </section>
     </section>
@@ -1853,7 +1820,6 @@
     const downloadCard = document.getElementById("download-card");
     const nativeShareCard = document.getElementById("native-share-card");
     const recommendationGrid = document.getElementById("recommendation-grid");
-    const recommendationIntro = document.getElementById("recommendation-intro");
     let currentResult = null;
     let shareCardBlob = null;
     let shareCardUrl = "";
@@ -1934,10 +1900,6 @@
       return "60+";
     }
 
-    function ageBandLabel(ageBand) {
-      return ageBand === "60+" ? "60 歲以上" : `${ageBand.replace("-", "～")} 歲`;
-    }
-
     function pickRecommendations(ageBand, traits, dateKey) {
       const traitLabels = traits.map(item => item.label);
       const candidates = RECOMMENDED_CONTENT
@@ -1961,12 +1923,8 @@
       const age = calculateAge(year, month, day);
       const ageBand = getAgeBand(age);
       const recommendations = pickRecommendations(ageBand, traits, dateKey);
-      const isChildOrTeen = age <= 18;
 
-      document.getElementById("recommendation-title").textContent = isChildOrTeen
-        ? "依孩子現在的年齡，接著看看這些內容"
-        : "依目前的人生階段，接著看看這些內容";
-      recommendationIntro.textContent = `先以 ${ageBandLabel(ageBand)} 的生活階段挑選，再用小卡上的優勢特質排序；不會根據生日推測孩子有什麼困擾。`;
+      document.getElementById("recommendation-title").textContent = `您的孩子目前${age}歲，推薦您實用教養資訊`;
       recommendationGrid.replaceChildren();
 
       for (const item of recommendations) {
@@ -1980,16 +1938,6 @@
         card.dataset.recommendationKind = item.kind;
         card.dataset.recommendationReason = item.matchCount > 0 ? "trait_match" : "age_match";
 
-        const meta = document.createElement("div");
-        meta.className = "recommendation-meta";
-        const type = document.createElement("span");
-        type.className = "content-type";
-        const kindLabel = item.matchCount > 0 ? "特質延伸" : "同齡精選";
-        type.textContent = `${item.type === "video" ? "影片" : "文章"}・${kindLabel}`;
-        const source = document.createElement("span");
-        source.textContent = item.source;
-        meta.append(type, source);
-
         const title = document.createElement("h4");
         title.textContent = item.title;
         const summary = document.createElement("p");
@@ -1997,7 +1945,7 @@
         const linkLabel = document.createElement("span");
         linkLabel.className = "recommendation-link";
         linkLabel.textContent = item.type === "video" ? "觀看影片 →" : "閱讀文章 →";
-        card.append(meta, title, summary, linkLabel);
+        card.append(title, summary, linkLabel);
         recommendationGrid.append(card);
       }
 
@@ -2082,7 +2030,6 @@
       error.classList.remove("show");
       result.classList.remove("show");
       recommendationGrid.replaceChildren();
-      recommendationIntro.textContent = "";
       currentResult = null;
       if (shareDialog.open) shareDialog.close();
       document.getElementById("form-title").scrollIntoView({ behavior: "smooth", block: "center" });
