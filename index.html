@@ -1547,179 +1547,298 @@
 
     const RECOMMENDED_CONTENT = [
       {
-        id: "play-emotion-0-2", type: "article", source: "親子天下",
+        id: "play-emotion-0-2", kind: "strength", type: "article", source: "親子天下",
         title: "陪0～2歲寶寶玩出好情緒",
         summary: "從居家遊戲陪寶寶發展動作、語言、認知與情緒。",
         url: "https://www.parenting.com.tw/article/5057557",
         ageBands: ["0-2"], tags: ["快樂能量", "好奇探索", "溫柔同行"]
       },
       {
-        id: "clingy-baby", type: "article", source: "親子天下",
-        title: "寶寶特別黏人，該抱還是不該抱？",
-        summary: "理解依附與分離焦慮，回應寶寶真正需要的安全感。",
-        url: "https://www.parenting.com.tw/article/5085280",
-        ageBands: ["0-2"], tags: ["安心沉著", "溫柔同行", "溫暖陪伴"]
-      },
-      {
-        id: "separation-anxiety-2", type: "article", source: "親子天下",
-        title: "兩歲上學哭不停？看懂分離焦慮背後的發展原因",
-        summary: "從發展階段理解孩子入園不安，建立可預期的告別方式。",
-        url: "https://www.parenting.com.tw/article/6002155",
-        ageBands: ["0-2", "3-6"], tags: ["安心沉著", "勇敢前進", "合作有默契"]
-      },
-      {
-        id: "baby-play-video", type: "video", source: "育兒100問",
+        id: "baby-play-video", kind: "strength", type: "video", source: "育兒100問",
         title: "1歲到1歲半寶寶遊戲攻略：在家玩出發展力",
         summary: "五個不必添購玩具的陪玩方法，練習動作、認知與生活自理。",
         url: "https://www.youtube.com/watch?v=R1tsu4bma_Y",
         ageBands: ["0-2"], tags: ["好奇探索", "快樂能量", "自在探索"]
       },
       {
-        id: "baby-sleep", type: "article", source: "親子天下",
-        title: "親密育兒和睡眠訓練，怎麼找到全家都能投入的方法？",
-        summary: "不急著選唯一答案，先從照顧者共識與家庭節奏開始。",
-        url: "https://www.parenting.com.tw/article/6002085",
-        ageBands: ["0-2"], tags: ["安心沉著", "合作有默契", "溫暖陪伴"]
+        id: "reading-0-5", kind: "strength", type: "article", source: "親子天下",
+        title: "什麼是親子共讀？0～5歲的共讀技巧、好處、書單一次掌握",
+        summary: "用互動與對話陪孩子接近閱讀，同時發展語言、理解與想像力。",
+        url: "https://www.parenting.com.tw/article/5092189",
+        ageBands: ["0-2", "3-6"], tags: ["好奇探索", "創意發光", "溫柔同行"]
       },
       {
-        id: "fear-0-6", type: "article", source: "親子天下",
-        title: "孩子很膽小？0到6歲害怕時的反應其實不同",
-        summary: "讀懂哭鬧、推咬與粗魯言語背後的害怕，陪孩子長出勇氣。",
-        url: "https://www.parenting.com.tw/article/6002395",
-        ageBands: ["0-2", "3-6"], tags: ["勇敢前進", "用心感受", "安心沉著"]
+        id: "baby-language", kind: "strength", type: "article", source: "親子天下",
+        title: "寶寶什麼時候會說話？5個引導語言發展的方法",
+        summary: "從聊天、發音遊戲和共讀，回應寶寶想與人交流的聲音。",
+        url: "https://www.parenting.com.tw/article/5088086",
+        ageBands: ["0-2"], tags: ["樂於分享", "溫柔同行", "好奇探索"]
       },
       {
-        id: "emotion-detail", type: "article", source: "親子天下",
-        title: "孩子只會用生氣表達？練習看見更深層的情緒",
-        summary: "用三個方法幫孩子把感受說得更清楚，也讓親子對話不卡住。",
-        url: "https://www.parenting.com.tw/article/6002401",
-        ageBands: ["3-6", "7-12", "13-18"], tags: ["用心感受", "細心觀察", "溫柔同行"]
+        id: "baby-communication", kind: "strength", type: "article", source: "親子天下",
+        title: "原來是在跟我溝通？如何接住寶寶的溝通意圖",
+        summary: "看懂寶寶細小的表情、聲音與動作，讓每次回應都成為互動練習。",
+        url: "https://www.parenting.com.tw/article/5097300",
+        ageBands: ["0-2"], tags: ["樂於分享", "細心觀察", "溫柔同行"]
       },
       {
-        id: "parent-child-talk-guide", type: "article", source: "親子天下",
+        id: "baby-7-8-months", kind: "strength", type: "article", source: "親子天下",
+        title: "7～8個月寶寶六大能力發展關鍵",
+        summary: "從聲音、模仿到遊戲探索，看見寶寶正在長出的新能力。",
+        url: "https://www.parenting.com.tw/article/5089346",
+        ageBands: ["0-2"], tags: ["好奇探索", "細心觀察", "快樂能量"]
+      },
+      {
+        id: "baby-9-10-months", kind: "strength", type: "article", source: "親子天下",
+        title: "9～10個月寶寶六大能力發展關鍵",
+        summary: "透過玩聲音、模仿和回應指令，理解寶寶的觀察與互動力。",
+        url: "https://www.parenting.com.tw/article/5089890",
+        ageBands: ["0-2"], tags: ["細心觀察", "好奇探索", "自信做自己"]
+      },
+      {
+        id: "baby-6-7-months", kind: "strength", type: "article", source: "親子天下",
+        title: "6～7個月寶寶六大能力發展關鍵",
+        summary: "從聲音、玩具與互動反應，看見寶寶如何建立語言和認知連結。",
+        url: "https://www.parenting.com.tw/article/5089241",
+        ageBands: ["0-2"], tags: ["好奇探索", "細心觀察", "樂於分享"]
+      },
+      {
+        id: "preschool-guide", kind: "universal", type: "article", source: "親子天下",
+        title: "正向教養分齡指南：學齡前幼兒（3～5歲）",
+        summary: "掌握學齡前孩子的獨立、好奇與表達發展，用適齡方式陪伴。",
+        url: "https://www.parenting.com.tw/article/6000007",
+        ageBands: ["3-6"], tags: []
+      },
+      {
+        id: "reading-motivation", kind: "strength", type: "article", source: "親子天下",
+        title: "動機和樂趣，是讓孩子愛上閱讀的關鍵",
+        summary: "從興趣出發建立閱讀經驗，讓孩子慢慢找到主動翻書的樂趣。",
+        url: "https://www.parenting.com.tw/article/5057084",
+        ageBands: ["3-6", "7-12"], tags: ["好奇探索", "認真到底", "自在探索"]
+      },
+      {
+        id: "thinking-picturebooks", kind: "strength", type: "article", source: "親子天下",
+        title: "小小思考家繪本：陪孩子從「為什麼？」開始思考",
+        summary: "以故事、提問和遊戲，陪孩子練習判斷、想像與創造思考。",
+        url: "https://www.parenting.com.tw/article/5087440",
+        ageBands: ["3-6", "7-12"], tags: ["想得有條理", "創意發光", "好奇探索"]
+      },
+      {
+        id: "creative-boredom", kind: "strength", type: "article", source: "親子天下",
+        title: "學習「無聊」的能力：留白教育與4個親子練習",
+        summary: "替孩子保留自己發明遊戲、整理經驗和生成新想法的空間。",
+        url: "https://www.parenting.com.tw/article/6001946",
+        ageBands: ["3-6", "7-12"], tags: ["創意發光", "安心沉著", "自在探索"]
+      },
+      {
+        id: "empathy", kind: "strength", type: "article", source: "親子天下",
+        title: "如何培養孩子的同理心",
+        summary: "從日常互動理解自己與別人的感受，把關心化成具體行動。",
+        url: "https://www.parenting.com.tw/article/5020310",
+        ageBands: ["3-6", "7-12"], tags: ["溫柔同行", "用心感受", "合作有默契"]
+      },
+      {
+        id: "respect", kind: "strength", type: "article", source: "親子天下",
+        title: "如何教孩子尊重？5心法＋6繪本培養尊重心",
+        summary: "先讓孩子感到被重視，再練習傾聽、表達和尊重彼此界線。",
+        url: "https://www.parenting.com.tw/article/6000506",
+        ageBands: ["3-6", "7-12", "13-18"], tags: ["真誠可靠", "合作有默契", "溫柔同行"]
+      },
+      {
+        id: "positive-discipline", kind: "strength", type: "article", source: "親子天下",
+        title: "用正向管教，讓關係不再對立，而是一起改變",
+        summary: "把教養從上下對抗轉成合作，讓孩子在尊重中學會承擔。",
+        url: "https://www.parenting.com.tw/article/6001027",
+        ageBands: ["3-6", "7-12", "13-18"], tags: ["合作有默契", "溫柔同行", "真誠可靠"]
+      },
+      {
+        id: "parent-child-talk-guide", kind: "universal", type: "article", source: "親子天下",
         title: "親子溝通終極指南：讓孩子敞開心房的15個方法",
         summary: "從幼兒到青少年，依不同發展階段調整聆聽、界線與對話方式。",
         url: "https://www.parenting.com.tw/article/6001015",
-        ageBands: ["3-6", "7-12", "13-18"], tags: ["樂於分享", "合作有默契", "溫柔同行"]
+        ageBands: ["3-6", "7-12", "13-18"], tags: []
       },
       {
-        id: "different-brain-video", type: "video", source: "親子天下 YouTube",
-        title: "上課亂動、講話不看人？孩子真的不是故意的",
-        summary: "從孩子的大腦與感覺差異，重新理解那些看似不配合的行為。",
-        url: "https://www.youtube.com/watch?v=kdc7rBS55Tk",
-        ageBands: ["3-6", "7-12", "13-18"], tags: ["細心觀察", "安心沉著", "自信做自己"]
+        id: "explore-ocean", kind: "strength", type: "article", source: "親子天下",
+        title: "探索海洋：帶孩子一起玩出韌性，走進真實與永續",
+        summary: "透過旅行與真實體驗，把對世界的好奇變成探索和行動。",
+        url: "https://www.parenting.com.tw/article/6000774",
+        ageBands: ["7-12", "13-18"], tags: ["勇敢前進", "好奇探索", "快樂能量"]
       },
       {
-        id: "focus-not-average", type: "article", source: "親子天下",
+        id: "science-spots", kind: "strength", type: "article", source: "親子天下",
+        title: "跟著樂樂TV玩！8個培養孩子科學興趣的親子景點",
+        summary: "從出遊、觀察與動手體驗，讓孩子的科學好奇心自然發芽。",
+        url: "https://www.parenting.com.tw/article/6001706",
+        ageBands: ["3-6", "7-12"], tags: ["好奇探索", "快樂能量", "自在探索"]
+      },
+      {
+        id: "science-museums", kind: "strength", type: "article", source: "親子天下",
+        title: "暑期鍛鍊科學腦！精選10間科學博物館",
+        summary: "用展覽和實作打開問題，讓觀察、推理與知識連結起來。",
+        url: "https://www.parenting.com.tw/article/5097648",
+        ageBands: ["7-12"], tags: ["好奇探索", "細心觀察", "想得有條理"]
+      },
+      {
+        id: "happiness-savings", kind: "strength", type: "article", source: "親子天下",
+        title: "12歲前，累積親子幸福存款",
+        summary: "把相處、傾聽和共同回憶累積成孩子心裡可靠的支持。",
+        url: "https://www.parenting.com.tw/article/5066549",
+        ageBands: ["7-12"], tags: ["溫柔同行", "樂於分享", "溫暖陪伴"]
+      },
+      {
+        id: "focus-not-average", kind: "strength", type: "article", source: "親子天下",
         title: "別用平均值評斷孩子的專注力",
         summary: "每個孩子的大腦運作路徑不同，陪他找到真正適合的專注方式。",
         url: "https://www.parenting.com.tw/article/6002162",
-        ageBands: ["7-12", "13-18"], tags: ["認真到底", "安心沉著", "自信做自己"]
+        ageBands: ["7-12", "13-18"], tags: ["自信做自己", "安心沉著", "細心觀察"]
       },
       {
-        id: "ai-reflection", type: "article", source: "親子天下",
+        id: "ai-reflection", kind: "strength", type: "article", source: "親子天下",
         title: "六個自問，陪孩子用AI也練習反思",
         summary: "不只禁止或代做，帶孩子從作業中練習提問與自主思考。",
         url: "https://www.parenting.com.tw/article/6002403",
         ageBands: ["7-12", "13-18"], tags: ["想得有條理", "好奇探索", "目標清楚"]
       },
       {
-        id: "alone-generation", type: "article", source: "親子天下",
-        title: "孩子心情不好，先找AI還是父母？",
-        summary: "從萬名中小學生調查，看見手機、獨處與家庭連結的新變化。",
-        url: "https://www.parenting.com.tw/article/6002301",
-        ageBands: ["7-12", "13-18"], tags: ["用心感受", "樂於分享", "溫柔同行"]
+        id: "sel-guide", kind: "strength", type: "article", source: "親子天下",
+        title: "SEL是什麼？了解社會情緒學習技巧與優點",
+        summary: "從自我覺察、情緒管理到人際合作，認識孩子的重要生活能力。",
+        url: "https://www.parenting.com.tw/article/5093530",
+        ageBands: ["7-12", "13-18"], tags: ["用心感受", "合作有默契", "安心沉著"]
       },
       {
-        id: "scroll-generation", type: "article", source: "親子天下",
+        id: "resilience", kind: "strength", type: "article", source: "親子天下",
+        title: "鍛鍊心理韌性，從挫折中復原成長",
+        summary: "陪孩子表達脆弱，也從思維、情緒和人際中累積復原力。",
+        url: "https://www.parenting.com.tw/article/5097505",
+        ageBands: ["7-12", "13-18"], tags: ["勇敢前進", "認真到底", "相信自己"]
+      },
+      {
+        id: "confidence", kind: "strength", type: "article", source: "親子天下",
+        title: "養出成功、自信孩子的10個訣竅",
+        summary: "從傾聽、看見小進步和允許失敗，支持孩子建立自己的成功定義。",
+        url: "https://www.parenting.com.tw/article/5096477",
+        ageBands: ["7-12", "13-18"], tags: ["自信做自己", "勇敢前進", "相信自己"]
+      },
+      {
+        id: "teen-brain", kind: "strength", type: "article", source: "親子天下",
+        title: "青春期是大腦升級黃金期！養成孩子的學習超能力",
+        summary: "看見青春期強大的神經彈性，把探索新環境的動力轉成學習優勢。",
+        url: "https://www.parenting.com.tw/article/6001854",
+        ageBands: ["13-18"], tags: ["好奇探索", "自信做自己", "勇敢前進"]
+      },
+      {
+        id: "ai-agency", kind: "strength", type: "article", source: "親子天下",
+        title: "從工具使用到思維導航：在AI時代找回主導權",
+        summary: "讓AI協助思考而不是取代思考，建立選擇方向與自主學習的能力。",
+        url: "https://www.parenting.com.tw/article/6002123",
+        ageBands: ["13-18"], tags: ["目標清楚", "想得有條理", "自信做自己"]
+      },
+      {
+        id: "scroll-generation", kind: "universal", type: "article", source: "親子天下",
         title: "在滑世代，幫孩子把人生主導權拿回來",
         summary: "比起只管使用時間，更重要的是理解孩子如何與科技相處。",
         url: "https://www.parenting.com.tw/article/6002417",
-        ageBands: ["13-18"], tags: ["目標清楚", "自信做自己", "安心沉著"]
+        ageBands: ["13-18"], tags: []
       },
       {
-        id: "friendship-skill", type: "article", source: "親子天下",
-        title: "當交朋友也需要刻意練習，我們遺失了什麼？",
-        summary: "理解孩子退回房間與獨處背後的需求，重新練習真實連結。",
-        url: "https://www.parenting.com.tw/article/6002362",
-        ageBands: ["13-18"], tags: ["合作有默契", "樂於分享", "溫柔同行"]
+        id: "career-exploration", kind: "strength", type: "article", source: "親子天下",
+        title: "生涯探索分齡書單及網站",
+        summary: "從認識自己、發現天賦到理解職業世界，依年齡找到探索資源。",
+        url: "https://www.parenting.com.tw/article/5079694",
+        ageBands: ["7-12", "13-18"], tags: ["目標清楚", "自信做自己", "好奇探索"]
       },
       {
-        id: "talking-with-parents", type: "article", source: "親子天下",
-        title: "當孩子不願再跟父母對話，我們可以怎麼辦？",
-        summary: "少一點急著評價與追問，先讓孩子感到被安穩地聽見。",
-        url: "https://www.parenting.com.tw/article/6000550",
-        ageBands: ["13-18", "19-29", "45-59"], tags: ["樂於分享", "溫柔同行", "合作有默契"]
+        id: "lai-ma-books", kind: "strength", type: "article", source: "親子天下",
+        title: "親子天下編輯推薦15本賴馬必買繪本",
+        summary: "從幽默圖像、顏色遊戲與生活故事，享受親子共讀的想像時光。",
+        url: "https://www.parenting.com.tw/article/5095250",
+        ageBands: ["3-6"], tags: ["美感滿滿", "快樂能量", "好奇探索"]
       },
       {
-        id: "original-family", type: "article", source: "親子天下",
-        title: "放下原生家庭的執念，重寫自己的人生旅程",
-        summary: "重新看懂與父母的關係，也把改寫人生的力量交回自己手上。",
-        url: "https://www.parenting.com.tw/article/6002295",
-        ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["用心感受", "勇敢前進", "自信做自己"]
+        id: "new-parent-generation", kind: "universal", type: "article", source: "親子天下",
+        title: "新世代父母調查：追求更平等、尊重的親子關係",
+        summary: "看見新一代父母如何共同討論、尊重選擇，也重新定義家的樣子。",
+        url: "https://www.parenting.com.tw/article/5095609",
+        ageBands: ["19-29", "30-44"], tags: []
       },
       {
-        id: "marriage-self", type: "article", source: "親子天下",
+        id: "marriage-self", kind: "strength", type: "article", source: "親子天下",
         title: "婚姻是一場修煉：練習脾氣，也認識自己",
-        summary: "先整理自己的感受與需求，再把爭執變成靠近彼此的機會。",
+        summary: "先整理自己的感受與需求，再把差異變成靠近彼此的機會。",
         url: "https://www.parenting.com.tw/article/6002260",
-        ageBands: ["19-29", "30-44", "45-59"], tags: ["合作有默契", "用心感受", "溫柔同行"]
+        ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["合作有默契", "用心感受", "溫柔同行"]
       },
       {
-        id: "brave-love", type: "article", source: "親子天下",
+        id: "brave-love", kind: "strength", type: "article", source: "親子天下",
         title: "愛需要勇敢：創造幸福感的關係練習",
         summary: "從與自己的關係開始，重新整理生命中重要的人際連結。",
         url: "https://site.parenting.com.tw/topic/lovebrave-304",
         ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["溫暖陪伴", "用心感受", "真誠可靠"]
       },
       {
-        id: "relationship-podcast", type: "article", source: "親子天下",
+        id: "relationship-podcast", kind: "strength", type: "article", source: "親子天下",
         title: "關係相談所：覺察自己，也加溫家的心關係",
         summary: "從自我、伴侶到家庭，透過專家對談練習理解人我差異。",
         url: "https://www.parenting.com.tw/article/6000317",
-        ageBands: ["19-29", "30-44", "45-59"], tags: ["用心感受", "樂於分享", "合作有默契"]
+        ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["用心感受", "樂於分享", "合作有默契"]
       },
       {
-        id: "parent-guilt", type: "article", source: "親子天下",
-        title: "為什麼當爸媽後更容易內疚？四個問題放下自責",
-        summary: "分清哪些期待真正屬於自己，讓照顧孩子不再等於否定自己。",
-        url: "https://www.parenting.com.tw/article/6002068",
-        ageBands: ["30-44", "45-59"], tags: ["安心沉著", "相信自己", "用心感受"]
-      },
-      {
-        id: "work-family", type: "article", source: "親子天下",
+        id: "work-family", kind: "universal", type: "article", source: "親子天下",
         title: "「兼顧」是一種虛妄：給職業父母的真心話",
         summary: "放下每一面都要完美的期待，專注此刻真正能做的選擇。",
         url: "https://www.parenting.com.tw/article/6002244",
-        ageBands: ["30-44", "45-59"], tags: ["目標清楚", "安心沉著", "自信做自己"]
+        ageBands: ["19-29", "30-44", "45-59"], tags: []
       },
       {
-        id: "rest-modes", type: "article", source: "親子天下",
+        id: "rest-modes", kind: "strength", type: "article", source: "親子天下",
         title: "理解彼此的休息模式，也是修復關係的鑰匙",
         summary: "尊重不同的充電方式，替伴侶與家庭留下真正能放鬆的空間。",
         url: "https://www.parenting.com.tw/article/6002261",
-        ageBands: ["30-44", "45-59"], tags: ["合作有默契", "溫暖陪伴", "安心沉著"]
+        ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["合作有默契", "溫暖陪伴", "安心沉著"]
       },
       {
-        id: "midlife-learning", type: "article", source: "親子天下",
-        title: "中年迷惘怎麼辦？大人繼續學習的理由",
-        summary: "把中年危機當成重新選擇人生方向、豐富生命下半場的入口。",
-        url: "https://www.parenting.com.tw/article/6002161",
-        ageBands: ["45-59", "60+"], tags: ["好奇探索", "目標清楚", "勇敢前進"]
+        id: "inner-motivation", kind: "strength", type: "article", source: "親子天下",
+        title: "腦科學家7招啟動孩子學習的內在動機",
+        summary: "從多方嘗試與自我探索，陪孩子找到願意長久投入的熱情。",
+        url: "https://www.parenting.com.tw/article/6000705",
+        ageBands: ["7-12", "13-18"], tags: ["目標清楚", "好奇探索", "認真到底"]
       },
       {
-        id: "mature-parents", type: "article", source: "親子天下",
+        id: "mature-parents", kind: "universal", type: "article", source: "親子天下",
         title: "晚生世代：步入人生中場，也是成為父母的初登場",
         summary: "看見中年迎接新身分時，家庭、工作與自我之間的真實調整。",
         url: "https://site.parenting.com.tw/topic/media_matureparents-1408",
-        ageBands: ["45-59"], tags: ["勇敢前進", "安心沉著", "目標清楚"]
+        ageBands: ["45-59"], tags: []
       },
       {
-        id: "grandparent-bond", type: "article", source: "親子天下",
+        id: "grandparent-bond", kind: "strength", type: "article", source: "親子天下",
         title: "祖孫除了聊成績，還能怎麼拉近距離？",
         summary: "從故事、手藝與共同活動打開話題，讓不同世代真正靠近。",
         url: "https://www.parenting.com.tw/article/5019949",
         ageBands: ["60+"], tags: ["溫暖陪伴", "樂於分享", "真誠可靠"]
+      },
+      {
+        id: "parent-child-play", kind: "strength", type: "article", source: "親子天下",
+        title: "親子共遊、共玩、共學怎麼選？",
+        summary: "從適合家庭的共同體驗出發，在玩與學之間累積相處記憶。",
+        url: "https://www.parenting.com.tw/article/5068099",
+        ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["快樂能量", "合作有默契", "溫暖陪伴"]
+      },
+      {
+        id: "family-travel", kind: "universal", type: "article", source: "親子天下",
+        title: "祖孫同行：家族旅遊全攻略",
+        summary: "從邀請、規劃到成行，替三代同行找到彼此都舒服的旅行方式。",
+        url: "https://www.parenting.com.tw/article/5049835",
+        ageBands: ["30-44", "45-59", "60+"], tags: []
+      },
+      {
+        id: "beginner-again", kind: "strength", type: "article", source: "親子天下",
+        title: "溫美玉：教書三十年，再次回到新人狀態",
+        summary: "即使累積多年經驗，仍能在新環境裡保持謙卑、重新學習。",
+        url: "https://www.parenting.com.tw/article/5077885",
+        ageBands: ["19-29", "30-44", "45-59", "60+"], tags: ["勇敢前進", "好奇探索", "自信做自己"]
       }
     ];
 
@@ -1822,10 +1941,12 @@
     function pickRecommendations(ageBand, traits, dateKey) {
       const traitLabels = traits.map(item => item.label);
       const candidates = RECOMMENDED_CONTENT
-        .filter(item => item.ageBands.includes(ageBand))
+        .filter(item => item.ageBands.includes(ageBand) && item.kind !== "concern")
         .map(item => ({
           ...item,
-          matchCount: item.tags.filter(tag => traitLabels.includes(tag)).length,
+          matchCount: item.kind === "strength"
+            ? item.tags.filter(tag => traitLabels.includes(tag)).length
+            : 0,
           order: textSeed(`${dateKey}:${item.id}`) % 997
         }))
         .sort((left, right) => right.matchCount - left.matchCount || left.order - right.order);
@@ -1845,7 +1966,7 @@
       document.getElementById("recommendation-title").textContent = isChildOrTeen
         ? "依孩子現在的年齡，接著看看這些內容"
         : "依目前的人生階段，接著看看這些內容";
-      recommendationIntro.textContent = `先以 ${ageBandLabel(ageBand)} 的生活課題挑選，再參考這張色彩小卡裡的特質，排出三篇適合接著看的文章或影片。`;
+      recommendationIntro.textContent = `先以 ${ageBandLabel(ageBand)} 的生活階段挑選，再用小卡上的優勢特質排序；不會根據生日推測孩子有什麼困擾。`;
       recommendationGrid.replaceChildren();
 
       for (const item of recommendations) {
@@ -1856,12 +1977,15 @@
         card.rel = "noopener noreferrer";
         card.dataset.recommendationId = item.id;
         card.dataset.contentType = item.type;
+        card.dataset.recommendationKind = item.kind;
+        card.dataset.recommendationReason = item.matchCount > 0 ? "trait_match" : "age_match";
 
         const meta = document.createElement("div");
         meta.className = "recommendation-meta";
         const type = document.createElement("span");
         type.className = "content-type";
-        type.textContent = item.type === "video" ? "影片" : "文章";
+        const kindLabel = item.matchCount > 0 ? "特質延伸" : "同齡精選";
+        type.textContent = `${item.type === "video" ? "影片" : "文章"}・${kindLabel}`;
         const source = document.createElement("span");
         source.textContent = item.source;
         meta.append(type, source);
@@ -1973,6 +2097,8 @@
         event: "birthday_color_recommendation_click",
         recommendation_id: card.dataset.recommendationId,
         content_type: card.dataset.contentType,
+        recommendation_kind: card.dataset.recommendationKind,
+        recommendation_reason: card.dataset.recommendationReason,
         age_band: currentResult.ageBand
       });
     });
