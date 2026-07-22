@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="輸入孩子的出生年月日，找出專屬生日代表色與兒童版正向解讀。">
+  <title>孩子的生日代表色｜親子天下</title>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N8VL4XS');</script>
+  <!-- End Google Tag Manager -->
+
+  <style>
+    :root {
+      --pink: #F05091;
+      --pink-dark: #D73E7D;
+      --pink-pale: #FFF0F6;
+      --blue: #004098;
+      --blue-pale: #EAF3FF;
+      --yellow: #FDE84C;
+      --teal: #06B7C9;
+      --ink: #26334A;
+      --muted: #657087;
+      --line: #E7EAF0;
+      --white: #FFFFFF;
+      --shadow: 0 24px 70px rgba(42, 54, 86, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(253,232,76,.38) 0 80px, transparent 82px),
+        radial-gradient(circle at 92% 14%, rgba(6,183,201,.18) 0 110px, transparent 112px),
+        linear-gradient(155deg, #FFF9FC 0%, #F6F9FF 48%, #FFF7E2 100%);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+      padding: 24px 14px 36px;
+    }
+
+    button, select { font: inherit; }
+
+    .app {
+      width: min(100%, 720px);
+      margin: 0 auto;
+      background: rgba(255,255,255,.95);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 42px 28px 88px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue) 0%, #155DB7 58%, var(--teal) 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: .95;
+    }
+
+    .hero::before {
+      width: 150px;
+      height: 150px;
+      left: -58px;
+      bottom: -42px;
+      background: var(--pink);
+    }
+
+    .hero::after {
+      width: 86px;
+      height: 86px;
+      right: -18px;
+      top: 24px;
+      background: var(--yellow);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: clamp(30px, 7vw, 46px);
+      line-height: 1.18;
+      letter-spacing: -.03em;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 510px;
+      margin: 14px auto 0;
+      color: rgba(255,255,255,.88);
+      font-size: 16px;
+    }
+
+    .color-dots {
+      position: absolute;
+      z-index: 0;
+      inset: auto 0 18px;
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .color-dots i {
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(255,255,255,.7);
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(0,0,0,.12);
+    }
+
+    .quiz-panel {
+      position: relative;
+      z-index: 2;
+      margin: -52px 24px 0;
+      padding: 26px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 16px 42px rgba(25,49,86,.16);
+    }
+
+    .panel-title {
+      margin: 0 0 20px;
+      color: var(--blue);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .date-fields {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    select {
+      width: 100%;
+      min-height: 50px;
+      padding: 0 38px 0 13px;
+      color: var(--ink);
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath fill='%23F05091' d='M5.2 7.5 10 12.3l4.8-4.8 1.4 1.4-6.2 6.2-6.2-6.2z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      border: 2px solid #DDE3EE;
+      border-radius: 13px;
+      outline: none;
+      appearance: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    select:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 4px rgba(240,80,145,.12);
+    }
+
+    .primary-button,
+    .secondary-button {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .15s, box-shadow .15s, background .15s;
+    }
+
+    .primary-button {
+      margin-top: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), #F36B9E);
+      box-shadow: 0 10px 24px rgba(240,80,145,.28);
+    }
+
+    .primary-button:hover { transform: translateY(-2px); }
+    .primary-button:active { transform: translateY(0); }
+
+    .error {
+      display: none;
+      margin: 12px 0 0;
+      padding: 10px 12px;
+      color: #9B274F;
+      background: var(--pink-pale);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .error.show { display: block; }
+
+    .result {
+      display: none;
+      padding: 30px 24px 10px;
+    }
+
+    .result.show {
+      display: block;
+      animation: reveal .55s ease both;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-kicker {
+      margin: 0;
+      color: var(--pink-dark);
+      text-align: center;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .result h2 {
+      margin: 4px 0 22px;
+      color: var(--blue);
+      text-align: center;
+      font-size: clamp(24px, 6vw, 34px);
+      line-height: 1.3;
+    }
+
+    .color-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      min-height: 260px;
+      border: 1px solid rgba(0,0,0,.05);
+      border-radius: 26px;
+      box-shadow: 0 16px 42px rgba(42,54,86,.13);
+    }
+
+    .swatch {
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      text-align: center;
+      isolation: isolate;
+    }
+
+    .swatch::before,
+    .swatch::after {
+      content: "";
+      position: absolute;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      opacity: .25;
+      z-index: -1;
+    }
+
+    .swatch::before { width: 145px; height: 145px; }
+    .swatch::after { width: 105px; height: 105px; }
+
+    .swatch-label { font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+    .swatch-name { margin: 6px 0 2px; font-size: 25px; font-weight: 900; line-height: 1.2; }
+    .swatch-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; }
+
+    .color-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px;
+      background: #fff;
+    }
+
+    .color-copy h3 { margin: 0; color: var(--blue); font-size: 20px; }
+    .color-copy > p { margin: 10px 0 16px; color: #505C72; }
+
+    .trait-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .trait {
+      padding: 7px 11px;
+      color: #9A2851;
+      background: var(--pink-pale);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .mission {
+      margin-top: 16px;
+      padding: 14px 15px;
+      background: #FFF9D9;
+      border-left: 5px solid var(--yellow);
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .mission strong { color: #775E00; }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .secondary-button {
+      color: var(--blue);
+      background: var(--blue-pale);
+      border: 1px solid #CFE1F8;
+    }
+
+    .secondary-button.share {
+      color: #fff;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .secondary-button:hover { transform: translateY(-1px); }
+
+    .fine-print {
+      margin: 16px auto 0;
+      max-width: 590px;
+      color: #7A8293;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .share-dialog {
+      width: min(92vw, 520px);
+      max-height: 92vh;
+      padding: 0;
+      overflow: hidden auto;
+      color: var(--ink);
+      background: #fff;
+      border: 0;
+      border-radius: 24px;
+      box-shadow: 0 28px 90px rgba(14,31,60,.34);
+    }
+
+    .share-dialog::backdrop {
+      background: rgba(10,24,49,.64);
+      backdrop-filter: blur(5px);
+    }
+
+    .share-dialog-inner { position: relative; padding: 24px; }
+
+    .dialog-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      color: var(--blue);
+      background: var(--blue-pale);
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .share-dialog h2 {
+      margin: 0 42px 5px 0;
+      color: var(--blue);
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .share-dialog p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .share-preview {
+      display: block;
+      width: min(100%, 340px);
+      margin: 0 auto;
+      background: #F7F7F7;
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(38,51,74,.18);
+    }
+
+    .share-dialog-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .dialog-action {
+      display: grid;
+      place-items: center;
+      min-height: 50px;
+      padding: 10px 14px;
+      color: var(--blue);
+      background: var(--blue-pale);
+      border: 1px solid #CFE1F8;
+      border-radius: 13px;
+      cursor: pointer;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .dialog-action.primary {
+      color: #fff;
+      background: var(--pink);
+      border-color: var(--pink);
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 18px;
+      background: #FAFBFD;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-logo { display: block; width: auto; height: 19px; }
+    .footer-text { color: #626B7B; font-size: 12px; line-height: 1.3; }
+    .footer a { color: var(--pink-dark); font-weight: 700; text-decoration: none; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 620px) {
+      body { padding: 0; background: #fff; }
+      .app { border-radius: 0; box-shadow: none; }
+      .hero { padding: 34px 20px 80px; }
+      .hero p { font-size: 15px; }
+      .quiz-panel { margin: -48px 14px 0; padding: 20px 16px; }
+      .date-fields { gap: 7px; }
+      select { min-height: 48px; padding-left: 10px; padding-right: 27px; background-position: right 8px center; }
+      .result { padding: 28px 14px 8px; }
+      .color-card { grid-template-columns: 1fr; }
+      .swatch { min-height: 220px; }
+      .color-copy { padding: 22px 20px; }
+      .share-dialog-inner { padding: 22px 16px 18px; }
+    }
+
+    @media (max-width: 390px) {
+      .date-fields { grid-template-columns: 1fr; }
+      .field { display: grid; grid-template-columns: 42px 1fr; align-items: center; }
+      .field label { margin: 0; }
+      .result-actions { grid-template-columns: 1fr; }
+      .share-dialog-actions { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8VL4XS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <main class="app">
+    <header class="hero">
+      <h1>孩子的生日代表色</h1>
+      <p>每個生日，都藏著一種獨特的顏色。輸入孩子的出生日期，一起打開專屬色彩小卡吧！</p>
+      <div class="color-dots" aria-hidden="true">
+        <i style="background:#FDE84C"></i><i style="background:#F05091"></i><i style="background:#fff"></i><i style="background:#06B7C9"></i><i style="background:#8ED081"></i>
+      </div>
+    </header>
+
+    <section class="quiz-panel" aria-labelledby="form-title">
+      <h2 class="panel-title" id="form-title">孩子是哪一天出生的呢？</h2>
+      <form id="birthday-form" novalidate>
+        <div class="date-fields">
+          <div class="field">
+            <label for="birth-year">出生年</label>
+            <select id="birth-year" aria-label="出生年" required><option value="">年</option></select>
+          </div>
+          <div class="field">
+            <label for="birth-month">月份</label>
+            <select id="birth-month" aria-label="出生月份" required><option value="">月</option></select>
+          </div>
+          <div class="field">
+            <label for="birth-day">日期</label>
+            <select id="birth-day" aria-label="出生日期" required disabled><option value="">日</option></select>
+          </div>
+        </div>
+        <button class="primary-button" type="submit">打開孩子的生日色盒 ✨</button>
+        <p class="error" id="form-error" role="alert">請先完整選擇孩子的出生年月日</p>
+      </form>
+    </section>
+
+    <section class="result" id="result" aria-live="polite" tabindex="-1">
+      <p class="result-kicker">BIRTHDAY COLOR</p>
+      <h2><span id="result-date"></span> 的專屬色彩</h2>
+
+      <article class="color-card">
+        <div class="swatch" id="swatch">
+          <div>
+            <div class="swatch-label">生日代表色</div>
+            <div class="swatch-name" id="color-name"></div>
+            <div class="swatch-code" id="color-code"></div>
+          </div>
+        </div>
+        <div class="color-copy">
+          <h3 id="result-headline"></h3>
+          <p id="result-copy"></p>
+          <div class="trait-list" id="trait-list"></div>
+          <div class="mission"><strong>給孩子的小小色彩任務：</strong><span id="mission-copy"></span></div>
+        </div>
+      </article>
+
+      <div class="result-actions">
+        <button type="button" class="secondary-button" id="reset-button">再測一位孩子</button>
+        <button type="button" class="secondary-button share" id="share-button">產生分享小卡</button>
+      </div>
+      <p class="fine-print">每個孩子都不只一種顏色。這張小卡是一個陪你多看見孩子、開啟親子對話的溫柔起點，不是心理測驗或科學診斷。</p>
+    </section>
+
+    <footer class="footer">
+      <img src="https://premium-cdn.parenting.com.tw/files/upload/author-avatars/01JDRTYBQYZ4N4569H5P8YSZ2Z.png" alt="親子天下 Logo" class="footer-logo">
+      <div class="footer-text">此工具由 <a href="https://premium.parenting.com.tw/" target="_blank" rel="noopener noreferrer">親子天下會員經營與訂閱中心</a> 開發</div>
+    </footer>
+  </main>
+
+  <dialog class="share-dialog" id="share-dialog" aria-labelledby="share-dialog-title">
+    <div class="share-dialog-inner">
+      <button type="button" class="dialog-close" id="dialog-close" aria-label="關閉分享小卡">×</button>
+      <h2 id="share-dialog-title">孩子的分享小卡準備好了</h2>
+      <p>可以先看看圖片，再下載保存；裝置支援時也能直接分享給家人朋友。</p>
+      <img class="share-preview" id="share-preview" alt="孩子生日代表色分享小卡預覽">
+      <div class="share-dialog-actions">
+        <a class="dialog-action primary" id="download-card" download="孩子的生日代表色.png">下載圖片</a>
+        <button type="button" class="dialog-action" id="native-share-card">分享圖片</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const BIRTHDAY_COLORS = {"0101":{"hex":"#ffffe5","name":"純白","words":"純粋・優雅・シンプル","personality":"心の美しい最高の女性"},"0102":{"hex":"#e6eae6","name":"フロスティホワイト","words":"感性・論理・清浄","personality":"美学的な思索のとりこ"},"0103":{"hex":"#afafb0","name":"シルバーグレイ","words":"勇気・バランス・経営力","personality":"気高い心の持ち主"},"0104":{"hex":"#8d9192","name":"アルミニウムグレイ","words":"明るさ・ユーモア・エネルギー","personality":"恐れを知らぬ明るい挑戦者"},"0105":{"hex":"#736d71","name":"スチールグレイ","words":"直観力・洞察力・潜在力","personality":"機転のきくしっかり者"},"0106":{"hex":"#705b67","name":"葡萄鼠","words":"倫理・スピード・冒険心","personality":"ドラマチックな生活の実践者"},"0107":{"hex":"#0d0015","name":"漆黒","words":"情熱・才能・想像力","personality":"チャレンジする発想豊かな情熱家"},"0108":{"hex":"#b8c43a","name":"シトロンイエロー","words":"宗教的感情・宇宙的構想","personality":"自然を愛する叙情家"},"0109":{"hex":"#69821b","name":"苔色","words":"神秘性・想像力","personality":"人の温かさを感じられる人"},"0110":{"hex":"#7b8d42","name":"草色","words":"英知・芸術・洗練","personality":"広大な感情世界の持ち主"},"0111":{"hex":"#bdd99f","name":"ミストグリーン","words":"努力・才能・勇気","personality":"新時代をつくる理想的な人"},"0112":{"hex":"#d6e9ca","name":"白緑","words":"気品・外交・洞察力","personality":"思いきりのいいチャレンジャー"},"0113":{"hex":"#37a34a","name":"パロットグリーン","words":"行動力・謙遜・冷静沈着","personality":"自分の生き方を持つ自立者"},"0114":{"hex":"#7b8d42","name":"グラスグリーン","words":"感性・ユーモア・熟成","personality":"感情の成熟を待つ芸術家"},"0115":{"hex":"#00552e","name":"深緑","words":"信条・模範・慈愛","personality":"星の輝きのような瞳の持ち主"},"0116":{"hex":"#f0f6da","name":"ホワイトリリー","words":"大胆・想像力・信念","personality":"自然を愛する実践家"},"0117":{"hex":"#006e54","name":"萌黄色","words":"生活・指導力・微笑み","personality":"度胸と好奇心のある美食家"},"0118":{"hex":"#47744b","name":"フォーリッジ","words":"誠実・洗練・謙虚","personality":"純粋さを保つ幼き者"},"0119":{"hex":"#9fc24d","name":"リーフグリーン","words":"優しさ・自尊心・精神性","personality":"何ごとも一生懸命な努力家"},"0120":{"hex":"#288c66","name":"フォレストグリーン","words":"エネルギー・自己投資","personality":"理想像をはっきり持つ者"},"0121":{"hex":"#a0d8ef","name":"空色","words":"感性・可能性・芸術性","personality":"美しいものを感じとる才能"},"0122":{"hex":"#00a3af","name":"浅葱色","words":"幸福・愛・友情","personality":"思いやりのある人"},"0123":{"hex":"#38a1db","name":"露草","words":"若々しさ・情緒・集中力","personality":"平和で静穏な心の持ち主"},"0124":{"hex":"#00688b","name":"鴨の羽色","words":"頭脳明晰・誠実・感受性","personality":"楽しい夢に向う楽天家"},"0125":{"hex":"#0f2350","name":"濃藍","words":"理想・現実・新生活","personality":"スムーズな生活ができる人"},"0126":{"hex":"#e3d7a3","name":"クリーム","words":"豊かな表情・組織・機知","personality":"太陽のような個性の持ち主"},"0127":{"hex":"#fef400","name":"ペールレモン","words":"着こなし・神秘的な眼","personality":"あか抜けた雰囲気な者"},"0128":{"hex":"#ffd900","name":"タンポポ色","words":"冒険・明るさ・好奇心","personality":"生まれながらの楽天家"},"0129":{"hex":"#c3d825","name":"若草色","words":"運動神経・知覚力・名誉","personality":"並はずれた説得力のある者"},"0130":{"hex":"#529c47","name":"メドーグリーン","words":"あふれる愛・動物好き","personality":"動植物と相性のいい者"},"0131":{"hex":"#e0ebaf","name":"若芽","words":"感傷的・順応・礼儀","personality":"傷つきやすいロマンチスト"},"0201":{"hex":"#3f4e93","name":"コーンフラワーブルー","words":"文化的・社会的","personality":"社会的にも特に認められた芸術家"},"0202":{"hex":"#bc64a4","name":"若紫","words":"想像力・敬慕・直観力","personality":"人とはっきり差をつける個性派"},"0203":{"hex":"#21297e","name":"ディープローヤルブルー","words":"直観力・はにかみ・威厳","personality":"己の価値を知る生来のプリンセス"},"0204":{"hex":"#cca6bf","name":"紅藤色","words":"感性・才気煥発・外向性","personality":"人と違う自分でいたい個性派"},"0205":{"hex":"#50347e","name":"パンジーパープル","words":"教的・詩的・神秘と夢幻","personality":"進む道を知る霊感の持ち主"},"0206":{"hex":"#debdd8","name":"ペールライラック","words":"家庭・表現力・気高さ","personality":"人を感動させる力を秘めた人"},"0207":{"hex":"#b269a1","name":"モーベット","words":"自主性・天才・感性","personality":"ひたむきで使命感のある期待の星"},"0208":{"hex":"#6c2735","name":"バーガンディー","words":"情熱・愛嬌・思慮深さ","personality":"ものまね上手な可愛いいたずら者"},"0209":{"hex":"#ea4a6e","name":"フクシャパープル","words":"国際感覚・活発・指導者","personality":"活躍する人間・味あふれる熱血漢"},"0210":{"hex":"#ea618e","name":"ローズレッド","words":"愛情・感受性・知性","personality":"人を助けて励ます優しい人"},"0211":{"hex":"#d3336f","name":"紅色","words":"開放的・単純明快・表現","personality":"何ごとにも心から喜べる素直な人"},"0212":{"hex":"#d5345e","name":"カーミン","words":"外交的・情熱・激しさ","personality":"もの静かでも積極的な行動派"},"0213":{"hex":"#585b54","name":"うぐいす色","words":"家庭・几帳面・向上心","personality":"己の価値観を大切に育む芸術家"},"0214":{"hex":"#726d40","name":"海松色","words":"二律背反・誠実・気品","personality":"都会的なセンスを備えた人"},"0215":{"hex":"#89c3eb","name":"勿忘草色","words":"友情・平和・調和","personality":"行動前に２度考える慎重派"},"0216":{"hex":"#a4c1d7","name":"スモークブルー","words":"謙虚・堅実・克己心","personality":"常に自分を高めようとする努力家"},"0217":{"hex":"#4c5e74","name":"スマルト","words":"根気・完全主義・品格","personality":"物事にのめり込む熱中タイプ"},"0218":{"hex":"#6c3524","name":"チョコレート","words":"不屈・閃き・自己正当化","personality":"自分の考えの正しさを主張できる人"},"0219":{"hex":"#223a70","name":"紺色","words":"大器・指導者・感性","personality":"自分が向かっている道を知る識者"},"0220":{"hex":"#fff1cf","name":"鳥の子色","words":"魅惑・個性・節度","personality":"独創的なセンスを持つ個性派"},"0221":{"hex":"#fff799","name":"ライムライト","words":"魅惑・個性・節度","personality":"強烈な個性と主張を持つ人"},"0222":{"hex":"#fabf14","name":"鬱金色","words":"感性・楽しい・芸術","personality":"楽しく目新しさを追求する楽天家"},"0223":{"hex":"#ffec47","name":"菜の花色","words":"人道主義・不言実行","personality":"人々に歓喜を起こさせる行動派"},"0224":{"hex":"#d8e2ae","name":"リードグリーン","words":"リラックス・社交的","personality":"いつも希望を抱きながら前進する人"},"0225":{"hex":"#e5e8e1","name":"ミストホワイト","words":"目的・感銘・名誉","personality":"ねばり強さで目的をとげる努力家"},"0226":{"hex":"#becebc","name":"裏葉色","words":"円満・努力・正確","personality":"難問にも全力を傾ける挑戦者"},"0227":{"hex":"#a1a46d","name":"柳茶","words":"楽しい・大雑把・開放","personality":"しきたりに束縛されない人気者"},"0228":{"hex":"#5f6527","name":"オリーブグリーン","words":"感性・堅実・優雅","personality":"人との交流を大切にする人"},"0229":{"hex":"#578a3d","name":"アイビーグリーン","words":"道徳・知能・構想","personality":"友だちの面倒をよくみる人"},"0301":{"hex":"#f5b199","name":"一斤染","words":"責任感・気配り・優しさ","personality":"人を活気づけてくれる元気者"},"0302":{"hex":"#fdede4","name":"ベビーピンク","words":"理想・家庭的・包容力","personality":"幸せな家庭を彷彿とさせる人"},"0303":{"hex":"#f4b3c2","name":"鴇色","words":"恋愛・礼儀・艶やか","personality":"愛されていると美しく輝く人"},"0304":{"hex":"#ea5550","name":"ポピーレッド","words":"主役・高尚・敏感","personality":"平均的では満足しない人"},"0305":{"hex":"#cf0125","name":"チェリーレッド","words":"現実主義・感性・情熱","personality":"現実的な考え方をするしっかり者"},"0306":{"hex":"#fef4f4","name":"桜色","words":"愛情・思いやり・健全","personality":"人を感動させる力を秘めた人"},"0307":{"hex":"#f3a68c","name":"サーモンピンク","words":"優しさ・気づかい・感性","personality":"人の幸せを心から願える人格者"},"0308":{"hex":"#f2a0a1","name":"紅梅色","words":"愛情・安定・女性らしさ","personality":"愛に満ちあふれた女らしい人"},"0309":{"hex":"#f5b1aa","name":"珊瑚色","words":"意欲・勇猛・外交的","personality":"憧れを実現しようと試みる行動派"},"0310":{"hex":"#e8383d","name":"シグナルレッド","words":"持続力・指導者","personality":"多くの分野で活躍する元気者"},"0311":{"hex":"#f4dda5","name":"砥粉色","words":"慈悲深さ・情熱・手際よさ","personality":"温かく寛大な心の持ち主"},"0312":{"hex":"#e65454","name":"オレンジバーミリオン","words":"無邪気・感性・純粋","personality":"人を正しい方向に導く天使"},"0313":{"hex":"#ed6d3d","name":"柿色","words":"健やか・組織力・大望","personality":"健やかさをアピールする元気者"},"0314":{"hex":"#e23620","name":"スカーレッド","words":"エネルギー・明朗・情熱","personality":"華やかで活気に満ちた行動派"},"0315":{"hex":"#d11c1e","name":"ルージュ","words":"活発・健康・外向性","personality":"自発的に行動を起こす情熱家"},"0316":{"hex":"#d2a4c8","name":"薄紅藤","words":"直観力・精神高揚・気高さ","personality":"心も体も女性らしい素直な人"},"0317":{"hex":"#915da3","name":"モーブ","words":"想像力・センス・魅惑的","personality":"次々と新しい物を創り出す創造者"},"0318":{"hex":"#985b9e","name":"カンパヌラパープル","words":"鋭敏・神秘的・高貴","personality":"あらゆるものに敏感な神秘的な人"},"0319":{"hex":"#581074","name":"ビオレ","words":"落ち着き・健康・安定感","personality":"湖のように心が静かで美しい人"},"0320":{"hex":"#895b8a","name":"古代紫","words":"落ち着き・品位・高貴","personality":"いつも冷静に物事を判断できる人"},"0321":{"hex":"#aaa7d0","name":"ペールオーキッド","words":"天賦の才・神秘的・無関係","personality":"周囲の環境を美しく変える人"},"0322":{"hex":"#ba64a0","name":"ディープモーベット","words":"品格・デリケート・控えめ","personality":"どこでも誰からも好かれる人気者"},"0323":{"hex":"#745399","name":"江戸紫","words":"安定・洗練・芸術的才能","personality":"けっして思い上がらない品格者"},"0324":{"hex":"#934491","name":"マロー","words":"直感的・高尚・主観的","personality":"心の友人を求めるロマンチス"},"0325":{"hex":"#b33e5c","name":"ワインレッド","words":"主役の風格・個性・自信","personality":"直観力と威厳で名を馳せる芸術家"},"0326":{"hex":"#cae2c6","name":"シルバーグリーン","words":"可能性・行動力・明哲","personality":"果敢に取り組む努力家"},"0327":{"hex":"#bee0ce","name":"オパールグリーン","words":"美貌・陶冶・自己表現","personality":"花の生命の広がりのように美しい人"},"0328":{"hex":"#a7d3cf","name":"ペールアクア","words":"感謝・教養・思いやり","personality":"葉から不思議な香りが漂う人"},"0329":{"hex":"#a3d3dd","name":"スプレーグリーン","words":"謙虚・生真面目・専門的","personality":"複雑な問題もあっさり片づける人"},"0330":{"hex":"#49bdf0","name":"パステルブルー","words":"トレンド・情熱と安らぎ","personality":"創作力を培うロマンチスト"},"0331":{"hex":"#ece093","name":"ストロー","words":"激励・感動・歓喜と悲哀","personality":"自由に行動できるスポーツマン"},"0401":{"hex":"#fdeff2","name":"薄桜","words":"洗練・友人・ほほえみ","personality":"幸せな雰囲気を作るロマンチスト"},"0402":{"hex":"#fbdac8","name":"シェルピンク","words":"詩的情緒・頭脳明晰・純粋","personality":"天才的感性を備えた努力家"},"0403":{"hex":"#f5a0bd","name":"フクシャピンク","words":"思いやり・無邪気・想像力","personality":"トレンドを読む感覚にすぐれた人"},"0404":{"hex":"#e383a4","name":"ディープオーキッドピンク","words":"情緒・社交的・目標","personality":"温かいもてなしに満ちた人"},"0405":{"hex":"#84a2d4","name":"青藤色","words":"人づきあい・情熱・洗練","personality":"すべてがお洒落なベストドレッサー"},"0406":{"hex":"#68a9cf","name":"チョークブルー","words":"無邪気・澄んだ視線・洗練","personality":"現実から遊離して美しさを求める人"},"0407":{"hex":"#f1f5dc","name":"白百合","words":"多才・内向性・創意工夫","personality":"興味を抱いて工夫する努力家"},"0408":{"hex":"#69b076","name":"薄緑色","words":"希望・用意周到・敬愛","personality":"ほのぼのとした存在感を漂わせる人"},"0409":{"hex":"#fbca4d","name":"支子色","words":"スポーツ感・流れる動作","personality":"状況に応じて的確に行動できる人"},"0410":{"hex":"#e5a323","name":"パンプキン","words":"澄んだ瞳・清純・緻密","personality":"若い世代の感性を究めた先駆者"},"0411":{"hex":"#ecdecf","name":"蒸栗色","words":"努力家・現実主義・陽気","personality":"世事に通じた堅実な職人肌"},"0412":{"hex":"#a29779","name":"利休白茶","words":"伝統・技巧・主張","personality":"伝統を重んじる技術ある自信家"},"0413":{"hex":"#e8ece9","name":"フロスティグレイ","words":"楽観的・明るさ・哲学的","personality":"豊富な生活経験を持つユーモア人"},"0414":{"hex":"#949495","name":"鼠色","words":"美貌・しなやか・思いやり","personality":"人の魂を虜にする天女のような人"},"0415":{"hex":"#d5dad4","name":"ペールミストホワイト","words":"中立不偏・保守的・伝統","personality":"義理人情に厚く正義感に満ちた人"},"0416":{"hex":"#cbd0d3","name":"スカイグレイ","words":"穏健・快活・謙遜","personality":"仕事をそつなくこなす穏健派"},"0417":{"hex":"#898989","name":"バトルシップグレイ","words":"実直・責任感・客観的","personality":"どんな障害にも動じない堅実派"},"0418":{"hex":"#626063","name":"スレートグレイ","words":"機知・誇り・良心","personality":"喜びを得るために猛進する行動派"},"0419":{"hex":"#524e4d","name":"消炭色","words":"厳粛・誠実・技量","personality":"洞察力と技量を兼ね備えた人"},"0420":{"hex":"#c7dc68","name":"若苗色","words":"規律・言葉づかい・愛情","personality":"清らかでキラキラした感性の持ち主"},"0421":{"hex":"#d8e698","name":"若菜色","words":"温厚・誠意・感傷的","personality":"常に率直な姿勢で臨む素直な人"},"0422":{"hex":"#2aa74b","name":"鸚緑","words":"リーダーシップ・指導者","personality":"働くことが好きな人"},"0423":{"hex":"#88cb9d","name":"葦葉色","words":"調和・順応・人間関係","personality":"社会の信用を集めるしっかり者"},"0424":{"hex":"#a3d49c","name":"スプラウト","words":"優雅・優しさ・文学","personality":"文学に心ひかれる優しい人"},"0425":{"hex":"#79c288","name":"エルブ","words":"繊細・スポーツ・時間","personality":"仕事に手ごたえを感じる挑戦者"},"0426":{"hex":"#79c266","name":"ディープピーグリーン","words":"向上心・人の為・完成","personality":"才能を磨くことを忘れない努力家"},"0427":{"hex":"#00a968","name":"エメラルドグリーン","words":"人生・経験・鍛錬","personality":"夢を求め、挑戦する人"},"0428":{"hex":"#00947a","name":"ターコイズグリーン","words":"成熟・バランス・創意","personality":"多様な計画を生み出すアイデアマン"},"0429":{"hex":"#00a6af","name":"薄浅葱","words":"ナイーブ・神秘性・癒し","personality":"ナイーブな心の持ち主"},"0430":{"hex":"#00b2bc","name":"アジュールブルー","words":"助け合い・行動・成長","personality":"成長する人"},"0501":{"hex":"#009b9f","name":"ターコイズ","words":"機敏・叙情性","personality":"誰からも愛される人気者"},"0502":{"hex":"#009854","name":"マラカイトグリーン","words":"情熱的・ユーモア・静寂","personality":"社交的だが喧騒を嫌う自然派"},"0503":{"hex":"#01686d","name":"ティールグリーン","words":"大地・情緒的・牧歌的","personality":"澄んだ小川に憧れる牧歌的な人"},"0504":{"hex":"#014127","name":"小鴨色","words":"再生能力・経営力・刷新力","personality":"正々堂々としたキーパーソン"},"0505":{"hex":"#bce2e8","name":"水色","words":"奔放・洞察・主役","personality":"理念を形にできる芸術家"},"0506":{"hex":"#70c6f5","name":"フォゲットミーナットブルー","words":"直観・優しさ・アイデア","personality":"才能を発揮する女性らしい人"},"0507":{"hex":"#4c6cb3","name":"群青色","words":"思慮深さ・規律・しなやか","personality":"称賛を浴びるマドンナ"},"0508":{"hex":"#316745","name":"千歳緑","words":"丁寧・辛抱・謙遜","personality":"熟考してから発言する慎重派"},"0509":{"hex":"#2cb232","name":"パラキートグリーン","words":"調和・バランス","personality":"調和とバランスのとれた行動派"},"0510":{"hex":"#f5f6ca","name":"エッグシェル","words":"少女・感傷的・寛大","personality":"戯れの恋に陥らないしっかり者"},"0511":{"hex":"#d1de4c","name":"レタスグリーン","words":"挑戦・話好き","personality":"失敗を覚悟で新しい事に挑戦する人"},"0512":{"hex":"#e3e548","name":"シャルトルーズイエロー","words":"グルメ・社交的・田園的","personality":"誠実な人柄と社交性が混在した人"},"0513":{"hex":"#e4dc8a","name":"枯草色","words":"理解力・アイデア","personality":"自分の考えを適確に言葉にできる人"},"0514":{"hex":"#72640c","name":"オリーブ","words":"自然・優しさ","personality":"花や草を育てる喜びを知る自然派"},"0515":{"hex":"#d0c67c","name":"コロニアルイエロー","words":"良心・向上心・体系化","personality":"常に知識を蓄える向上心豊かな人"},"0516":{"hex":"#a49627","name":"ペールマスタード","words":"実直・細心・強情","personality":"堅実でガンコな気質の名人肌"},"0517":{"hex":"#8d6f2f","name":"ゴールデンオーカー","words":"明敏・抜け目なさ・洞察","personality":"自分の考えを曲げない頑固者"},"0518":{"hex":"#464646","name":"オリーブ茶","words":"適確な発言・学識・保守","personality":"知識が充実した穏健派"},"0519":{"hex":"#494a41","name":"千歳茶","words":"中立・公平・バランス","personality":"どんな問題にも対応できる優れ者"},"0520":{"hex":"#8ccab0","name":"ディープアクア","words":"感傷的・美しい容貌","personality":"センチメンタルな幸福の女神"},"0521":{"hex":"#47885e","name":"緑青色","words":"頭脳明晰・技巧・適応","personality":"常に刺激や感動を求める前向きな人"},"0522":{"hex":"#036122","name":"スプルースグリーン","words":"律儀な働き者・バランス","personality":"無償の愛情にあふれた人情家"},"0523":{"hex":"#034415","name":"ボトルグリーン","words":"自然・個性・寛容","personality":"朗らかで人をとがめない心の広い人"},"0524":{"hex":"#264939","name":"サイプレスグリーン","words":"調和・気配り・まとめ役","personality":"みんなから信頼を集めるあねご肌"},"0525":{"hex":"#face9d","name":"ネープルズイエロー","words":"朗らか・順風満帆","personality":"面倒見がよく人に慕われる人気者"},"0526":{"hex":"#f9cc77","name":"マリーゴールドイエロー","words":"生命力・情緒的・情熱","personality":"太陽のように陽気な健康美の麗人"},"0527":{"hex":"#f8b500","name":"山吹色","words":"逞しさ・英知・解放","personality":"陽気で温かく、自由を愛する人"},"0528":{"hex":"#b36029","name":"オールドゴールド","words":"伝統継承・観察力","personality":"仕事を楽しめるしっかり者"},"0529":{"hex":"#7a5347","name":"コーヒーブラウン","words":"規律・模範・自信","personality":"常に向上できる技量を持った人"},"0530":{"hex":"#e8d3d1","name":"灰桜","words":"ロマンチスト・知識","personality":"優雅で洗練された輪郭の持ち主"},"0531":{"hex":"#f0908d","name":"薄紅","words":"教養・崇高・才媛","personality":"物事をテキパキとこなす敏腕家"},"0601":{"hex":"#bea2ca","name":"ペールクロッカス","words":"女性らしさ・自惚れ","personality":"気高さを持つ女性の中の女性"},"0602":{"hex":"#7058a3","name":"菫色","words":"気まぐれ・チャーミング","personality":"決して媚びない気高い女性"},"0603":{"hex":"#5c1767","name":"プルプル","words":"のんき・真理・孤独","personality":"常にバランスを心がける人"},"0604":{"hex":"#f7f7d9","name":"ペールホワイトリリー","words":"無邪気・豊かな才能・刺激","personality":"子供に戻りたい純真な心の持ち主"},"0605":{"hex":"#ddeab2","name":"ペールフレッシュグリーン","words":"規則正しい・逆境に強い","personality":"リズムのある生活を楽しむ人"},"0606":{"hex":"#e0de94","name":"メロンイエロー","words":"人道主義・サービス精神","personality":"人間関係を大切にする平穏な人"},"0607":{"hex":"#657d61","name":"エルムグリーン","words":"清廉潔白・精神力","personality":"コミュニケーション上手な国際派"},"0608":{"hex":"#665a1a","name":"オリーブドラブ","words":"愛情・バランス・語学堪能","personality":"他人の意見や行動に寛容な人"},"0609":{"hex":"#fff8a8","name":"クリーム","words":"身だしなみ・洗練・品格","personality":"容姿が周囲の注目を集める品格者"},"0610":{"hex":"#fff352","name":"レモンイエロー","words":"明るさ・現実・経営力","personality":"明るく周囲の人を元気づける自信家"},"0611":{"hex":"#f6d700","name":"黄水仙","words":"学問・研究開発・企画力","personality":"最先端に立って研究を楽しむ情熱家"},"0612":{"hex":"#fac559","name":"サフランイエロー","words":"体力・容姿端麗","personality":"バランスよい食事を楽しみにする人"},"0613":{"hex":"#fcc800","name":"向日葵色","words":"話好き・健康的・向上心","personality":"希望に胸をふくらませる明るい人"},"0614":{"hex":"#f8f4e6","name":"アイボリー","words":"信頼・誠実・保守的","personality":"中間的立場をとる控えめな人"},"0615":{"hex":"#f7b894","name":"ライトアプリコット","words":"我慢強さ・猪突猛進","personality":"徹底した誠実ぶりが長所の人"},"0616":{"hex":"#c39143","name":"黄土色","words":"評価・粘り強さ","personality":"努力で目標達成するコツコツ型"},"0617":{"hex":"#e29399","name":"オールドローズ","words":"精神の安定・仕事が趣味","personality":"経験を知識と技術として蓄える人"},"0618":{"hex":"#724943","name":"マホガニーブラウン","words":"自信・落ち着き・自然","personality":"ユーモアセンスに溢れた堅実派"},"0619":{"hex":"#fcd575","name":"卵色","words":"スポーツ・健康・組織","personality":"スポーツ好きな頑張り屋"},"0620":{"hex":"#f19d45","name":"サンライトイエロー","words":"社交的・友人・エネルギー","personality":"常に行動をもって先導する模範生"},"0621":{"hex":"#f39800","name":"金茶","words":"芸術・スポーツ・グルメ","personality":"料理道具にもこだわる美食家"},"0622":{"hex":"#973b2c","name":"ガーネットブラウン","words":"エネルギー・忘我・話好き","personality":"人好きで愛想の良いはしゃぎ屋"},"0623":{"hex":"#773c30","name":"海老茶","words":"希望・向上心・指導力","personality":"人生経験により円熟する寛大な人"},"0624":{"hex":"#f9bdc5","name":"ライトオーキッドピンク","words":"微笑み・優しさ・永遠","personality":"妖精のように気品にあふれた人"},"0625":{"hex":"#e1849e","name":"ペールチェリーピンク","words":"勇気・優雅・安らぎ","personality":"人の心をとらえる控えめな人"},"0626":{"hex":"#eb5381","name":"カーネーションピンク","words":"人なつこさ・崇高","personality":"好意的で人に親しまれる永遠の恋人"},"0627":{"hex":"#f19ca7","name":"ローズピンク","words":"激しい気性・外交的","personality":"人を激励しチャンスを与える情熱家"},"0628":{"hex":"#cf0141","name":"ペッパーレッド","words":"エネルギー・澄んだ心","personality":"気前のよさで人から慕われる才人"},"0629":{"hex":"#bbe2f1","name":"ベビーブルー","words":"平和・静穏・思慮深さ","personality":"他人のニーズに敏感に対応できる人"},"0630":{"hex":"#5383c3","name":"薄群青","words":"個性・理想・向上心","personality":"周囲を飲みこむ魅力の持ち主"},"0701":{"hex":"#007199","name":"ダックブルー","words":"平和・空想・環境問題","personality":"地球を生命と考えるエコロジスト"},"0702":{"hex":"#0068b7","name":"コバルトブルー","words":"手際よさ・繊細","personality":"感性豊かな洗練された都会派"},"0703":{"hex":"#003f8e","name":"インクブルー","words":"気品・耐える人・自信","personality":"人も羨むほどの自信家"},"0704":{"hex":"#3fb5d3","name":"アクア","words":"静穏・崇高・自己発展","personality":"心理状態をコントロールできる人"},"0705":{"hex":"#4593a0","name":"ペールサックスブルー","words":"感性・自由・秘めた情熱","personality":"愛情に満ちた静かな気質の人"},"0706":{"hex":"#59b9c6","name":"新橋色","words":"状況判断・決定力・信念","personality":"前向きで仕事も生活も楽しめる人"},"0707":{"hex":"#016171","name":"ブルーカナール","words":"聡明・大望・チャンス","personality":"一を聞いて十を知る多才な人"},"0708":{"hex":"#006888","name":"マリンブルー","words":"多才・努力・落着き","personality":"努力により真理を追究する情熱家"},"0709":{"hex":"#f7f6f5","name":"パールホワイト","words":"秘密・孤独・正義感","personality":"人から頼られる事を好む高潔な人"},"0710":{"hex":"#608fc3","name":"ペールパステルブルー","words":"優しさ・甘美・謙虚","personality":"女性の美しさを象徴する人"},"0711":{"hex":"#5371ad","name":"ラベンダーブルー","words":"礼儀・審美眼・色彩感","personality":"人をうっとりさせる魅力のある人"},"0712":{"hex":"#044182","name":"マジョリカブルー","words":"教養・上品・幸せな未来","personality":"真理を追究する人びとの指導者"},"0713":{"hex":"#192f60","name":"紺青","words":"自尊心・滅私奉公・直観力","personality":"不幸な人を見過ごせない慈悲深い人"},"0714":{"hex":"#fdede4","name":"ディープベビーピンク","words":"感性・真心・温かさ","personality":"仕事も生活も楽しめる前向きな人"},"0715":{"hex":"#b370a6","name":"ペールモーベット","words":"繊細・暗示・慎み深さ","personality":"かわいいものに引かれる優美な人"},"0716":{"hex":"#94adda","name":"ファウンテンブルー","words":"踊りと音楽・自由・個性","personality":"自由奔放な生活を望む人"},"0717":{"hex":"#6b76ae","name":"サルビアブルー","words":"経営力・洗練・機知","personality":"道を究めるべくして存在する女性"},"0718":{"hex":"#7f1184","name":"ロイヤルパープル","words":"知性・神秘性・香り","personality":"助けた人をみな成功に導く人"},"0719":{"hex":"#f7a7a0","name":"ディープシェルピンク","words":"繊細・楽しい・温かさ","personality":"いつも慎ましい不変な愛の持ち主"},"0720":{"hex":"#e49e61","name":"小麦色","words":"思いやり・空想・感受性","personality":"優美さに恵まれた妖精のような女性"},"0721":{"hex":"#c56950","name":"ハバナローズ","words":"奥ゆかしさ・躍動・母性","personality":"美しく礼儀正しい人"},"0722":{"hex":"#b94047","name":"臙脂","words":"支持・向上心・弾力的","personality":"自分の力量を自覚し向上させる人"},"0723":{"hex":"#b7282e","name":"茜色","words":"厳格・可能性・積極性","personality":"世界的視野を持つ穏健派"},"0724":{"hex":"#f5949f","name":"キューピッドピンク","words":"ほほえみ・良識・質素","personality":"自然な色気で人を陶酔させる美人"},"0725":{"hex":"#de82a7","name":"ロータスピンク","words":"永久不変・献身と抵抗","personality":"気品ある精神の持ち主"},"0726":{"hex":"#af363b","name":"ローズマダー","words":"愛敬・優雅・ユーモア","personality":"心に響く言動で感動させる情熱家"},"0727":{"hex":"#8d3446","name":"クリムソン","words":"経験・才能・行動力","personality":"女性の成熟が混在する多感な人"},"0728":{"hex":"#404040","name":"黒柿色","words":"ユーモア・繊細・英知","personality":"理想と洗練された精神の情熱家"},"0729":{"hex":"#008db7","name":"セルリアンブルー","words":"誠実・霊感・思いやり","personality":"真心で人に接する優しい人"},"0730":{"hex":"#009e9f","name":"ピーコックブルー","words":"深い愛情・調和・友情","personality":"自分を知り向上できる人"},"0731":{"hex":"#044d78","name":"プルシアンブルー","words":"神秘的・クール・明るさ","personality":"表情に出さず心の奥で感動する人"},"0801":{"hex":"#438cb5","name":"ブルーシェル","words":"社交的・我慢・誠実","personality":"皆に誠実にできる社交的な人"},"0802":{"hex":"#0098d4","name":"ペールヨットブルー","words":"知能・責任・スピーディ","personality":"内向的で格式を好む保守主義者"},"0803":{"hex":"#409ecc","name":"ヨットブルー","words":"謹厳・完全主義・人脈","personality":"人を心の底から信じる頼もしい人"},"0804":{"hex":"#0063a7","name":"シアンブルー","words":"気高さ・品格・頂点","personality":"粘り強く困難に立向う忍耐力の人"},"0805":{"hex":"#1e50a2","name":"瑠璃色","words":"穏やか・信頼・尊敬","personality":"人に愛され信頼され尊敬される人"},"0806":{"hex":"#004c97","name":"ラピスラズリー","words":"粗野と高貴・教養","personality":"思いやりに満ちた知的な人"},"0807":{"hex":"#02428c","name":"ローヤルブルー","words":"チャーミング・機知","personality":"知ることを求めて突き進む探検家"},"0808":{"hex":"#164a84","name":"紺瑠璃","words":"直観・素朴・勝負","personality":"直観の彼方を見つめつづける人"},"0809":{"hex":"#202f55","name":"ネービーブルー","words":"知的・文化・洗練","personality":"俗悪なものを嫌うロマンチスト"},"0810":{"hex":"#3f61a1","name":"ハイドレンジアブルー","words":"芸術・才能・表現力","personality":"感性を磨いて美しく表す芸術家"},"0811":{"hex":"#55295b","name":"桑の実色","words":"直観・信念・宗教","personality":"精神世界を感じやすい神秘主義者"},"0812":{"hex":"#a6a5c4","name":"藤鼠","words":"情熱・孤独・節度","personality":"自分の存在を見つめるロマンチスト"},"0813":{"hex":"#83ccd2","name":"白群","words":"感性・機敏・信念","personality":"堅実な人柄で信頼と尊敬を集める人"},"0814":{"hex":"#4cb8e7","name":"ミヨゾティ","words":"輝く美声・生気・表現力","personality":"人の心を高みに誘う美声の持ち主"},"0815":{"hex":"#ffd900","name":"黄色","words":"機知・優しい心・家庭的","personality":"温かい愛情で育った聡明な人"},"0816":{"hex":"#fffa9c","name":"ライトクリーム","words":"感性・意思・リズム","personality":"感性を動きとリズムで表現する天才"},"0817":{"hex":"#fff97d","name":"プリムローズイエロー","words":"愛と友情・好奇心・探求心","personality":"鮮やかな少女時代を送った無垢な人"},"0818":{"hex":"#f6ad49","name":"柑子色","words":"至高・明朗・自由","personality":"精神を重視する賢者"},"0819":{"hex":"#f79101","name":"ゴールデンオレンジ","words":"自分本位・一番乗り","personality":"ナンバーワンを求める誇り高き人"},"0820":{"hex":"#f08300","name":"蜜柑色","words":"エネルギー・大望・現実","personality":"心身ともに健康な現実主義者"},"0821":{"hex":"#dd7a56","name":"肉桂色","words":"エネルギー・人間関係","personality":"バランスよく全体をまとめる指導者"},"0822":{"hex":"#ffcc83","name":"ゴールデンコーン","words":"感情移入・創作力","personality":"ユニークに広がる心の持ち主"},"0823":{"hex":"#feae01","name":"ディープサンフラワー","words":"タイミング・美学センス","personality":"ものごとを両面から見れる創造者"},"0824":{"hex":"#c4972f","name":"イエローオーカー","words":"努力・トレーニング・行動","personality":"自分をより高めようとする努力家"},"0825":{"hex":"#caac71","name":"バフ","words":"節度・平和・優雅","personality":"人間関係を大切にする礼儀正しい人"},"0826":{"hex":"#7d541c","name":"煙草色","words":"堅実・組織力・現実主義","personality":"自分を優位にすることを願う指導者"},"0827":{"hex":"#a0d8ef","name":"スカイブルー","words":"深慮遠謀・ファッション","personality":"どんな服も似合うロマンチスト"},"0828":{"hex":"#5d9cbf","name":"アクアグレイ","words":"芸術・感性・想像力","personality":"多分野で主役を望むクリエーター"},"0829":{"hex":"#4b7cb6","name":"ペールサルビアブルー","words":"かぐわしさ・献身・気品","personality":"人脈づくりを得意とする慎重派"},"0830":{"hex":"#356cac","name":"ウルトラマリーン","words":"母性愛・音楽・気品","personality":"心の琴線にふれる旋律を奏でる人"},"0831":{"hex":"#460e44","name":"紫紺","words":"自己管理・権威・居丈高","personality":"人の上に立つオピニオンリーダー"},"0901":{"hex":"#7dbb7c","name":"フレッシュグリーン","words":"教養・繊細・慎ましさ","personality":"優しい声で語る恋愛小説のヒロイン"},"0902":{"hex":"#368a56","name":"牧草色","words":"頑固・公明正大・努力","personality":"自己犠牲をも辞さない尊敬すべき人"},"0903":{"hex":"#016257","name":"ホリーグリーン","words":"知覚・優しさ・創作意欲","personality":"ユートピアを夢見る文学少女"},"0904":{"hex":"#006b35","name":"ビリジャン","words":"好奇心・スリル・自発的","personality":"冷静な判断力を持つ客観的な人"},"0905":{"hex":"#005243","name":"鉄色","words":"虚栄心・善悪の区別・秩序","personality":"少しずつ真理に近づく高潔な人"},"0906":{"hex":"#003d26","name":"海松藍色","words":"自分自身・努力","personality":"努力を惜しまない努力家"},"0907":{"hex":"#6ebdc2","name":"淡水色","words":"調和・情熱・純粋","personality":"役立つ事に生きがいを感じる人"},"0908":{"hex":"#67b5b7","name":"アクアマリン","words":"冒険・トップ・臨機応変","personality":"良心を信条とするまじめな人"},"0909":{"hex":"#006069","name":"ディープティールグリーン","words":"思いやり・礼儀・健康","personality":"好奇心を持ちつづける若々しい人"},"0910":{"hex":"#17184b","name":"鉄紺","words":"冷静・自己評価・独創","personality":"陣頭指揮をふるうすぐれた経営者"},"0911":{"hex":"#003221","name":"ブループリュス","words":"グルメ・思想家・文才","personality":"何でもわかりやすく表現できる才人"},"0912":{"hex":"#282b6e","name":"マルベリー","words":"大器・指導者・感性","personality":"自分が向かっている道を知る識者"},"0913":{"hex":"#28285a","name":"パープルネイビー","words":"細やか・洗練・独創性","personality":"絵画のように繊細なロマンチス"},"0914":{"hex":"#bf783e","name":"タン","words":"着想・努力・徹底追究","personality":"疑問が晴れるまで調べる情熱家"},"0915":{"hex":"#8a3b00","name":"褐色","words":"意志・好奇心・経験","personality":"我の強いストレートな人"},"0916":{"hex":"#bd6856","name":"テラコッタ","words":"心情・伝統・主義主張","personality":"豪気で大胆な考え方を示す善人"},"0917":{"hex":"#7dbb7c","name":"浅葱鼠","words":"冷静沈着・直観・思いやり","personality":"安定した頼られるリーダー"},"0918":{"hex":"#bccddb","name":"パウダーブルー","words":"冷静・温厚篤実・威厳","personality":"後進の指導を得意とする温厚な人"},"0919":{"hex":"#7c7684","name":"ライラックヘイズィ","words":"厳格・日本的・素質の開発","personality":"厳しさを糧に円熟に達する努力家"},"0920":{"hex":"#fffcbf","name":"ライトレモン","words":"憂愁・純粋・洗練","personality":"敏感な感性を持つ素直な人"},"0921":{"hex":"#e3edc8","name":"ティーグリーン","words":"高潔・神秘主義・孤独","personality":"気高く汚れのない神秘主義者"},"0922":{"hex":"#edee9e","name":"ブールジョン","words":"楽しい会話・快活","personality":"気持ちよい雰囲気を創る人"},"0923":{"hex":"#ebe960","name":"ジョーンシトロン","words":"公正さ・自力・自己犠牲","personality":"手ごたえを本格的に感じる野心家"},"0924":{"hex":"#d7cf3a","name":"鶸色","words":"勝負・好機・直観","personality":"しきたりを打破して突進する情熱家"},"0925":{"hex":"#fdb86d","name":"サンオレンジ","words":"配慮・構想・瞬発力","personality":"周囲に影響されやすいナイーブな人"},"0926":{"hex":"#f37f44","name":"タンジェリンオレンジ","words":"責任感・熟考・オリジナル","personality":"模倣を嫌い独特の発想をする人"},"0927":{"hex":"#f16f4f","name":"タイガーリリー","words":"生命力・先駆者・勇気","personality":"奇想天外な着想をするパイオニア"},"0928":{"hex":"#d3381c","name":"緋色","words":"夢・尊敬・構想","personality":"崇高な雰囲気で尊敬できる人"},"0929":{"hex":"#e95388","name":"オペラ","words":"天真爛漫・強靭な精神","personality":"ひとつのことに集中できる人"},"0930":{"hex":"#89438c","name":"アマランスパープル","words":"現実・本質・探求心","personality":"美しい土地を求めるロマンチスト"},"1001":{"hex":"#ee7948","name":"黄丹","words":"訓練・生命力・リズム感","personality":"芸術とスポーツに秀でた活発な人"},"1002":{"hex":"#8f2e14","name":"弁柄色","words":"陽気・創造・ほほえみ","personality":"誰からも愛される温かい心の持ち主"},"1003":{"hex":"#ed6d35","name":"キャロットオレンジ","words":"パワー・充実・挑戦","personality":"ひとりぼっちを好まない社交的な人"},"1004":{"hex":"#ec5415","name":"フレイムオレンジ","words":"感性・怜悧・美貌","personality":"感情を包み隠した情熱家"},"1005":{"hex":"#c78a77","name":"丁字色","words":"保守的・義務感・責任感","personality":"気まぐれが許せない合理主義者"},"1006":{"hex":"#be8f68","name":"シナモン","words":"体調・精神安定・安らぎ","personality":"非凡なものが直感的にわかる人"},"1007":{"hex":"#946c45","name":"カフェオレ","words":"知識・たくましさ・決断力","personality":"料理好きで旺盛な生活力の持ち主"},"1008":{"hex":"#b55233","name":"煉瓦色","words":"安楽・幸せ・自由","personality":"自然と一体化できる自由人"},"1009":{"hex":"#7b411c","name":"テラローザ","words":"理論的・感受性・危険回避","personality":"新しい境地を開く驚異の人"},"1010":{"hex":"#ba8b40","name":"オーカー","words":"知力・先見の明・理解","personality":"あくことなき探求心の持ち主"},"1011":{"hex":"#b76651","name":"キャメル","words":"記憶力・想像力・才能","personality":"衝動的な言動をしない正直な人"},"1012":{"hex":"#823616","name":"バーントシエンナ","words":"個性・壮大・想像力","personality":"素朴な優しさを持つ奥ゆかしい人"},"1013":{"hex":"#6d3c32","name":"栗皮茶","words":"スタミナ・神秘的・保守的","personality":"いつも音楽とともにある健康な人"},"1014":{"hex":"#622d18","name":"セピア","words":"教養・初々しさ・独創性","personality":"豊かな感性を持つ気まぐれな人"},"1015":{"hex":"#bb5520","name":"代赭","words":"母性愛・自己啓発・洞察力","personality":"機知に富む聡明な人"},"1016":{"hex":"#e9bc00","name":"トパーズ","words":"優等生・入念・慎重","personality":"自分らしさを出す才人"},"1017":{"hex":"#d7d0ca","name":"オーキッドホワイト","words":"清らか・理解力・思いやり","personality":"おだやかな心で度量が大きい人"},"1018":{"hex":"#c9c9c4","name":"パールグレイ","words":"活発・優美・威厳","personality":"静と動が融和した魅力的な人"},"1019":{"hex":"#afafb0","name":"銀鼠","words":"慎ましさ・礼儀・気品","personality":"思いやり深く気品に満ちた人"},"1020":{"hex":"#7d7d7d","name":"マウスグレイ","words":"自然・慣習・試行錯誤","personality":"安定した人生を送る平和主義者"},"1021":{"hex":"#9e8b8e","name":"鳩羽鼠","words":"宗教的・禁欲・叙情性","personality":"神聖な思索で人間性を回復する人"},"1022":{"hex":"#585c5b","name":"石板色","words":"文化・喧騒・都会的","personality":"仕事一途の合理主義者"},"1023":{"hex":"#d0af4c","name":"芥子色","words":"自信・記憶力・不屈の精神","personality":"構想を練り実現させる自信家"},"1024":{"hex":"#646f2d","name":"シーモス","words":"情熱・協力・夢","personality":"基礎の思考がしっかりしてる人"},"1025":{"hex":"#9d8e87","name":"ローズグレイ","words":"丁寧・敬意・静叙","personality":"慎ましく振る舞う落ち着いた人"},"1026":{"hex":"#548778","name":"ライトターコイズ","words":"自力本願・指導者・活路","personality":"常に冷静で思慮深く行動する人"},"1027":{"hex":"#476b6b","name":"錆納戸","words":"継続・安らぎ・自然","personality":"常に新しい目標に挑戦する人"},"1028":{"hex":"#6c6a6d","name":"鳩羽紫","words":"前向き・潔癖・気品","personality":"行動で学ぶ実践主義者"},"1029":{"hex":"#665951","name":"栗色","words":"強情・健康・穏健","personality":"穏健でも自分の考えを譲らない"},"1030":{"hex":"#83515d","name":"ビンヤード","words":"経験・相談相手","personality":"問題の解決に協力する頼もしい人"},"1031":{"hex":"#d1bada","name":"ライラック","words":"機知・理論的・勇猛果敢","personality":"成功させるために燃える情熱家"},"1101":{"hex":"#bf794e","name":"駱駝色","words":"経営力・自信と誇り・我慢","personality":"自信と気力に満ちた才腕をふるう人"},"1102":{"hex":"#8b724a","name":"小鹿色","words":"洞察力・現実派・柔軟性","personality":"決してブレない強い意志の持ち主"},"1103":{"hex":"#583822","name":"黒茶","words":"公正・高潔・信頼","personality":"人からの助けを大切にできる人"},"1104":{"hex":"#504946","name":"トープ","words":"感覚・職人わざ・至高","personality":"自分の仕事に誇りを持てる自信家"},"1105":{"hex":"#4e454a","name":"チャコールグレイ","words":"信念・男性的・礼儀作法","personality":"義理人情に厚く人助けが好きな人"},"1106":{"hex":"#ffcc7b","name":"ジョーンドナープル","words":"気配り・予感・バランス","personality":"思考と行動のバランスをとれる人"},"1107":{"hex":"#feb75b","name":"サンフラワー","words":"タイミング・美学センス","personality":"物事を両面から見れる創造者"},"1108":{"hex":"#f5811e","name":"ナスタチウムオレンジ","words":"組織・バランス・協調性","personality":"人間関係の機微を心得た人"},"1109":{"hex":"#cd5e3c","name":"樺色","words":"楽天主義・大胆・向上心","personality":"自分自身の力を信じられる人"},"1110":{"hex":"#8d6029","name":"タバコブラウン","words":"意地・自信・親身","personality":"打ち明け話に聞き入る優しい人"},"1111":{"hex":"#ffdfac","name":"ペールクリーム","words":"用意周到・創造力・静けさ","personality":"類まれな品格ある感性の持ち主"},"1112":{"hex":"#dcd3b2","name":"砂色","words":"健康・熟練・芸術","personality":"努力と精進により頂点を極める人"},"1113":{"hex":"#9fa09e","name":"アッシュグレイ","words":"堅実さ・公正な判断・仕事","personality":"寸暇を惜しんで仕事に励む働き者"},"1114":{"hex":"#55461b","name":"ガンメタル","words":"スタミナ・母性本能","personality":"感情に走らない誠実で保守的な人"},"1115":{"hex":"#473a17","name":"墨色","words":"神秘的・強固・独立心","personality":"夢や希望をいっぱい持つ情熱家"},"1116":{"hex":"#fababa","name":"桜貝色","words":"愛・ロマンチック・上品","personality":"教養豊かな洗練された好みの人"},"1117":{"hex":"#da81b2","name":"オーキッドピンク","words":"しとやか・喜び・献身","personality":"代償を求めない献身的な愛の持ち主"},"1118":{"hex":"#b4766b","name":"マーシュローズ","words":"信望・挑戦・育成","personality":"知識や学問を身につける博識家"},"1119":{"hex":"#b1585c","name":"クラーレット","words":"教養・感性・精神力","personality":"上品であか抜けた絶世の美人"},"1120":{"hex":"#7d7b83","name":"ダブグレイ","words":"気まぐれ・おおらか・芸術","personality":"燃えるような生命力の持ち主"},"1121":{"hex":"#c8ceac","name":"ペールサロー","words":"せんさく・友人・うぬぼれ","personality":"二番になることを好まない自信家"},"1122":{"hex":"#bbc8ac","name":"抹茶色","words":"信条・理想・器量","personality":"目標達成のため猛然と行動する人"},"1123":{"hex":"#9e9478","name":"灰汁色","words":"目的意識・責任感・集中力","personality":"新しいことに意欲を燃やす挑戦者"},"1124":{"hex":"#7b7c7d","name":"鉛色","words":"感情回避・孤独・冷静沈着","personality":"いつも心をコントロールする傍観者"},"1125":{"hex":"#39423f","name":"オフブラック","words":"保守的・きまぐれ・厳粛","personality":"威厳があり、神秘的な人"},"1126":{"hex":"#fdb58f","name":"ペールアプリコット","words":"温かさ・中立・芸術","personality":"社会にうまく順応する実践派"},"1127":{"hex":"#fce2c4","name":"肌色","words":"自活力・現実主義・正直","personality":"現象から本質を導き出す理論派"},"1128":{"hex":"#b47226","name":"サンタン","words":"現実主義・実践・懐疑","personality":"十分に見定める実践者"},"1129":{"hex":"#8c6b4a","name":"ブリックレッド","words":"自信・集中力・自力","personality":"失望や落胆を嫌う慎重派"},"1130":{"hex":"#54513e","name":"枯葉色","words":"信念・基礎・信頼","personality":"自分をしっかりと保つ信念の人"},"1201":{"hex":"#d6c6af","name":"亜麻色","words":"文化的・気取りや・色彩","personality":"美しさに魅力を感じる芸術家"},"1202":{"hex":"#caa980","name":"ハニースイート","words":"のんき・向上心・文化","personality":"安心感を保証するものにひかれる人"},"1203":{"hex":"#852e19","name":"栗梅","words":"本質・実践・実績","personality":"空想にふけるより実践する人"},"1204":{"hex":"#5d5644","name":"タウニーオリーブ","words":"個性・毅然・社交的","personality":"大胆で勇気ある人"},"1205":{"hex":"#4e4b3a","name":"黒紫","words":"貯蓄・信念・慎ましさ","personality":"流行を追わない教養ある学者タイプ"},"1206":{"hex":"#e5cc96","name":"シトロングレイ","words":"才気縦横・機知・母性愛","personality":"途方もない夢を抱く感性豊かな人"},"1207":{"hex":"#e6d89b","name":"ペールライムライト","words":"屋外・外交的・気前","personality":"汗水を流して働くまじめな人"},"1208":{"hex":"#a69425","name":"菜種油色","words":"日常・泰然自若・信頼","personality":"気持ちにムラがなく信用を集める人"},"1209":{"hex":"#b4935d","name":"オイルイエロー","words":"安定・冷静沈着・貫徹","personality":"困難な境遇にも動揺しない人"},"1210":{"hex":"#ac6b25","name":"ブロンズ","words":"保守的・実践派・行動力","personality":"目立つ事を嫌う控えめな人"},"1211":{"hex":"#fbbaa8","name":"シーシェルピンク","words":"清潔・ロマンチック","personality":"身のこなしが優雅な人"},"1212":{"hex":"#f79383","name":"鮭色","words":"ユニーク・決断・積極","personality":"困難を恐れず行動するアイデアマン"},"1213":{"hex":"#f4816f","name":"洗朱","words":"移り気・優しさ・人間関係","personality":"人を楽しませる気まぐれ者"},"1214":{"hex":"#eb6101","name":"朱色","words":"社交的・人脈・緩急自在","personality":"そこにいるだけで魅力を発散する人"},"1215":{"hex":"#b16268","name":"バーントオレンジ","words":"衝動的・情緒・表現力","personality":"気持ちが外に向かうスポーツタイプ"},"1216":{"hex":"#fdceba","name":"ベージュホワイト","words":"理性・忍耐・思いきり","personality":"自分の力で危機から脱却する勇者"},"1217":{"hex":"#eedcb3","name":"ベージュ","words":"バランス・人なつこさ","personality":"まわりの人を明るくする存在の人"},"1218":{"hex":"#b4766b","name":"ブラウンゴールド","words":"清純・感情の隠蔽・夢","personality":"とりとめのない夢を追う温かい人"},"1219":{"hex":"#deb068","name":"飴色","words":"学問・家庭・精神的充足","personality":"頑固で自分勝手な人を嫌う正直な人"},"1220":{"hex":"#715c61","name":"ヒーザー","words":"安定感・信念・活路","personality":"楽しさを求めるユーモア人"},"1221":{"hex":"#e0b5d3","name":"リラ","words":"高尚・上品・明晰","personality":"心身ともに洗練された人"},"1222":{"hex":"#9079b6","name":"ヘリオトロープ","words":"感性・高貴・若々しさ","personality":"ロマンチックな気分に満たされた人"},"1223":{"hex":"#674196","name":"菖蒲色","words":"神秘的・芸術的・哲学的","personality":"おとぎの国の生活を夢見る人"},"1224":{"hex":"#241b36","name":"エッグプラント","words":"保守的・厳粛・安心感","personality":"まじめで真剣に行動するしっかり者"},"1225":{"hex":"#824880","name":"茄子紺","words":"心配性・審美眼・洗練","personality":"世間離れした引っ込み思案な人"},"1226":{"hex":"#e6b422","name":"ゴールド","words":"理想・おおらか・花形","personality":"強力な保護者になるしっかり者"},"1227":{"hex":"#afb293","name":"サロー","words":"威厳・自己愛・自責","personality":"自分自身を財産だと思える自信家"},"1228":{"hex":"#cb981b","name":"ジョーンミエル","words":"誇り・見識・気まぐれ","personality":"財産に恵まれた太っ腹な人"},"1229":{"hex":"#b2a280","name":"マスタード","words":"静穏・調和・エコロジー","personality":"慈愛に満ちた世界観の持ち主"},"1230":{"hex":"#b26724","name":"オータムリーフ","words":"奥義・自信・ロマンチック","personality":"多くの人の後ろ盾となる人"},"1231":{"hex":"#00afcc","name":"ターコイズブルー","words":"個性・比較・シンプル","personality":"個性的なファッションを好む人"}};
+
+    const DAILY_PARENT_COPY = {
+      "0101":"這天出生的孩子有一顆乾淨而真誠的心，喜歡簡單明白地對待人與事；你給他的信任，會慢慢長成溫柔又堅定的品格。",
+      "0102":"他對細節與美感特別敏銳，卻不只憑感覺，還會想弄清楚其中的道理；這份感性與邏輯並存的能力，是很珍貴的思考天分。",
+      "0103":"面對不同意見時，這天出生的孩子能抓到平衡點，也有在關鍵時刻站出來的勇氣；長大後會成為讓大家安心、願意跟隨的人。",
+      "0104":"這天出生的孩子笑點多、精力旺盛，不怕新鮮事，也願意先跨出第一步；好好保護這份明亮，會讓他越挫越勇。",
+      "0105":"有些事大人還沒說出口，孩子就已經察覺了；他的直覺與觀察力很快，只要被允許慢慢整理，總能提出令人驚喜的好方法。",
+      "0106":"孩子心裡有清楚的是非感，做起事來節奏俐落，又忍不住想看看世界還藏著哪些新鮮事；他的人生很適合在行動中累積精彩故事。",
+      "0107":"一旦找到喜歡的事，他會投入得又深又亮，腦中還不斷冒出新點子；別急著收住他的想像，那正是未來創造力的起點。",
+      "0108":"天空、植物或某個安靜的瞬間總能打動他，心裡裝著比年齡更寬廣的想像；陪他親近自然，會聽見很多細膩又有詩意的發現。",
+      "0109":"孩子能感受到別人的善意，也對看不見、說不清的事充滿想像；當家裡願意接住他的感受，他會把這份敏銳變成理解人的溫度。",
+      "0110":"他的內心世界很豐富，會從一幅畫、一段音樂或一句話延伸出很多感受；那些看似天馬行空的聯想，正藏著成熟的美感與智慧。",
+      "0111":"孩子不只敢想，還願意為理想一步一步努力；當他相信某件事能變得更好，總會成為最早開始行動、也願意堅持到底的人。",
+      "0112":"他懂得看場合、讀懂他人的需要，必要時又能果斷作決定；這份有分寸的勇敢，會讓孩子在團體裡既受歡迎也有影響力。",
+      "0113":"孩子做事很有自己的主意，平時不愛張揚；他能在行動前冷靜判斷，也願意靠自己負責完成，是值得放心交付任務的小幫手。",
+      "0114":"他的幽默感不是只為了熱鬧，而是來自細膩的感受與慢慢成熟的情緒；越被理解，他越能用創作或笑容說出心裡真正的話。",
+      "0115":"孩子對相信的事很認真，也會自然地照顧比自己弱小的人；那雙閃亮的眼睛裡，有原則、有善意，還有成為他人榜樣的潛力。",
+      "0116":"他敢把想像帶進真實生活，不只說夢想，也想親手試試看；陪他接觸大自然與實作活動，會看見信念逐漸變成能力。",
+      "0117":"孩子對吃的、玩的、生活裡的新發現都很有興趣，遇事也頗有膽量；他會一邊笑著探索，一邊把身邊的人帶進有趣的體驗。",
+      "0118":"即使年紀還小，他待人真誠、做事有禮，也不喜歡炫耀自己；這份純粹若被珍惜，會長成低調而很有質感的自信。",
+      "0119":"孩子把答應的事放在心上，願意認真做到最好；請讓他知道努力值得肯定，但不必事事完美，自我尊重也包含好好休息。",
+      "0120":"他心裡有一幅想成為什麼樣的人的圖像，也願意把力氣花在成長上；給他可達成的小目標，會看見驚人的自我驅動力。",
+      "0121":"孩子很會捕捉顏色、聲音與氣氛的變化，平凡事物到了他眼中會有另一種樣子；這份感受美的能力，值得透過創作被好好保存。",
+      "0122":"他重視朋友，也會因為別人開心而跟著開心；被愛包圍的孩子，會把幸福感化成體貼，成為團體裡很溫暖的連結。",
+      "0123":"孩子有年輕明亮的心，專注時卻能安靜得出奇；穩定的生活節奏會幫助他把豐富情緒沉澱成持久的專注力。",
+      "0124":"他理解事情很快，同時能感覺到他人的情緒，腦袋與心都很靈活；只要有一個值得期待的夢，孩子就會樂觀地向前走。",
+      "0125":"孩子既有理想，也懂得看看現實條件，適應新環境的速度比想像中快；轉換生活階段時，他會找到自己的步調與位置。",
+      "0126":"他的表情和反應很豐富，一句機靈的話就能讓大家笑出來；在團體中，他有把人聚在一起、讓氣氛亮起來的自然魅力。",
+      "0127":"孩子對搭配、氣氛與人的神情有獨到眼光，能注意到別人忽略的小細節；不必催他跟隨流行，他會發展出自己的美感語言。",
+      "0128":"新地方、新玩法、新問題一出現，就會點亮他的眼睛；這個天生樂觀的小探險家，會在一次次好奇與嘗試中建立真正的勇氣。",
+      "0129":"這天出生的孩子不只身體反應快，也很會讀懂周遭線索，表達想法時很有說服力；運動、競賽或需要臨場判斷的活動，都能讓他發光。",
+      "0130":"孩子對動物、植物和需要照顧的生命特別有愛，靠近自然時也格外自在；這份柔軟會讓他長成懂得尊重世界的人。",
+      "0131":"他的心比表面看起來更細，能配合環境，也很在意禮貌與關係；受傷時別急著叫他想開，先被理解會讓他的浪漫與體貼更有力量。",
+      "0201":"孩子對文化、藝術和群體有天生的感受力，作品也帶著自己的觀點；當他找到適合的舞台，會用創意與品味獲得真心的肯定。",
+      "0202":"他不太滿足於和大家一模一樣，腦中總有只屬於自己的畫面；欣賞他的不同，會讓直覺與想像慢慢長成鮮明的個人風格。",
+      "0203":"這天出生的孩子有些害羞，心裡卻很清楚自己的價值；他不需要大聲證明什麼，那份安靜的自尊與判斷力，自然會帶出可靠的氣度。",
+      "0204":"他感受快、反應亮，也喜歡透過與人互動表現自己；若能自由選擇方式，孩子會把與眾不同變成才華，而不是刻意唱反調。",
+      "0205":"孩子憑一種說不上來的感覺，就知道自己想往哪裡走，對故事與夢境也格外著迷；讓他保有詩意，會培養出很好的方向感與創造力。",
+      "0206":"他和家人的連結很深，也有把情緒化成語言、表演或作品的能力；當家是安全的基地，孩子的表達會帶給別人真正的感動。",
+      "0207":"孩子有自己的標準，一旦認定重要的事便會全心投入；這份自主與使命感若被尊重，會發展成超越年齡的專注和才華。",
+      "0208":"他的熱情裡帶著可愛的調皮，模仿力和觀察力也很強；玩笑背後其實很懂分寸，適時引導會讓幽默成為親近人的天賦。",
+      "0209":"孩子活力充沛，面對不同文化或新朋友也不會退縮；他有號召大家一起做事的潛力，越能學會傾聽，領導力越有溫度。",
+      "0210":"這天出生的孩子能感覺到別人的需要，也知道一句鼓勵有多重要；這份感性與理解力，會讓他成為人人願意依靠的夥伴。",
+      "0211":"孩子喜歡就是喜歡，開心時整張臉都藏不住，表達直接而真誠；請珍惜這份單純，他會用毫不做作的喜悅感染身邊的人。",
+      "0212":"這天出生的孩子話不多，決定行動時卻很有力量；外表的安靜和內在的熱情同時存在，給他準備時間，就能看見果斷的一面。",
+      "0213":"孩子重視家庭的小規矩，也會認真把喜歡的事做得更好；他在自己的價值觀裡慢慢創作，累積出既踏實又有個性的能力。",
+      "0214":"他能容納看似矛盾的想法，既忠於自己，也懂得顧及場合；這種成熟的分寸感，未來會成為品味與人際判斷的重要基礎。",
+      "0215":"孩子珍惜友誼，不喜歡衝突，做決定前會多想一步；他的謹慎不是膽小，而是希望大家都好，這份和平感很能凝聚關係。",
+      "0216":"他不愛張揚，做事卻一步一腳印，還會默默要求自己進步；請多肯定已經完成的部分，讓努力不只來自自我要求，也來自信心。",
+      "0217":"一碰到有興趣的事，孩子就會忘了時間，非得研究到滿意為止；若學會在完美與完成之間取捨，這份韌性會帶他走得很遠。",
+      "0218":"他有自己的推理，遇到質疑也敢把理由說清楚；與其要求立刻服從，不如和他討論證據，會培養出既堅持又能修正的思辨力。",
+      "0219":"孩子看事情有大局感，也很早就知道自己想朝哪裡努力；當大人願意讓他參與規劃，他會展現出沉穩而有感受力的帶領能力。",
+      "0220":"他知道什麼適合自己，也能在自由表達和分寸之間找到位置；這份獨創品味不必急著被理解，時間會證明它的價值。",
+      "0221":"孩子的主張很鮮明，會用自己的方式讓人記住；與其削弱他的個性，不如陪他練習理解別人的界線，魅力會更加成熟。",
+      "0222":"他喜歡新鮮、有趣又能動手創造的事情，會把生活變成一場小實驗；這份樂於探索的藝術感，會讓平凡日子充滿驚喜。",
+      "0223":"孩子看到別人需要幫忙時，不會說很多，而是直接去做；他的善意帶著行動力，會讓他成為替團體帶來希望的人。",
+      "0224":"他和人相處自然，心裡也始終保留對未來的期待；即使遇到不順，孩子有一種放鬆後重新出發的能力。",
+      "0225":"孩子認定目標後就不會被岔開，會用自己的節奏持續靠近；過程中的小成果若被看見，能讓他的耐力成為真正的成就感。",
+      "0226":"他希望事情做得準確，也願意為團體和氣付出努力；難題反而會喚起他的挑戰心，適合在明確任務中建立自信。",
+      "0227":"孩子不太被繁瑣規矩綁住，笑起來有帶動全場的力量；他的灑脫不是隨便，而是懂得把注意力放在真正有趣、重要的地方。",
+      "0228":"他待人穩定有禮，既重感受也重承諾；人際關係對孩子不是表面熱鬧，而是需要慢慢培養、值得珍惜的連結。",
+      "0229":"這個特別日子出生的孩子，腦中裝著長遠構想，也自然會照顧朋友；他的聰明若和善意一起成長，會成為很有責任感的策劃者。",
+      "0301":"孩子對周遭人的情緒很敏感，總是一邊負責把事做好，一邊替大家打氣；他帶來的活力不是喧鬧，而是一種讓人被照顧的溫暖。",
+      "0302":"他心中很重視家的感覺，願意包容不同個性，也對幸福生活有自己的想像；被穩穩接住後，孩子會把安全感分享給更多人。",
+      "0303":"孩子懂禮貌，也很在意自己是否被喜歡；當愛不需要靠表現換取，他會更自在地展現那份細緻、討人喜歡的光彩。",
+      "0304":"他對平凡答案不太滿足，喜歡把事情做到有特色、有份量；敏感讓孩子看得更深，而高標準若被善待，就能轉化成突破自己的動力。",
+      "0305":"孩子不只憑熱情衝向前，也會考慮實際怎麼做；這份腳踏實地的感性，能幫助他把喜歡的事情真正完成。",
+      "0306":"他很會把關心放進小動作裡，也有讓人因一句話、一件作品而感動的能力；愛與同理心是孩子最自然的影響力。",
+      "0307":"孩子不只知道別人開不開心，還會真心希望對方過得好；請別把他的體貼視為理所當然，這是很深的情緒理解力。",
+      "0308":"他的愛很穩，喜歡用陪伴、分享或靠近來表達在乎；被溫柔回應的孩子，會學會既照顧別人，也好好照顧自己。",
+      "0309":"孩子有想把憧憬變成現實的衝勁，遇到人群也能大方互動；給他可實踐的舞台，勇氣會變成一步步完成夢想的能力。",
+      "0310":"他的能量不只旺盛，還能長時間投入，也能在不同活動裡找到自己的角色；慢慢練習帶領與合作，會成為很有續航力的小隊長。",
+      "0311":"孩子心地寬厚，看到別人辛苦會想伸手，也能俐落處理眼前事情；這份熱心若有界線保護，將是一種很成熟的能力。",
+      "0312":"他的純真不是不懂事，而是願意相信事情可以往好的方向走；孩子會憑敏銳感受提醒身邊的人，什麼才是真正重要的。",
+      "0313":"他有健康明亮的生命力，也喜歡把大家組織起來朝目標前進；若能參與規劃和分工，孩子會感受到自己的力量很有用。",
+      "0314":"孩子的存在感很鮮明，開心、投入和想行動的心都寫在臉上；與其壓低這份熱度，不如教他找到能讓熱情發揮的方向。",
+      "0315":"他喜歡主動嘗試，也能從與人互動中獲得能量；多讓孩子練習自己開始、自己收尾，會培養出真正可靠的行動力。",
+      "0316":"孩子憑直覺就能讀懂氣氛，內在也有一種不需張揚的高雅；被尊重時，他會更坦率地分享感受，展現清澈的自信。",
+      "0317":"他的腦袋像一座不停運作的小工坊，總能把熟悉的東西變出新樣子；創作自由越充足，孩子越能建立屬於自己的美感。",
+      "0318":"孩子對聲音、表情和環境變化都很敏銳，能捕捉到難以言喻的氣氛；安全感能讓這份細膩不成為負擔，而成為深刻的洞察力。",
+      "0319":"他安靜下來時有很穩定的力量，像能把周圍的急躁也慢慢放緩；規律活動和自在空間，會讓孩子身心都更有餘裕。",
+      "0320":"孩子遇事不會立刻被情緒帶走，而是先觀察再作判斷；這種沉著與品位，會讓他在關鍵時刻成為很可靠的人。",
+      "0321":"他對空間和氛圍的影響比想像中大，一點創意就能讓周遭變得更舒服；別小看孩子的審美選擇，那是改變環境的天賦。",
+      "0322":"孩子細膩、含蓄，不搶著站在最前面，卻能讓不同的人都感到自在；他的好人緣來自真誠與分寸，不需要刻意討好。",
+      "0323":"他有藝術感，也能穩穩做自己，不會因為受到肯定就忘了初衷；這份謙遜讓才華走得更久，也更能得到別人的信任。",
+      "0324":"孩子相信直覺，也渴望遇到真正懂自己的人；與他聊心裡的想法，比只問今天做了什麼，更能靠近他的浪漫世界。",
+      "0325":"他有主角般的存在感，對自己的風格和判斷也頗有信心；只要學會讓別人一起發光，這份氣場會成為成熟的領導魅力。",
+      "0326":"孩子遇到機會時敢往前，理解事情又很通透，不太怕從零開始；每一次被允許親手完成，都會擴大他對自己的想像。",
+      "0327":"他喜歡透過外表、作品或語言表達內在，生命力像花一樣逐漸展開；讚美他的用心而不只成果，能讓美感長成真實自我。",
+      "0328":"孩子懂得感謝，也能體會別人的立場，身上有一種難以形容的舒服氣息；他的教養不是規矩堆出來的，而是心裡有人的溫柔。",
+      "0329":"這天出生的孩子做事認真、看得見專業細節，面對複雜問題反而能抓住重點；別因為他低調就忽略了，他是很有效率的解題者。",
+      "0330":"孩子一面追求新鮮創意，一面又需要心裡安穩；在自由和規律之間找到節奏，他的想像力會發展得既漂亮又踏實。",
+      "0331":"他的情緒有豐富層次，既能熱烈歡呼，也懂低落時的感受；運動與自由活動會幫助孩子把這份感動化成健康的生命力。",
+      "0401":"孩子很會用笑容和小巧思讓氣氛變好，朋友在他身邊會覺得輕鬆；這份精緻又溫暖的浪漫，會讓他成為製造幸福感的人。",
+      "0402":"他既有清楚的理解力，也保留詩一般的純真感受；只要願意持續練習，孩子的敏銳就會轉化成令人驚豔的作品。",
+      "0403":"孩子天真卻不遲鈍，對新的風格和人群變化很快就能察覺；同理心加上想像力，會讓他比別人早一步看見新的方向。",
+      "0404":"他喜歡有人一起做事，也能為自己設定想達成的目標；孩子最動人的地方，是在熱絡互動中仍願意留心每個人的感受。",
+      "0405":"孩子對穿著、配色和相處方式都有自己的講究，熱情卻不顯得冒失；讓他自由嘗試，會長出自然且不盲從的品味。",
+      "0406":"他的眼神保有孩子特有的清亮，對美好事物的追求也很純粹；即使想像飛得很遠，那也是他替現實增添光彩的方法。",
+      "0407":"孩子興趣很多，喜歡安靜研究後再動手改良；不愛搶話並不代表沒有想法，他的創意會在獨處與專心時慢慢成形。",
+      "0408":"他做事前會先準備，也願意用溫和方式表達敬意；這個讓人感到舒服的孩子，心裡其實一直抱著對未來的希望。",
+      "0409":"孩子的身體感和臨場判斷很不錯，能配合情況迅速調整動作；運動、舞蹈或實作任務，會幫他看見自己的靈活。",
+      "0410":"他看事情又清楚又細，會提出超越年齡的新觀點；請給孩子試驗與修正的空間，今天的小創新就是明天的領先能力。",
+      "0411":"孩子務實、肯做，也懂得在忙碌裡找樂趣；他不追求華麗成果，卻能靠一次次踏實練習，做出令人信任的品質。",
+      "0412":"他對傳統方法和手作技巧很有興趣，也敢提出自己的堅持；當孩子了解一件事的來由，會更有自信地把它做出新味道。",
+      "0413":"孩子遇到不順時總能換個角度，甚至用幽默替自己和大家鬆綁；他的樂觀不是沒煩惱，而是有把經驗變成智慧的潛力。",
+      "0414":"他動作柔和、很會察覺別人的感受，身上也有讓人想靠近的魅力；被真誠對待時，孩子會用加倍的體貼回應世界。",
+      "0415":"孩子對公平與承諾很認真，也重視家人朋友間的人情；他看似保守，其實是在守護相信的價值，值得陪他學會柔軟表達。",
+      "0416":"他的性格溫和開朗，做起份內的事不慌不忙，也很少刻意搶功；這種安定可靠的節奏，長大後會是團隊裡難得的力量。",
+      "0417":"孩子面對阻礙時不會亂掉，會回到事實、責任和可做的下一步；讓他參與解決問題，能培養出很扎實的承擔力。",
+      "0418":"他腦筋轉得快，也在意做人的良心與尊嚴；當孩子認定一件事值得努力，行動速度會讓大人驚訝，適合學習先想再衝。",
+      "0419":"孩子對嚴謹的任務有耐性，既會觀察也願意磨練技巧；他不是只想做完，而是想真正做好，這是很可貴的專業種子。",
+      "0420":"他在語言和規矩上很敏銳，也願意用有愛的方式對待身邊人；孩子那份清澈閃亮的感受力，會讓話語帶著療癒人的力量。",
+      "0421":"孩子待人溫厚，心裡有感動時也不太會假裝；直接而真誠是他的可愛之處，若有人耐心聽，他會越來越懂得表達自己。",
+      "0422":"他喜歡有事情可以負責，會自然地安排步驟或提醒大家前進；給孩子小小的帶隊機會，會看見領導並不只是發號施令。",
+      "0423":"孩子很會觀察團體氣氛，也能調整自己和不同的人合作；他的可靠來自願意維護關係，長大後會成為大家信任的協調者。",
+      "0424":"故事與文字總能打動他，待人的方式也細緻柔和；閱讀能替孩子打開更大的內心世界，讓善意有更多表達方法。",
+      "0425":"孩子感覺細、動作也有自己的節奏，對時間與完成度很在意；在運動或有挑戰的任務裡，他會從進步感找到真正的成就。",
+      "0426":"他不忘替自己設定更高的目標，也願意把能力用來幫助別人；讓孩子看見練習的累積，會使上進心成為穩定而不焦慮的力量。",
+      "0427":"孩子把每次經驗都當作鍛鍊，越有難度越想試著跨過去；夢想對他不是空想，而是一條可以靠訓練慢慢走近的路。",
+      "0428":"他的想法多、計畫也多，還能在不同需求之間找到平衡；比起只選一個標準答案，孩子更適合被邀請設計自己的做法。",
+      "0429":"孩子的心很柔軟，能細細感受氣氛的變化，也能帶給別人安慰；請先替他守住安全感，敏感就會逐漸變成理解與療癒人的能力。",
+      "0430":"他願意和人互相幫忙，也相信自己每天都能再進步一點；成長對孩子不是比賽，而是一次次行動後發現新的自己。",
+      "0501":"孩子反應機敏，說話或創作又帶著細膩情調，很討人喜歡；這份自然魅力若配上真誠，會成為連結不同人的天賦。",
+      "0502":"他可以在人群裡聊得開心，也需要安靜自然的空間恢復自己；懂得在熱情與寧靜間切換，是孩子很成熟的內在節奏。",
+      "0503":"孩子對土地、流水和緩慢生活有特別親近感，情緒也像風景一樣有層次；多帶他接觸自然，會養出安定又有故事感的心。",
+      "0504":"遇到改變時，他不只恢復得快，還會想出讓事情重新運作的方法；孩子有公平、坦蕩的氣質，適合成為轉變中的關鍵人物。",
+      "0505":"他喜歡不受框架地想事情，卻能看穿問題核心並把理念做出來；讓孩子主導一個小作品，會發現他兼具藝術感和實現力。",
+      "0506":"孩子的直覺會帶來新點子，對人的態度又格外柔和；別把這份細緻只看成乖巧，它更是很有力量的創造天分。",
+      "0507":"他思考周全、做事有規律，身段卻不僵硬，懂得隨情境調整；這樣的孩子能在不知不覺間贏得欣賞與信任。",
+      "0508":"孩子說話前會在心裡想過幾遍，待人細心，也能耐心等待；這份慢，是在確認自己的話既真實又不傷人。",
+      "0509":"他很在意公平和整體節奏，遇到事情也願意動起來；孩子擅長讓不同部分各就各位，是有協調感的實踐者。",
+      "0510":"他的內心有浪漫和感傷，面對重要關係卻比外表更穩重；孩子懂得珍惜，不會輕易把真心交給不值得的事。",
+      "0511":"他喜歡說出想法，即使知道會失敗，也敢試一條新路；這份冒險精神若有安全網，會讓孩子越來越不怕犯錯。",
+      "0512":"孩子懂得享受味道、風景與相聚，也能自在和不同的人聊天；他把誠懇放在社交裡，能創造溫暖而不做作的關係。",
+      "0513":"他理解新事物很快，還能把腦中的想法說得清楚；當大人願意認真聽，孩子會發現語言能讓好點子真正被看見。",
+      "0514":"孩子對花草與生命的成長有耐心，照顧的過程會讓他感到快樂；這份親近自然的溫柔，也會延伸成尊重他人的能力。",
+      "0515":"他有良心感，也喜歡把知識整理成有系統的架構；孩子不是為了贏才學習，而是享受一天比一天更懂的充實。",
+      "0516":"孩子做事仔細、重承諾，一旦認定就很難改變；與其硬碰硬，不如請他說出理由，堅持會慢慢變成專精。",
+      "0517":"他的頭腦敏捷，能看見別人沒注意到的關鍵，也不輕易放棄自己的判斷；教他保持開放，洞察力就能比固執走得更遠。",
+      "0518":"這天出生的孩子有知識底子，發言精準，做決定也很穩健；他不愛譁眾取寵，卻總能提供可靠的意見。",
+      "0519":"他在爭議裡能試著站到不同位置看問題，不急著站到任何一邊；這份公平和平衡感，是未來解決複雜問題的重要能力。",
+      "0520":"回憶、音樂或一個畫面總能觸動孩子的心，他感受幸福的方式也很細膩；允許他說出感傷，會使柔軟成為深刻的情感力量。",
+      "0521":"他學得快、手也巧，換到新環境能很快找出方法；孩子需要持續的刺激與感動，豐富體驗會讓適應力轉成創造力。",
+      "0522":"孩子做事守信用，也懂得在付出與休息之間找平衡；他對人的關心很真，不計回報的善意會讓身邊人感到被支持。",
+      "0523":"他自在、開朗，尊重每個人不同的樣子，很少急著責怪；這份寬容會讓孩子成為朋友願意說真心話的對象。",
+      "0524":"孩子很會顧到每個人的需要，也有把分散意見整理起來的本事；他不必最大聲，就能靠可靠與體貼成為大家的中心。",
+      "0525":"他笑容明亮、樂於幫忙，自己順利時也記得拉別人一把；因此孩子值得信任，自然有人願意親近。",
+      "0526":"孩子像小太陽一樣有生命力，情緒豐富、投入時熱度十足；規律作息和運動能讓這股能量長久而健康地發光。",
+      "0527":"他既勇健又聰明，喜歡自由探索，不愛被不必要的限制綁住；說清楚界線與原因，孩子會更願意帶著責任享受自由。",
+      "0528":"孩子會留意老方法背後的智慧，也能從觀察中找出改進之處；他適合在邊做邊學裡感受到傳承並不是一成不變。",
+      "0529":"他有紀律、重視榜樣，也相信自己可以把能力再磨好一些；具體回饋比空泛稱讚更能幫孩子建立穩固的自信。",
+      "0530":"孩子喜歡有故事、有知識又帶美感的事物，氣質也偏細緻；他的浪漫若能持續閱讀與累積，會成為很有內容的品味。",
+      "0531":"他吸收快、做事俐落，能在別人還沒理清時抓到下一步；提醒孩子也照顧自己的節奏，才華才能從容而持久。",
+      "0601":"孩子對自己的風格很敏感，內在也有一份不願被隨便看輕的自尊；給他真誠而具體的肯定，會讓氣質從自信中自然長出來。",
+      "0602":"他有可愛迷人的一面，卻不喜歡為了討好別人改變自己；這份不勉強迎合的真實，是孩子很珍貴的內在骨氣。",
+      "0603":"孩子看似悠閒，心裡其實會思考真實與意義，也需要一些獨處；當安靜不被誤會成疏離，他更能維持內在平衡。",
+      "0604":"他的純真像一直保留著通往童話的門，才華也會在好玩與刺激中跑出來；讓孩子盡情玩，就是最好的學習。",
+      "0605":"孩子喜歡有規律的生活，逆境中反而能靠節奏站穩；固定的小習慣會成為他的安全基地，也讓韌性慢慢增強。",
+      "0606":"他重視人與人的關係，願意服務、協助，又不喜歡製造紛爭；孩子的善良若能同時學會界線，會是一種平和的影響力。",
+      "0607":"他心裡有明確原則，也很會與不同背景的人溝通；精神上的堅定加上開放表達，讓孩子有成為跨文化連結者的潛力。",
+      "0608":"孩子能接納不同意見，在語言學習與理解他人表達上很有天分；他知道愛不是要求一致，而是願意留下理解的空間。",
+      "0609":"他在意整潔、儀態和做事的質感，舉手投足自然會被注意；請讓孩子明白，真正的品格不只好看，更是對人尊重。",
+      "0610":"孩子有讓空氣亮起來的本事，既看得見現實，也敢負責帶大家往前；他的自信最動人之處，是能順便替別人補充能量。",
+      "0611":"他會追問事情為什麼，還想設計方法親自驗證；研究、企劃和前沿問題很能點燃孩子，因為未知對他是一種邀請。",
+      "0612":"孩子在意身體感受與生活品質，吃得好、動得夠時整個人特別有精神；陪他認識健康選擇，會養出長久的自我照顧力。",
+      "0613":"他喜歡聊天、活動，也總覺得明天還有值得期待的事；這份向上又健康的明朗，能在低潮時替自己和別人留一盞燈。",
+      "0614":"孩子誠實可靠，願意站在中間聽完大家的話，不搶著表態；他的低調並非沒立場，而是珍惜信任與公平。",
+      "0615":"他能忍耐，也會為認定的方向一路向前，誠懇得讓人放心；記得提醒孩子也停下來看看，勇往直前也可以帶著彈性。",
+      "0616":"孩子相信一點一滴的努力，遇到需要長時間累積的目標也不會輕易洩氣；他懂得用耐心換成果，這是很難得的成長智慧。",
+      "0617":"他會把做過的事整理成自己的知識和技巧，穩定感來自真正累積；找到熱愛的領域後，孩子會越做越深、越做越好。",
+      "0618":"孩子有自信卻不急躁，也能用幽默化解日常的小僵局；他腳踏實地又親近自然，讓人感到可靠而不沉重。",
+      "0619":"他喜歡讓身體動起來，也懂得和夥伴一起朝共同目標努力；運動會教孩子把健康、紀律與團隊感連在一起。",
+      "0620":"孩子在人群中有能量，交朋友自然，也會用實際行動帶頭；他不是只會說加油，而是願意先做給大家看。",
+      "0621":"他對藝術、運動和味道都有自己的講究，連工具與過程也想研究；這份懂得享受又願意鑽研的心，能發展成很有生活感的專長。",
+      "0622":"孩子一高興就很投入，喜歡人、愛分享，也會把熱鬧帶到身邊；學會在興奮時也聽見別人，會讓他的親和力更受歡迎。",
+      "0623":"他心中有希望，也願意把經驗整理成能幫助別人的方法；隨著成長，孩子會展現越來越寬廣、讓人信服的帶領風格。",
+      "0624":"孩子的微笑很有安定人的力量，待人柔和，氣質又不失分寸；被善意陪伴時，他會把這份溫柔長久地留在關係裡。",
+      "0625":"他有勇氣，卻不急著把自己推到最前面，安靜中自帶優雅；尊重孩子的低調，會讓真正的魅力在安心時自然出現。",
+      "0626":"孩子很快就能和人熟起來，身上有一種讓人願意親近的真誠；他的可愛不靠取悅，而是把好意自然地放進相處裡。",
+      "0627":"他情緒有力度，也敢替別人打氣、把機會推到人面前；如果學會先安放自己的熱度，這份熱情會成為很棒的助力。",
+      "0628":"孩子的精力充沛，心思卻很清澈，也樂於大方分享；他之所以被喜歡，不只是有能力，更因為願意讓別人一起得到好處。",
+      "0629":"他不愛吵鬧，卻會默默觀察別人真正需要什麼，再作出貼心回應；這份安靜的敏感，是很成熟的照顧能力。",
+      "0630":"孩子有鮮明個性，也願意為理想持續進步，出現在人群中讓人難以忽略；若能守住真實，他會用魅力帶出正面的影響。",
+      "0701":"孩子會把環境與生命看成彼此相連的整體，對地球議題也比同齡人更有感；他的想像不是空想，而是希望世界更和平的願景。",
+      "0702":"他做事俐落，內心卻很細，對質感與分寸有自然的判斷；孩子不必刻意成熟，豐富感受本身就會帶出洗練。",
+      "0703":"孩子可以忍住一時的不舒服，因為心裡相信自己能做到；這份安靜的自信若不被過度消耗，會成為很有氣度的堅持。",
+      "0704":"他懂得讓情緒慢慢回到平穩，也會從反思中認識自己；給孩子安靜整理的時間，會幫助他把內在力量用在成長上。",
+      "0705":"孩子嚮往自由，心裡的熱情卻藏得很深，會用柔和方式關心人；別因為他安靜就低估愛的濃度，那份真心一直都在。",
+      "0706":"他能看懂情況、果斷選擇，也不輕易放棄相信的事；孩子若能參與生活中的小決策，會更享受為選擇負責的感覺。",
+      "0707":"孩子領悟得快，能從一點線索推到很遠，也敢把握新機會；多元體驗能讓他的聰明不只快，還變得寬廣而有深度。",
+      "0708":"他有多方面的能力，做事又穩，喜歡一路追問到真正理解；孩子的努力背後有熱情，適合在長期探索中找到答案。",
+      "0709":"孩子不會把心事全說出來，但對公平正直十分在意，也喜歡成為被需要的人；尊重他的隱私，會讓責任感更加自在。",
+      "0710":"他的溫柔不張揚，待人謙遜，身上有讓人放鬆的甜美氣質；被好好珍惜的孩子，會明白柔軟同樣是一種力量。",
+      "0711":"孩子懂禮貌，也很會分辨顏色與美感細節，會讓人忍不住多看一眼；這份魅力來自細緻，而不只是外在表現。",
+      "0712":"他愛學習、重品味，也對未來抱著明亮期待；當孩子願意把懂得的事分享給別人，知識就會長成真正的帶領力。",
+      "0713":"孩子很重視自我價值，看到受苦或被忽略的人卻無法假裝沒看見；他有把敏銳直覺用來守護別人的慈悲。",
+      "0714":"他對生活有熱情，學習與玩樂都能找到樂趣，待人的真心也很暖；這種正向來自能在日常裡發現值得投入的事。",
+      "0715":"孩子感覺細、做事含蓄，喜歡可愛、柔美的事物；讓他安心擁有喜好，不必用外界期待限制這份細膩。",
+      "0716":"音樂、節奏和自由動作總能喚醒他的活力，孩子也不喜歡千篇一律；給他表達身體與個性的空間，會看見很真實的快樂。",
+      "0717":"他有整理事情與抓重點的能力，表達又有機智與品味；一旦找到想深入的方向，孩子會一路鑽研到專業。",
+      "0718":"孩子喜歡知識裡那些神秘而有趣的部分，也有幫人找到方法的本事；他的聰明若用來成就別人，會產生很大的影響。",
+      "0719":"他感受細緻、喜歡愉快氣氛，對人的關心卻很長情；孩子的愛雖然不喧鬧，卻會透過始終如一的陪伴被看見。",
+      "0720":"孩子的想像柔軟豐富，也很會體諒別人的心；他身上那份優美不是脆弱，而是能讓關係變得更有溫度的能力。",
+      "0721":"他有活力，也懂得在需要時收斂自己，待人自然有禮；只要照顧人的心不被當成責任，就會發展成成熟的關懷。",
+      "0722":"孩子知道自己的能力到哪裡，也願意有彈性地再往上練；這份自知不是限制，而是能穩穩升級自己的起點。",
+      "0723":"他有原則、敢行動，眼光也不只停在眼前的小圈子；陪孩子接觸不同觀點，會讓積極性長成更寬廣的世界感。",
+      "0724":"孩子的笑容自然，對什麼是合宜也有直覺，不需要華麗就能吸引人；他真正的魅力，來自舒服地做自己。",
+      "0725":"他對認定的人與價值很長情，願意付出，也能在必要時守住界線；這份不輕易動搖的心，藏著安靜而高貴的力量。",
+      "0726":"孩子很會用有趣又得體的方式說話，一句話就能打進別人心裡；幽默、親和與熱情結合時，他有鼓舞人的天分。",
+      "0727":"他的感受多、反應快，經驗越多越能化成實際行動；孩子豐富的情緒，正是才華與生命力的來源。",
+      "0728":"孩子既有幽默感，也有看透事情的智慧，對細節與理想都不馬虎；外表輕鬆的他，心裡其實住著很認真的追求。",
+      "0729":"他相信直覺，待人卻不是憑衝動，而是帶著真誠與體諒；孩子願意用真心靠近別人，也值得被同樣真心地對待。",
+      "0730":"孩子把友情看得很重，懂得協調，也願意因為在乎而調整自己；認識自己的同時，他會越來越知道如何好好愛人。",
+      "0731":"他的心裡有深刻感動，臉上卻不會立刻顯露，而是用冷靜保護豐富感受；給孩子一點時間，他會用自己的方式把光亮說出來。",
+      "0801":"孩子在人群裡自然大方，也能耐心守住承諾，對每個人都盡量真誠；這份社交力不是討好，而是願意認真看待關係。",
+      "0802":"他理解快、做事有效率，對責任與規矩也有自己的標準；孩子偏愛熟悉的秩序，那會讓他更安心地展現能力。",
+      "0803":"孩子做事要求完整，待人卻願意從心底相信；他的可靠不是因為從不出錯，而是把關係和承諾都看得很重。",
+      "0804":"他不輕易向困難低頭，越需要耐心越能展現真正的韌性；孩子有很高的自我要求，請也讓他知道求助不會減少品格。",
+      "0805":"孩子的情緒平穩、待人可信，能在不知不覺中得到喜愛與尊重；這種好感不是刻意經營，而是長期真誠累積的結果。",
+      "0806":"這天出生的孩子同時率真又高雅，看事情既直接又有深度；知識與同理心一起成長，會讓他成為有智慧也有人味的人。",
+      "0807":"孩子會用可愛的機智化解難題，對未知則有一路追下去的衝動；他不是故意問不停，而是真的享受把世界弄懂。",
+      "0808":"他相信第一時間捕捉到的線索，也喜歡挑戰與較量，表達方式卻很樸實；孩子需要學會驗證直覺，才能把天分用得更準。",
+      "0809":"孩子偏愛有內容、有文化又耐看的事物，對粗糙敷衍不太能接受；那份浪漫其實很有原則，會引導他追求更好的品質。",
+      "0810":"他有藝術天分，也願意磨練表達，心裡的感受能變成漂亮作品；比起要求像誰，支持孩子找到自己的呈現方式更重要。",
+      "0811":"孩子對信念、精神世界和看不見的意義很敏感，能憑直覺感受到深層連結；穩定陪伴能讓他既保有想像，也站穩現實。",
+      "0812":"他的熱情不總是向外奔放，獨處時反而更能看清自己的存在；孩子懂得節制，也需要被允許享受不必合群的時刻。",
+      "0813":"他反應敏捷、感覺細，對相信的事也十分堅定；孩子的可靠不是沉悶，而是在需要時能迅速作出有原則的選擇。",
+      "0814":"聲音、語言或表演是他的亮點，孩子有把精神和情緒傳給聽眾的能力；鼓勵他自在發聲，會讓表達真正抵達人心。",
+      "0815":"他聰明機靈，心又柔軟，對家的溫度尤其珍惜；安全而有愛的成長環境，會讓孩子更有餘裕把溫暖帶給別人。",
+      "0816":"孩子很會用動作、節拍或身體說出感受，意志也藏在節奏裡；舞蹈、樂器與運動比說教更能幫他認識自己。",
+      "0817":"他珍惜愛與友誼，遇到不懂的事就想一路探索；保護孩子無瑕的好奇心，會讓學習不只是獲得答案，而是享受發現。",
+      "0818":"孩子性格明朗、重視自由，也會思考比物質更深的價值；他有自己的精神方向，不會只被表面吸引。",
+      "0819":"他想跑在前面、第一個抵達，對自己也有很高期待；把競爭慢慢轉成超越昨天的自己，驕傲就會成為健康的企圖心。",
+      "0820":"孩子精力旺盛，夢想很大，做事又會考慮現實條件；這種既敢想又能落地的特質，是實現目標很好的底子。",
+      "0821":"他懂得看整體，也能把不同的人與事情安排得有節奏；孩子的領導不是只站前面，而是讓每一部分都能順利運作。",
+      "0822":"孩子很能投入別人的感受，創作時心也會向四面八方延伸；那份與眾不同的聯想，正是故事、設計與同理力的來源。",
+      "0823":"他能同時看見事情的正反兩面，又很在意時機與美感；孩子不急著只選一邊，反而能做出有創意的判斷。",
+      "0824":"孩子相信能力是練出來的，願意重複、修正並採取行動；請讓他看見每一次小進步，努力就不會只剩壓力。",
+      "0825":"他懂分寸、愛和平，也會用有禮的方式維護關係；孩子的優雅不只是舉止，而是在意每個人都能舒服地相處。",
+      "0826":"孩子重實際、會組織，也希望自己在團體裡有影響力；引導他把優勢用來成就大家，領導欲會長成真正的責任。",
+      "0827":"他考慮得深，對造型與穿搭又有敏銳直覺，能駕馭不同風格；孩子的浪漫不飄忽，而是經過思考後的美感選擇。",
+      "0828":"孩子的藝術感跨越很多領域，想像力也不甘只待在配角位置；給他主導作品的機會，會看見整合創意的能力。",
+      "0829":"他氣質細緻，願意為關係付出，建立人脈前卻會先觀察是否可信；孩子慎重交友，因此留下的連結更有品質。",
+      "0830":"音樂總能碰到他的心，孩子也有照顧與安撫人的天性；無論是否學樂器，那份能聽見情緒的耳朵都值得珍惜。",
+      "0831":"他能管理自己，也有站在前面提出觀點的氣勢；請陪孩子明白權威來自專業與尊重，而不是比別人更大聲。",
+      "0901":"孩子的語氣柔和、感受又細，喜歡用有故事的方式看世界；那份含蓄不是退縮，而是讓思想多一層溫度。",
+      "0902":"他對公平十分堅持，願意努力，也會為了重要的人多承擔一些；記得讓孩子知道，照顧自己並不會減少他的正直。",
+      "0903":"孩子知覺敏銳、心地柔和，會想像一個更理想的世界；閱讀與創作能讓這份願景找到出口，變成有力量的表達。",
+      "0904":"他喜歡新鮮刺激，也願意主動嘗試，但真正作決定時能保持冷靜；孩子有把冒險心和客觀判斷放在一起的難得能力。",
+      "0905":"孩子很在意秩序與是非，也希望自己的表現被看見；引導他把注意力從別人眼光轉回內在標準，品格會更加穩固。",
+      "0906":"他相信進步沒有捷徑，願意為自己想成為的樣子持續用力；孩子真正的亮點不是天生順利，而是不吝惜努力。",
+      "0907":"孩子待人純粹又有熱情，能為團體派上用場時特別有成就感；讓他知道價值不只來自幫忙，也來自真實的自己。",
+      "0908":"他有冒險精神，也能臨場調整，站到前面時仍重視良心與責任；孩子的勇敢並不魯莽，而是願意為選擇負責。",
+      "0909":"他的禮貌與體貼很自然，身心也散發年輕活力；持續保有好奇，會讓孩子在成長後仍願意理解新的人與事。",
+      "0910":"孩子冷靜、懂得評估自己，又能提出與眾不同的做法；他很適合在團隊中掌握方向，前提是也聽見不同聲音。",
+      "0911":"他既愛品嘗生活，也愛思考與寫作，還能把複雜事情說得清楚；這種讓人聽懂的才華，是很有用的知識分享力。",
+      "0912":"孩子有大局觀與帶領潛力，內心也知道自己想往哪裡去；越能參與真正的規劃，他越能展現沉穩判斷。",
+      "0913":"他的觀察像畫筆一樣細，對風格與原創也有自己的堅持；給孩子足夠時間醞釀，會看到很有層次的作品或想法。",
+      "0914":"孩子一有疑問便想追到水落石出，願意為一個答案反覆查證；這份徹底若學會適時收束，會成為出色的研究能力。",
+      "0915":"他意志直接、好奇心強，會用親身經驗確認事情；孩子不是故意強硬，而是需要知道自己的選擇真的有力量。",
+      "0916":"孩子對傳統與立場有感，也敢提出大膽想法，心底卻希望事情朝善意發展；他的直率若配上傾聽，會很有感染力。",
+      "0917":"他遇事沉著，直覺準，也能顧到身邊人的需要；這個讓人願意依靠的孩子，有以穩定取代控制的領導特質。",
+      "0918":"孩子溫厚可靠，面對混亂時能保持冷靜，也有教別人學會的耐心；他會是很好的示範者，而不只是指揮者。",
+      "0919":"他對品質和規矩要求高，也相信能力需要嚴格磨練；若大人同時給予鼓勵，孩子會把要求轉成成熟而非自責。",
+      "0920":"孩子心裡有一抹說不出的淡淡憂愁，感受也因此格外純淨；被允許慢慢消化情緒後，那份敏感會沉澱成深厚美感。",
+      "0921":"他重視精神上的純粹，喜歡獨處思考，也不會隨波逐流；孩子內在的高潔需要被理解，而不是被催著熱鬧。",
+      "0922":"孩子很會聊天，也能讓周圍氣氛變得輕快舒服；他的快樂不是搶鏡，而是有本事讓每個人更願意參與。",
+      "0923":"他在意公平，也相信靠自己能做出成績，必要時願意為目標付出；請陪孩子看見，真正的野心也可以帶著善意。",
+      "0924":"孩子對機會很敏銳，敢打破不合理的慣例往前闖；如果先學會判斷風險，這份衝勁會成為開創新路的膽識。",
+      "0925":"他會替別人多想一步，腦中又能很快形成構想；只是環境一變，心也跟著晃動，穩定的支持能讓敏銳不再搖擺。",
+      "0926":"孩子責任感強，做決定前會想得很深，也不願只是照著別人複製；他的原創來自認真理解後的重新選擇。",
+      "0927":"他生命力旺盛、敢當第一個嘗試的人，點子也能跳出一般框架；這個小小先鋒需要的不是壓住，而是安全的實驗場。",
+      "0928":"孩子有大夢，也尊敬真正有內涵的人，構想中帶著一種高遠感；讓他遇見好榜樣，理想會逐漸長出方向。",
+      "0929":"他天真開朗，心裡卻有很強的韌性，一旦投入便能專心到底；孩子的專注最好被用在真正熱愛、也能帶來成長的事上。",
+      "0930":"孩子不只追求表面漂亮，而想知道事情的本質，也會對理想的環境抱著浪漫想像；探索越深入，他越能把夢變成選擇。",
+      "1001":"孩子的身體裡像有自己的節拍，運動與藝術都能成為表達方式；持續訓練會讓旺盛生命力變成穩定而亮眼的能力。",
+      "1002":"他性格陽光，笑容裡有真誠的溫度，還總能想出讓事情更有趣的方法；這樣的孩子不只被喜歡，也能把創意變成快樂。",
+      "1003":"孩子喜歡有人一起分享與挑戰，獨自一人反而會少了動力；讓他在合作裡發揮能量，會看見強大的行動力。",
+      "1004":"他的情緒不會直接說出口，敏銳和熱情藏在沉著外表下；當孩子感到安全，那份聰慧而強烈的感受便會自然流動。",
+      "1005":"孩子把義務和責任看得很重，對反覆無常的態度也特別難接受；說清楚規則與理由，能讓他的理性成為可靠而不僵硬的原則。",
+      "1006":"他對自己和環境的狀態很敏感，憑直覺就知道哪裡不太對；穩定身心的日常，會幫孩子把非凡直覺用得更自在。",
+      "1007":"孩子喜歡動手料理或照顧生活，遇到需要決定的事也很有魄力；知識一旦進入日常，他就能展現旺盛而踏實的生存力。",
+      "1008":"他嚮往舒服自由的生活，靠近自然時尤其能做回自己；孩子懂得享受簡單幸福，這會成為面對忙亂世界的珍貴能力。",
+      "1009":"孩子分析風險很有條理，感受卻不遲鈍，總想找到前人沒走過的新方向；安全邊界越清楚，他越敢開拓未知。",
+      "1010":"他理解力強，也比別人早看見事情接下來的走向；孩子的追問沒有終點，因為真正吸引他的是探索本身。",
+      "1011":"孩子記得很多細節，想像又豐富，說話前懂得克制一時衝動；這份誠實與思考，讓才華不只耀眼，也值得信賴。",
+      "1012":"他的世界很大，點子帶著個性，待人卻保有樸實的溫柔；孩子不必高聲張揚，宏大的想像自然會在作品中被看見。",
+      "1013":"孩子喜歡音樂帶來的節奏，也有耐力守住熟悉而安心的生活；看似保守的選擇，其實在替身心累積穩定能量。",
+      "1014":"他有文化感與原創性，感受一來時又會突然改變方向；與其要求每次一致，不如幫孩子把靈感留下來慢慢整理。",
+      "1015":"孩子有照顧人的本能，還能迅速看懂情況、抓到話語的巧妙；這份聰明若用在理解而非替人作主，會非常有力量。",
+      "1016":"他做事仔細、慎重，也被視為表現穩定的孩子，心裡卻一直想留下自己的特色；請為那份不一樣保留空間。",
+      "1017":"孩子心地清澈，願意理解不同立場，遇到別人的難處也有包容；他的溫和不是沒有力量，而是能容得下更寬廣的世界。",
+      "1018":"他有活力，也懂得安靜，舉止中同時帶著優美和份量；孩子最迷人的地方，是能在動與靜之間保持完整的自己。",
+      "1019":"孩子謙遜有禮，對人的關心很深，品味也不流於表面；他的氣質來自心中有他人，這比任何外在裝飾都更耐看。",
+      "1020":"他相信熟悉的生活智慧，也願意透過一次次試錯找到穩定；孩子追求和平並非害怕改變，而是知道安定如何被建立。",
+      "1021":"孩子喜歡安靜思考人與世界的意義，對詩意和精神感受也格外敏銳；適度獨處能幫他找回內在的清明。",
+      "1022":"他能適應城市的速度和聲音，做事專注又講求效率；提醒孩子在投入任務之外留一點生活空間，能力會更長久。",
+      "1023":"孩子相信自己記得住、做得到，遇到挫折也不輕易投降；他很會先在腦中形成構想，再一步步把它變成成果。",
+      "1024":"他的夢想有根，不會只停在口號，還懂得邀請別人一起完成；孩子的合作力來自清楚思考，也來自真心投入。",
+      "1025":"孩子待人仔細有禮，不搶著表現，安靜裡卻有自己的情調；他的落落大方來自尊重，而不是刻意保持距離。",
+      "1026":"他相信靠自己能找到出路，帶領別人時也會先冷靜想清楚；孩子的主見若配上同理，會是一種可靠的領導力。",
+      "1027":"孩子需要自然與安穩補充能量，卻不會因此停止追求新目標；他懂得一邊扎根，一邊持續向前。",
+      "1028":"他的態度正向，做事乾淨俐落，也喜歡從親自嘗試中學習；比起講很多道理，讓孩子親手做一次更有效。",
+      "1029":"孩子性格溫和，對健康與生活有自己的堅持，認定的想法也不會輕易放掉；被耐心討論後，堅定會比強硬更有力量。",
+      "1030":"他有經驗感，也很會聽人把問題說完，再一起找出解法；孩子是朋友眼中值得商量、能帶來安心的人。",
+      "1031":"孩子思路有條理、反應又機靈，為了讓事情成功也敢迎向挑戰；那份勇猛不只靠衝勁，更有充分思考做底。",
+      "1101":"他相信自己的能力，也能在需要等待時忍耐，面對任務很有掌控感；孩子的自信若懂得分享，會成為讓團隊更穩的才幹。",
+      "1102":"孩子看事情深入，做選擇時務實又有彈性，內在卻有不輕易搖動的核心；真正的堅定，不妨礙他調整方法。",
+      "1103":"他重公平、守信用，也珍惜別人曾經給過的幫助；孩子懂得感恩與回應，因此能建立長久而可靠的關係。",
+      "1104":"孩子對感覺和手作技巧有追求，完成一件作品時會真心以它為榮；專注打磨的過程，正在培養很深的專業精神。",
+      "1105":"他講義氣、懂禮貌，看到別人需要便願意出手；即使外表堅強，孩子的核心其實是很重情的善良。",
+      "1106":"孩子能在思考與行動之間取得平衡，也很會留意尚未發生的小線索；他的體貼不是猶豫，而是在照顧整體。",
+      "1107":"他很會掌握時機，還能從一件事的兩面找到新的美感；孩子的創意並非只靠靈光，而是有觀察與判斷支撐。",
+      "1108":"孩子懂得團體如何運作，也能敏銳感覺關係裡細小的變化；這份協調能力會讓他成為很好的合作夥伴。",
+      "1109":"他性格樂觀，敢跨大步，也相信自己能在努力中越來越好；當孩子學會評估風險，自信會帶他去很遠的地方。",
+      "1110":"孩子有主見也有自信，朋友願意說心事時卻能專心聽進去；他的溫柔在於不急著評斷，而是陪對方把話說完。",
+      "1111":"他習慣事前準備，喜歡安靜地讓創意成形，感受也很有質地；不催促的空間會讓孩子展現少見的從容與品格。",
+      "1112":"孩子重視健康，也願意把技巧練到熟，藝術感在長期精進中越來越清楚；他相信頂點不是運氣，而是累積。",
+      "1113":"他做事踏實，判斷公平，也不怕把時間投入真正重要的任務；規律休息會替這份勤奮補充更長久的續航力。",
+      "1114":"孩子有耐力，也很會照顧人，遇到情緒時會先穩住再處理；這份冷靜的誠懇，能替家人帶來安全感。",
+      "1115":"他的內在強韌而獨立，心裡卻裝著很多夢和希望；孩子看似神秘，只是想先確認有人能理解那份熱情。",
+      "1116":"孩子重視愛與美，喜歡有故事、有質感又能打動心的事物；那份浪漫如果持續吸收知識，會變成很有深度的品味。",
+      "1117":"他從分享與付出中感到喜悅，待人柔和，也不急著要求回報；請同時教孩子珍惜自己，善良才不會變成耗盡。",
+      "1118":"孩子願意迎接挑戰，也喜歡把學到的知識整理給別人；他不只想自己變強，還有培養與帶動夥伴的潛力。",
+      "1119":"他的感受有深度，精神力也很穩，對文化與美感自然有追求；孩子的光彩不在完美外表，而在內外一致的質地。",
+      "1120":"孩子既隨興又熱烈，藝術感和生命力都很強；與其要求他永遠一致，不如幫他找到能承接變化的創作出口。",
+      "1121":"他很在意朋友和表現，希望自己站在前面，也會對他人的事情格外好奇；被教會尊重界線後，自信會更討人喜歡。",
+      "1122":"孩子有理想、有信念，為了目標可以迅速集中心力向前；若把大目標拆成小步驟，衝勁就能轉成穩定成果。",
+      "1123":"他知道自己為何而做，願意負責，也能長時間專注在新挑戰上；孩子的企圖心最適合被明確方向好好承接。",
+      "1124":"孩子遇到情緒時會先退一步觀察，不喜歡立刻被追問；給他安靜整理的權利，冷靜會成為成熟的自我調節。",
+      "1125":"他對熟悉價值很忠誠，也想保留自己的節奏，身上還有不輕易被看透的份量；孩子的安靜值得被尊重。",
+      "1126":"孩子待人溫暖，能站在不同立場之間找平衡，也有把美感化成行動的能力；他適應環境，卻不必失去自己的顏色。",
+      "1127":"他早早就想學會靠自己，做判斷時重事實，也很看重誠實；孩子有從表面現象一路追到核心原因的能力。",
+      "1128":"孩子不會因一時說法就下結論，會先看清、試過，再決定是否相信；這種謹慎實作的態度能避開很多衝動。",
+      "1129":"他相信自己，也能專心靠自己的力量完成事情，只是不喜歡失望的感覺；把錯誤看成資料，會讓孩子更敢嘗試。",
+      "1130":"孩子重視基本功與長期信任，心裡站得穩，不會被一時風向帶走；這份信念會成為別人願意依靠的根基。",
+      "1201":"色彩、文化與美麗事物總能吸引他，也願意用自己的方式營造氣氛；孩子的藝術感來自真心著迷，而不是故作姿態。",
+      "1202":"孩子步調悠閒，卻始終想讓自己更有內容，對能帶來安全感的人事物尤其珍惜；穩定會讓他的文化感慢慢累積。",
+      "1203":"他不喜歡只談想像，會直接動手看看能不能做成；孩子判斷事情看核心，也相信實績比漂亮話更有說服力。",
+      "1204":"孩子個性鮮明，態度坦蕩，面對人群也敢表達自己；他的勇氣不是沒有害怕，而是知道重要時不能退。",
+      "1205":"他有自己的信念，生活中懂得節制，也不會盲目追逐流行；孩子偏愛真正有內容、經得起時間的知識。",
+      "1206":"孩子反應機智、感受豐富，照顧人的心又能包住很大的夢；別笑他的想法太遠，那正是格局的起點。",
+      "1207":"他喜歡戶外與人群，做事大方，也願意流汗換取成果；孩子的人情味不是嘴上熱絡，而是肯親手一起完成。",
+      "1208":"孩子情緒穩、待人可信，會在平凡日常中持續做到答應的事；這種沒有大起大落的可靠，會累積很深的信任。",
+      "1209":"他在困難裡仍能保持冷靜，認定方向後也不會半途而廢；孩子的穩定不是沒有感受，而是知道怎麼把力量放在下一步。",
+      "1210":"孩子重實作、敢行動，卻不太需要站在最顯眼的位置；他喜歡成果自己說話，低調裡有很真實的效率。",
+      "1211":"他喜歡乾淨、美好又帶一點浪漫的事物，動作和表達也很有分寸；孩子的優雅來自對細節的珍惜。",
+      "1212":"孩子點子獨特，做決定快，面對難題反而更想試出新路；給他安全的冒險空間，會看見積極的創新能力。",
+      "1213":"他改變心意很快，卻也很會用玩心和溫柔讓大家開心；孩子帶來的驚喜，是關係裡充滿活力的調味。",
+      "1214":"孩子和人相處自然，懂得快慢與進退，光是出現在場就很有感染力；那份魅力來自真正享受交流。",
+      "1215":"他的情緒來得快、表達也直接，身體活動能幫助能量找到出口；運動與創作會讓孩子更懂得使用自己的熱度。",
+      "1216":"孩子能忍耐、會思考，真正遇到危機時又敢果斷跨出去；他有靠自己穿越困難的勇氣，也值得學會向人求援。",
+      "1217":"他很會在不同需要之間找平衡，親近人的方式自然又明亮；孩子會在不知不覺中讓周圍氣氛變得更舒服。",
+      "1218":"孩子的心純真而溫暖，夢很多，卻不急著全說出來；當他知道感受不會被嘲笑，想像會慢慢成為前進方向。",
+      "1219":"他喜歡學習，也很重視家庭帶來的精神滿足，對自私或不誠實尤其敏感；孩子的堅持其實是在守護公平。",
+      "1220":"孩子內在穩定、有信念，還懂得用幽默替困境找出口；即使路不好走，他仍有辦法讓自己和身邊的人保留樂趣。",
+      "1221":"他思路清楚，氣質細緻，對自己的言行有一種自然的要求；孩子真正的高雅，不是拘謹，而是知道怎麼尊重自己與他人。",
+      "1222":"孩子感受年輕鮮活，浪漫和美好氛圍總能打動他，卻也有不俗的內在品味；請讓他自在保有這份柔亮。",
+      "1223":"他對藝術、哲學與童話般的世界很著迷，會把現實之外的問題帶回家思考；那些奇想正在孕育深刻的創作。",
+      "1224":"孩子做事認真、看重安全感與秩序，對承諾不會隨便；他不是缺少彈性，而是需要先確定腳下站得穩。",
+      "1225":"他觀察美的眼光細膩，也會事先想到哪裡需要多注意，因此在人群中較慢熱；被耐心等待後，孩子會展現安靜而精準的品味。",
+      "1226":"孩子胸中有理想，待人大方，也會自然地保護較需要幫忙的人；他有成為核心人物的潛力，因為力量裡帶著照顧。",
+      "1227":"他有份量，也懂得反省自己，正在慢慢學會把自身視為珍貴資產；健康的自我欣賞會讓孩子更有勇氣承擔。",
+      "1228":"孩子見識不俗，對自己的判斷有驕傲，心情又保留一點隨興；他的慷慨不只在物質，更在願意分享眼界和機會。",
+      "1229":"他嚮往安靜和諧的生活，對自然與生命抱著慈愛；孩子的世界觀會提醒身邊的人，溫柔也能改變環境。",
+      "1230":"孩子有自信，也有替別人撐住局面的本事，心裡同時保留浪漫；他願意站在夥伴身後，讓對方放心向前。",
+      "1231":"他喜歡簡單俐落地表達個性，也會從各種選擇裡找出真正適合自己的答案；孩子不是為了不同而不同，而是很早就懂得風格。"
+    };
+
+    const DAILY_PARENT_HEADLINE = {
+      "0101":"真誠，是孩子最柔軟的力量",
+      "0102":"感性與邏輯可以一起長大",
+      "0103":"他有讓大家安心的氣度",
+      "0104":"勇敢裡，還藏著一份幽默",
+      "0105":"總能比別人早發現一點點",
+      "0106":"把每一天都過成精彩故事",
+      "0107":"腦中的火花，正等著被看見",
+      "0108":"心裡住著一片寬廣的天空",
+      "0109":"他能接住別人給的溫暖",
+      "0110":"平凡的事，他總能看出不同",
+      "0111":"不只敢想，也願意開始做",
+      "0112":"溫柔有分寸，勇敢有方向",
+      "0113":"小小年紀，已經很有自己的路",
+      "0114":"笑容背後有一顆細膩的心",
+      "0115":"善良與原則，都在眼睛裡發亮",
+      "0116":"他會親手把想像變成真的",
+      "0117":"生活處處都能點亮好奇心",
+      "0118":"低調，也能長成很美的自信",
+      "0119":"認真，是他對世界的承諾",
+      "0120":"心中有目標，腳下就有力量",
+      "0121":"他看得見生活偷偷藏起來的美",
+      "0122":"走到哪裡，都帶著幸福的連結",
+      "0123":"安靜下來時，專注力正在發光",
+      "0124":"聰明的腦袋，也懂別人的心",
+      "0125":"換個地方，他也能找到自己的位置",
+      "0126":"有他在，氣氛就會亮起來",
+      "0127":"美感，是孩子獨有的語言",
+      "0128":"世界這麼大，他想親自去看看",
+      "0129":"反應快，表達也有說服力",
+      "0130":"對生命溫柔，是天生的禮物",
+      "0131":"敏感的心，值得被輕輕接住",
+      "0201":"他的創意，終會找到自己的舞台",
+      "0202":"不一樣，正是最珍貴的地方",
+      "0203":"安靜的自信，自有一種光",
+      "0204":"他天生就有自己的表達方式",
+      "0205":"心裡知道方向，就能慢慢前進",
+      "0206":"感動別人，是藏在心裡的能力",
+      "0207":"一旦認定，就會全心投入",
+      "0208":"可愛的調皮，也是一種聰明",
+      "0209":"熱情，可以成為溫暖的領導力",
+      "0210":"他懂得在別人需要時說聲加油",
+      "0211":"開心這件事，他從不藏著",
+      "0212":"話不多，行動卻很有力量",
+      "0213":"把喜歡的事，慢慢做成自己的本事",
+      "0214":"看得見兩面，也守得住自己",
+      "0215":"多想一步，是因為心裡有大家",
+      "0216":"他的進步，藏在每一次默默努力裡",
+      "0217":"喜歡的事，就想一路研究到底",
+      "0218":"有想法，也有把理由說清楚的勇氣",
+      "0219":"很早就知道自己想往哪裡去",
+      "0220":"好品味，不需要跟誰一樣",
+      "0221":"鮮明的個性，讓人一眼記住",
+      "0222":"他會把日常變成有趣的小實驗",
+      "0223":"善意不只放在心裡，也放進行動裡",
+      "0224":"跌一跤，也知道怎麼再出發",
+      "0225":"認定目標，就會慢慢走到那裡",
+      "0226":"難題來了，挑戰心也跟著醒來",
+      "0227":"不被小規矩綁住的快樂靈魂",
+      "0228":"真正的關係，值得慢慢培養",
+      "0229":"聰明與善意，可以一起帶路",
+      "0301":"他是會替大家補充元氣的孩子",
+      "0302":"心裡有家，就有分享溫暖的能力",
+      "0303":"被好好愛著，就能自在發亮",
+      "0304":"不甘平凡，是突破自己的起點",
+      "0305":"熱情之外，他也知道怎麼做到",
+      "0306":"小小的關心，也能讓人很感動",
+      "0307":"他是真的希望身邊的人過得好",
+      "0308":"愛，常藏在安穩的陪伴裡",
+      "0309":"憧憬不只放心裡，還想親手實現",
+      "0310":"旺盛的能量，有著長長的續航力",
+      "0311":"心很暖，做起事來也很俐落",
+      "0312":"相信美好，是一種清澈的天分",
+      "0313":"他喜歡帶著大家一起往前",
+      "0314":"熱情，是孩子身上最鮮明的顏色",
+      "0315":"想到就試，行動中找到答案",
+      "0316":"直覺很準，心也很坦率",
+      "0317":"腦袋裡有一座不停運作的創意工坊",
+      "0318":"別人沒注意的，他都感覺到了",
+      "0319":"他的安定，能讓周圍慢慢靜下來",
+      "0320":"先觀察再決定，是可靠的沉著",
+      "0321":"一點巧思，就能讓世界更舒服",
+      "0322":"不搶著說話，也一樣讓人喜歡",
+      "0323":"才華越被肯定，心反而越謙遜",
+      "0324":"他想遇見真正懂自己的人",
+      "0325":"天生有氣場，也能學會讓大家發光",
+      "0326":"機會來了，他願意勇敢接住",
+      "0327":"生命力，正在作品裡慢慢盛開",
+      "0328":"心中有別人，自然就有好教養",
+      "0329":"複雜的問題，到他手裡變得清楚",
+      "0330":"創意飛得高，心裡也需要安穩",
+      "0331":"每一種情緒，都能變成生命的養分",
+      "0401":"他有讓幸福氣氛自然發生的能力",
+      "0402":"清楚的腦袋，裝著一顆詩意的心",
+      "0403":"天真，卻總能早一步看見變化",
+      "0404":"一起完成目標，是他喜歡的成長方式",
+      "0405":"品味這件事，他有自己的答案",
+      "0406":"他替現實保留了一扇想像的窗",
+      "0407":"安靜研究時，創意正在悄悄成形",
+      "0408":"溫和的孩子，心裡一直有希望",
+      "0409":"身體知道怎麼找到最好的節奏",
+      "0410":"今天的小創新，就是明天的領先",
+      "0411":"一步一步，也能做出可靠的品質",
+      "0412":"懂得珍惜傳統，也敢做出新味道",
+      "0413":"他會用幽默替生活換個角度",
+      "0414":"柔和的存在，本身就很有吸引力",
+      "0415":"守護相信的價值，是他的認真",
+      "0416":"不慌不忙，也能把事情穩穩做好",
+      "0417":"遇到阻礙，他會先找下一步",
+      "0418":"腦筋快，行動也不拖泥帶水",
+      "0419":"不只想做完，還想真正做好",
+      "0420":"他的話語裡，有清澈的愛",
+      "0421":"真實的感受，讓他顯得格外可愛",
+      "0422":"有任務可以負責，他就會亮起來",
+      "0423":"很會合作，也很值得信任",
+      "0424":"故事會替他的溫柔打開更大世界",
+      "0425":"在一次次挑戰裡，看見自己的進步",
+      "0426":"努力成長，也願意把能力分享出去",
+      "0427":"夢想，是一條可以練習走近的路",
+      "0428":"點子很多，還能找到最好的平衡",
+      "0429":"柔軟的心，也有安慰人的力量",
+      "0430":"每一次行動，都在遇見新的自己",
+      "0501":"反應快，說出來的話又有溫度",
+      "0502":"熱鬧與安靜，他都懂得享受",
+      "0503":"靠近自然，心也跟著清亮起來",
+      "0504":"改變來了，他總能找到新方法",
+      "0505":"理想不只想想，他會把它做出來",
+      "0506":"好點子，常從溫柔的直覺裡冒出來",
+      "0507":"想得周全，做事也有漂亮的分寸",
+      "0508":"慢一點說，是因為他很在意",
+      "0509":"他知道怎麼讓大家合拍地往前",
+      "0510":"柔軟的心，對重要關係格外認真",
+      "0511":"就算失敗，也想試一條新路",
+      "0512":"懂生活，也懂得真心和人相處",
+      "0513":"好點子到了他嘴裡，就變得很清楚",
+      "0514":"照顧一個生命，會讓他感到快樂",
+      "0515":"學習，是一天比一天更懂的充實",
+      "0516":"認真與堅持，正在磨成一門專長",
+      "0517":"他總能看見事情真正的關鍵",
+      "0518":"低調的孩子，常有最可靠的意見",
+      "0519":"站在不同位置，也能看見公平",
+      "0520":"容易感動，是心裡很有深度",
+      "0521":"學得快，也能很快找到自己的方法",
+      "0522":"不求回報的好意，最讓人安心",
+      "0523":"心夠寬，就容得下每一種不同",
+      "0524":"不用最大聲，也能成為大家的中心",
+      "0525":"願意拉別人一把，是他的好人緣",
+      "0526":"像小太陽一樣，熱烈又有生命力",
+      "0527":"聰明的自由，會帶著責任一起走",
+      "0528":"老方法到了他手上，也會長出新點子",
+      "0529":"真正的自信，來自一次次練好",
+      "0530":"浪漫有了知識，就會變成品味",
+      "0531":"俐落的才華，也值得保有從容",
+      "0601":"他的氣質，來自心裡的自尊",
+      "0602":"不勉強迎合，是很珍貴的真實",
+      "0603":"安靜思考，是他找回平衡的方法",
+      "0604":"盡情玩耍時，才華也跑了出來",
+      "0605":"生活有節奏，心就更有韌性",
+      "0606":"關心別人，也可以保有自己的界線",
+      "0607":"有原則，也有連結世界的能力",
+      "0608":"理解不同，不代表一定要相同",
+      "0609":"真正的品格，比外表更耐看",
+      "0610":"他走到哪裡，就把元氣帶到哪裡",
+      "0611":"未知，總能點燃他的研究魂",
+      "0612":"照顧好身體，也是在照顧未來",
+      "0613":"明天，一定還有值得期待的事",
+      "0614":"低調地守住公平與信任",
+      "0615":"勇往直前，也別忘了看看沿途",
+      "0616":"一點一滴，終究會走到目標",
+      "0617":"做過的每件事，都會留下真正的本事",
+      "0618":"踏實又幽默，是讓人放心的魅力",
+      "0619":"在運動裡，學會和夥伴一起前進",
+      "0620":"他不只喊加油，還會先做給大家看",
+      "0621":"懂得享受，也願意把喜歡研究到底",
+      "0622":"快樂很多，別忘了分一點給身邊的人",
+      "0623":"經驗越多，帶人的心就越寬",
+      "0624":"一個微笑，就能讓人安定下來",
+      "0625":"真正的魅力，不必急著站到最前面",
+      "0626":"讓人想靠近，是因為他的真誠",
+      "0627":"熱情不只鼓舞自己，也能推別人一把",
+      "0628":"有能力，也願意讓大家一起變好",
+      "0629":"安靜觀察後，總能給出貼心回應",
+      "0630":"鮮明的個性，自有帶動人心的力量",
+      "0701":"他把地球上的生命都放在心裡",
+      "0702":"俐落的外表下，藏著細緻感受",
+      "0703":"安靜相信自己，也是一種勇氣",
+      "0704":"他知道怎麼讓心慢慢回到平穩",
+      "0705":"不說出口的愛，一樣很有份量",
+      "0706":"會作決定，也願意為選擇負責",
+      "0707":"一點線索，就能想到很遠的地方",
+      "0708":"越是未知，他越想追到答案",
+      "0709":"正直的心，願意成為別人的依靠",
+      "0710":"柔軟與謙遜，也可以很有力量",
+      "0711":"他眼中的世界，比別人多一些顏色",
+      "0712":"懂得越多，越能帶著大家向前",
+      "0713":"看見別人的難處，就無法假裝沒看見",
+      "0714":"認真生活，也認真享受每一天",
+      "0715":"細膩的喜好，不需要被框住",
+      "0716":"身體一動，真正的自己就跑出來了",
+      "0717":"找到方向，就想一路鑽研到最好",
+      "0718":"聰明若用來幫人，會產生更大的光",
+      "0719":"他的愛不喧鬧，卻始終都在",
+      "0720":"想像與體貼，讓世界多了一點溫度",
+      "0721":"活力之外，還有懂進退的分寸",
+      "0722":"看清自己，才能知道下一步怎麼走",
+      "0723":"把眼光放遠，行動就更有方向",
+      "0724":"舒服地做自己，就是最自然的魅力",
+      "0725":"願意付出，也知道何時守住界線",
+      "0726":"他的話，常能又有趣又說進心裡",
+      "0727":"豐富的情緒，是才華的另一種語言",
+      "0728":"笑著看世界，心裡仍有認真的理想",
+      "0729":"他願意用真心，換一段真心的關係",
+      "0730":"越認識自己，越知道怎麼好好愛人",
+      "0731":"平靜的表情下，住著很多深刻感動",
+      "0801":"真誠，讓他的社交力有了重量",
+      "0802":"熟悉的秩序，能讓能力放心展開",
+      "0803":"可靠，是把承諾真的放在心上",
+      "0804":"困難越大，越看得見他的韌性",
+      "0805":"長久的信任，來自每一天的真心",
+      "0806":"率真與高雅，可以同時存在",
+      "0807":"問個不停，是因為真的想懂",
+      "0808":"相信直覺，也懂得親自驗證",
+      "0809":"他喜歡的是經得起時間的美",
+      "0810":"感受一落到作品裡，就有了光",
+      "0811":"看不見的意義，他也能感覺得到",
+      "0812":"獨處不是離開，而是回到自己",
+      "0813":"反應快，原則也站得很穩",
+      "0814":"聲音裡，有把心帶到遠方的力量",
+      "0815":"家給的溫暖，他會再分享出去",
+      "0816":"節奏一響，感受就有了形狀",
+      "0817":"因為珍惜，所以一直保有好奇",
+      "0818":"自由的心，也有自己的精神方向",
+      "0819":"想站第一，也能學會超越自己",
+      "0820":"夢想很大，腳步卻很踏實",
+      "0821":"讓每個人都順利，才是真正的帶領",
+      "0822":"一顆能共感的心，會長出很多創意",
+      "0823":"事情的兩面，他都願意看看",
+      "0824":"能力，是一次次練習累積出來的",
+      "0825":"有禮的孩子，心裡也珍惜和平",
+      "0826":"把優勢用來成就大家，才是影響力",
+      "0827":"他的美感，經得起仔細思考",
+      "0828":"讓他主導一次，創意就會完整展開",
+      "0829":"交朋友很慎重，留下的都很真",
+      "0830":"他聽得見音樂，也聽得見情緒",
+      "0831":"站在前面，也要懂得尊重別人",
+      "0901":"溫柔地說話，也能說出很深的故事",
+      "0902":"守護公平，也記得照顧自己",
+      "0903":"他想像的世界，總比現在更美一點",
+      "0904":"敢冒險，也有冷靜判斷的頭腦",
+      "0905":"被看見很好，守住內在標準更重要",
+      "0906":"沒有捷徑，也願意一步一步走",
+      "0907":"能幫上忙，會讓他特別有成就感",
+      "0908":"勇敢站到前面，也把良心帶在身上",
+      "0909":"好奇心，讓他一直保有年輕的光",
+      "0910":"冷靜掌握方向，也能想出新方法",
+      "0911":"再複雜的事，他也能說得讓人懂",
+      "0912":"心裡有方向，眼裡也看得見全局",
+      "0913":"他的想法，像一幅慢慢完成的畫",
+      "0914":"疑問沒有弄懂，他就不會輕易放下",
+      "0915":"親自走過，才是他相信的答案",
+      "0916":"立場鮮明，心底仍然選擇善意",
+      "0917":"穩穩站著，就能帶給別人安全感",
+      "0918":"他不只自己會，也有耐心教會別人",
+      "0919":"高標準若有鼓勵，就會長成實力",
+      "0920":"淡淡的感傷，也能沉澱成美感",
+      "0921":"心裡乾淨，所以不容易隨波逐流",
+      "0922":"有他加入，大家就更願意開口",
+      "0923":"想做出成績，也願意靠自己努力",
+      "0924":"舊規矩不合理，他就想開一條新路",
+      "0925":"想得快也感受得快，需要穩穩的支持",
+      "0926":"原創，是理解之後重新作出的選擇",
+      "0927":"奇想需要的，是一個安全實驗場",
+      "0928":"遇見好榜樣，理想就有了方向",
+      "0929":"天真與韌性，一起守住長久專注",
+      "0930":"他追的不是漂亮答案，而是真正本質",
+      "1001":"身體有節拍，心裡也有創作的火",
+      "1002":"笑容和創意，都是他帶來的溫度",
+      "1003":"有人一起挑戰，他就更有力量",
+      "1004":"沉著外表下，藏著敏銳而熱烈的心",
+      "1005":"把規則說清楚，他會成為可靠夥伴",
+      "1006":"他總能感覺到哪裡需要調整",
+      "1007":"生活不只會過，還能過得很有本事",
+      "1008":"簡單的幸福，就是他的自由天地",
+      "1009":"看懂風險以後，他更敢走向未知",
+      "1010":"問題越深，越能勾起他的興趣",
+      "1011":"豐富想像，有誠實與克制守著",
+      "1012":"不必張揚，宏大的夢自然看得見",
+      "1013":"音樂與熟悉節奏，替他補充安定能量",
+      "1014":"靈感會轉彎，也會帶他遇見新風景",
+      "1015":"既能照顧人，也能很快看懂情況",
+      "1016":"表現穩定之外，他還想留下自己的樣子",
+      "1017":"溫和，是因為心裡容得下不同",
+      "1018":"能動也能靜，兩種模樣都很迷人",
+      "1019":"氣質的根，長在對人的體貼裡",
+      "1020":"安定，是一次次嘗試建立起來的",
+      "1021":"他喜歡在安靜裡思考人的意義",
+      "1022":"做事專注，也值得留住生活的空間",
+      "1023":"先想好藍圖，再一步步把它完成",
+      "1024":"夢想有根，也懂得邀請夥伴同行",
+      "1025":"安靜而有禮，自然就顯得落落大方",
+      "1026":"先想清楚，再帶著大家找出路",
+      "1027":"一邊扎根，一邊挑戰新的目標",
+      "1028":"親手做一次，勝過聽很多道理",
+      "1029":"溫和的態度，也能守住堅定想法",
+      "1030":"朋友有難題，總會想找他商量",
+      "1031":"思考充分，迎接挑戰就更有底氣",
+      "1101":"自信與耐心，讓能力真正站得住",
+      "1102":"方法可以調整，內心不必搖動",
+      "1103":"記得別人的好，也懂得真心回應",
+      "1104":"把一件事打磨好，就是他的驕傲",
+      "1105":"看起來堅強，核心卻是重情的善良",
+      "1106":"想得到，也做得到，還顧得到別人",
+      "1107":"時機抓得準，創意就能恰好發生",
+      "1108":"關係裡的細小變化，他都懂",
+      "1109":"相信自己，所以敢往更高的地方走",
+      "1110":"有主見，也願意靜靜聽完心事",
+      "1111":"好的創意，需要一點安靜醞釀",
+      "1112":"長期練習，會把喜歡變成專長",
+      "1113":"踏實勤奮，也要保留長久續航力",
+      "1114":"先把情緒放穩，再好好照顧大家",
+      "1115":"安靜又獨立，胸中其實裝滿夢想",
+      "1116":"浪漫有了知識，品味就有了深度",
+      "1117":"願意付出，也值得被好好照顧",
+      "1118":"自己學會以後，還想帶著別人一起會",
+      "1119":"內在有質地，外在自然有光彩",
+      "1120":"變化很多，生命力也同樣旺盛",
+      "1121":"想站在前面，也要懂得尊重界線",
+      "1122":"目標一出現，力量就會集中起來",
+      "1123":"知道為什麼而做，專注就有方向",
+      "1124":"先退一步，是在整理自己的心",
+      "1125":"不輕易被看透，也有自己的份量",
+      "1126":"適應環境，也保有原來的顏色",
+      "1127":"從表面一路追問到真正的原因",
+      "1128":"看清楚、試過了，才願意相信",
+      "1129":"把錯誤當線索，就會更敢前進",
+      "1130":"站穩基本功，也守得住長久信任",
+      "1201":"真心喜歡美，才會有自己的藝術感",
+      "1202":"安穩的日常，讓內在慢慢豐富",
+      "1203":"比起漂亮話，他更相信親手做到",
+      "1204":"重要的時刻，他有不退後的勇氣",
+      "1205":"不跟著流行，也能走出有內容的路",
+      "1206":"心能包住大夢，也能照顧身邊的人",
+      "1207":"願意一起流汗，才是他的人情味",
+      "1208":"平凡日子裡，累積最深的信任",
+      "1209":"遇到困難，仍知道力量要放在哪裡",
+      "1210":"不搶著亮相，成果自然會說話",
+      "1211":"珍惜細節，舉手投足就有了優雅",
+      "1212":"難題一來，新的點子也跟著出現",
+      "1213":"一點玩心，就能讓關係充滿驚喜",
+      "1214":"他是真的享受和人產生連結",
+      "1215":"能量有出口，情緒也更認識自己",
+      "1216":"有獨自穿越困難的勇氣，也能求援",
+      "1217":"他讓周圍的人，不知不覺明亮起來",
+      "1218":"被理解以後，夢就願意慢慢說出來",
+      "1219":"對公平的堅持，藏在認真的心裡",
+      "1220":"再難走的路，也想替自己留點樂趣",
+      "1221":"清楚而細緻，是他尊重世界的方式",
+      "1222":"請替那份柔亮，保留自在生長的空間",
+      "1223":"童話般的奇想，也能孕育深刻作品",
+      "1224":"腳下站穩，才有餘裕走向新的地方",
+      "1225":"慢慢熟悉後，品味才會安靜展開",
+      "1226":"他的力量，天生就想保護別人",
+      "1227":"懂得欣賞自己，才能勇敢承擔",
+      "1228":"慷慨分享的，不只東西還有眼界",
+      "1229":"溫柔的世界觀，也能改變身邊環境",
+      "1230":"他站在身後，就能讓夥伴放心向前",
+      "1231":"很早就知道，什麼才真正適合自己"
+    };
+
+    const COLOR_NAME_ZH_EXACT = {
+      "葡萄鼠":"葡萄灰紫", "漆黒":"漆黑", "苔色":"苔綠", "草色":"草綠", "白緑":"白綠", "深緑":"深綠",
+      "萌黄色":"萌芽綠", "空色":"天空藍", "浅葱色":"淺蔥藍", "露草":"露草藍", "鴨の羽色":"鴨羽藍", "若草色":"嫩草綠", "若芽":"嫩芽綠",
+      "若紫":"嫩紫", "紅藤色":"紅藤紫", "うぐいす色":"鶯綠", "海松色":"海松綠", "勿忘草色":"勿忘草藍", "紺色":"藏青",
+      "鳥の子色":"鳥子米色", "鬱金色":"鬱金黃", "菜の花色":"油菜花黃", "裏葉色":"葉背綠", "一斤染":"一斤染粉", "鴇色":"朱鷺粉",
+      "桜色":"櫻花粉", "紅梅色":"紅梅粉", "珊瑚色":"珊瑚粉", "砥粉色":"砥粉米色", "柿色":"柿子橙", "薄紅藤":"淡紅藤紫",
+      "古代紫":"古代紫", "江戸紫":"江戶紫", "薄桜":"淡櫻粉", "青藤色":"青藤紫", "白百合":"百合白", "薄緑色":"淡綠",
+      "支子色":"梔子黃", "蒸栗色":"蒸栗米色", "利休白茶":"利休白茶", "鼠色":"鼠灰", "消炭色":"消炭灰", "若苗色":"嫩苗綠",
+      "若菜色":"嫩菜綠", "鸚緑":"鸚鵡綠", "葦葉色":"蘆葦葉綠", "薄浅葱":"淡淺蔥藍", "小鴨色":"小鴨綠", "水色":"水藍",
+      "群青色":"群青藍", "千歳緑":"千歲綠", "枯草色":"枯草黃", "千歳茶":"千歲茶", "緑青色":"銅綠", "山吹色":"棣棠黃",
+      "灰桜":"灰櫻粉", "薄紅":"淡紅", "菫色":"堇紫", "黄水仙":"黃水仙", "向日葵色":"向日葵黃", "黄土色":"黃土色",
+      "卵色":"蛋黃色", "金茶":"金茶色", "海老茶":"海老茶褐", "薄群青":"淡群青", "新橋色":"新橋藍", "紺青":"紺青藍",
+      "小麦色":"小麥色", "臙脂":"臙脂紅", "茜色":"茜紅", "黒柿色":"黑柿褐", "瑠璃色":"琉璃藍", "紺瑠璃":"紺琉璃藍",
+      "桑の実色":"桑葚紫", "藤鼠":"藤灰紫", "白群":"白群藍", "黄色":"明黃", "柑子色":"柑橘黃", "蜜柑色":"蜜柑橙",
+      "肉桂色":"肉桂棕", "煙草色":"菸草棕", "紫紺":"紫紺", "牧草色":"牧草綠", "鉄色":"鐵綠", "海松藍色":"海松藍",
+      "淡水色":"淡水藍", "鉄紺":"鐵紺藍", "褐色":"褐色", "浅葱鼠":"淺蔥灰", "鶸色":"黃綠", "緋色":"緋紅",
+      "黄丹":"黃丹橙", "弁柄色":"弁柄紅", "丁字色":"丁香褐", "煉瓦色":"磚紅", "栗皮茶":"栗皮褐", "代赭":"代赭棕",
+      "銀鼠":"銀灰", "鳩羽鼠":"鳩羽灰紫", "石板色":"石板灰", "芥子色":"芥子黃", "錆納戸":"鏽納戶藍", "鳩羽紫":"鳩羽紫",
+      "栗色":"栗棕", "駱駝色":"駝色", "小鹿色":"小鹿棕", "黒茶":"黑茶褐", "樺色":"樺木橙", "砂色":"砂米色",
+      "墨色":"墨黑", "桜貝色":"櫻貝粉", "抹茶色":"抹茶綠", "灰汁色":"灰汁褐", "鉛色":"鉛灰", "肌色":"膚色",
+      "枯葉色":"枯葉褐", "亜麻色":"亞麻色", "栗梅":"栗梅紅", "黒紫":"黑紫", "菜種油色":"菜籽油黃", "鮭色":"鮭魚粉",
+      "洗朱":"洗朱橙", "朱色":"朱紅", "飴色":"糖蜜色", "菖蒲色":"菖蒲紫", "茄子紺":"茄子紫",
+      "フレイムオレンジ":"火焰橙", "シーモス":"海藻綠", "ローズグレイ":"玫瑰灰", "オフブラック":"柔黑", "サンタン":"日曬棕",
+      "タンポポ色":"蒲公英黃", "ローズレッド":"玫瑰紅", "シグナルレッド":"信號紅", "ワインレッド":"酒紅", "オパールグリーン":"蛋白石綠",
+      "ディープピーグリーン":"深豌豆綠", "アジュールブルー":"蔚藍", "コロニアルイエロー":"古典黃", "オールドローズ":"古典玫瑰", "サンライトイエロー":"陽光黃",
+      "ローズピンク":"玫瑰粉", "ペッパーレッド":"胡椒紅", "ハバナローズ":"哈瓦那玫瑰", "ホリーグリーン":"冬青綠", "ブループリュス":"普魯士藍",
+      "パープルネイビー":"紫海軍藍", "ライラックヘイズィ":"霧紫丁香", "ティーグリーン":"茶綠", "ジョーンシトロン":"檸檬黃", "サンオレンジ":"日光橙"
+    };
+
+    const COLOR_NAME_ZH_PARTS = [
+      ["フォゲットミーナット", "勿忘草"], ["シャルトルーズ", "查特酒"], ["ネープルズ", "那不勒斯"], ["マリーゴールド", "萬壽菊"],
+      ["カンパヌラ", "風鈴草"], ["ナスタチウム", "旱金蓮"], ["ウルトラマリーン", "群青"], ["ハイドレンジア", "繡球花"],
+      ["ラピスラズリー", "青金石"], ["コーンフラワー", "矢車菊"], ["ターコイズ", "土耳其"], ["アマランス", "莧"],
+      ["タンジェリン", "橘紅"], ["タイガーリリー", "虎百合"], ["プリムローズ", "報春花"], ["ペール", "淡"],
+      ["ディープ", "深"], ["ライト", "淺"], ["オールド", "古典"], ["ゴールデン", "金"], ["フレッシュ", "清新"],
+      ["パステル", "粉彩"], ["フロスティ", "霜"], ["アルミニウム", "鋁"], ["スチール", "鋼"], ["チャコール", "炭"],
+      ["バトルシップ", "戰艦"], ["フォレスト", "森林"], ["フォーリッジ", "葉綠"], ["パラキート", "長尾鸚鵡"],
+      ["サンフラワー", "向日葵"], ["アプリコット", "杏桃"], ["カーネーション", "康乃馨"], ["ラベンダー", "薰衣草"],
+      ["ピーコック", "孔雀"], ["プルシアン", "普魯士"], ["セルリアン", "天藍"], ["マホガニー", "桃花心木"],
+      ["バーントシエンナ", "燒赭"], ["バーント", "燒"], ["テラローザ", "玫瑰陶土"], ["テラコッタ", "陶土"],
+      ["シーシェル", "海貝"], ["エッグシェル", "蛋殼"], ["ホワイトリリー", "百合白"], ["オーキッド", "蘭花"],
+      ["ライラック", "紫丁香"], ["サルビア", "鼠尾草"], ["クロッカス", "番紅花"], ["サフラン", "番紅花"],
+      ["シトロン", "檸檬"], ["レモン", "檸檬"], ["メロン", "甜瓜"], ["パンプキン", "南瓜"],
+      ["アクアマリン", "海水藍寶"], ["マラカイト", "孔雀石"], ["エメラルド", "祖母綠"], ["ガーネット", "石榴石"],
+      ["オリーブ", "橄欖"], ["アイビー", "常春藤"], ["スプルース", "雲杉"], ["サイプレス", "柏木"],
+      ["マスタード", "芥末"], ["コーヒー", "咖啡"], ["チョコレート", "巧克力"], ["シナモン", "肉桂"],
+      ["カフェオレ", "牛奶咖啡"], ["キャロット", "胡蘿蔔"], ["ハニースイート", "蜂蜜甜棕"], ["ヒーザー", "石楠紫"],
+      ["ヘリオトロープ", "香水草紫"], ["エッグプラント", "茄子紫"], ["オータムリーフ", "秋葉褐"], ["ビンヤード", "葡萄園紫"],
+      ["バーガンディー", "勃艮第紅"], ["クラーレット", "深酒紅"], ["クリムソン", "深紅"], ["カーミン", "胭脂紅"],
+      ["バーミリオン", "朱紅"], ["スカーレッド", "緋紅"], ["ルージュ", "胭脂紅"], ["ローズマダー", "茜玫瑰紅"],
+      ["ロータス", "蓮花"], ["ハバナ", "哈瓦那"], ["キューピッド", "丘比特"], ["オペラ", "歌劇紅"],
+      ["フクシャ", "倒掛金鐘"], ["パンジー", "三色堇"], ["ポピー", "罌粟"], ["チェリー", "櫻桃"], ["サーモン", "鮭魚"],
+      ["マジョリカ", "馬約利卡"], ["ファウンテン", "噴泉"], ["コバルト", "鈷"], ["マリン", "海洋"], ["ネービー", "海軍"],
+      ["ローヤル", "皇家"], ["ロイヤル", "皇家"], ["パール", "珍珠"], ["シルバー", "銀"], ["ゴールド", "金"],
+      ["ホワイト", "白"], ["ブラック", "黑"], ["グレイ", "灰"], ["グレー", "灰"], ["ブルー", "藍"], ["グリーン", "綠"],
+      ["イエロー", "黃"], ["ピンク", "粉紅"], ["レッド", "紅"], ["パープル", "紫"], ["オレンジ", "橙"], ["ブラウン", "棕"],
+      ["ティール", "藍綠"], ["アクア", "水藍"], ["シアン", "青"], ["スカイ", "天空"], ["スモーク", "煙燻"],
+      ["ミスト", "霧"], ["パウダー", "粉霧"], ["シェル", "貝殼"], ["リーフ", "葉"], ["グラス", "草"], ["メドー", "草原"],
+      ["パロット", "鸚鵡"], ["リード", "蘆葦"], ["レタス", "萵苣"], ["ボトル", "瓶"], ["エルム", "榆樹"],
+      ["ドラブ", "軍綠"], ["アイボリー", "象牙"], ["ベビー", "嬰兒"], ["ダック", "鴨"], ["インク", "墨水"],
+      ["サックス", "薩克斯"], ["カナール", "鴨"], ["ヨット", "遊艇"], ["マウス", "鼠"], ["ダブ", "鴿"],
+      ["ガンメタル", "槍灰"], ["ブリック", "磚"], ["タバコ", "菸草"], ["キャメル", "駝"], ["セピア", "棕褐"],
+      ["トパーズ", "黃玉"], ["ブロンズ", "青銅"], ["ベージュ", "米色"], ["ストロー", "稻草黃"], ["クリーム", "奶油色"],
+      ["アッシュ", "灰燼"], ["チョーク", "粉筆"], ["スレート", "板岩"], ["スプレー", "水霧"], ["サンライト", "陽光"],
+      ["サンオレンジ", "日光橙"], ["ライムライト", "萊姆光黃"], ["ライム", "萊姆"], ["ゴールデンコーン", "金玉米黃"],
+      ["コーン", "玉米"], ["オーカー", "赭黃"], ["バフ", "淺褐"], ["マルベリー", "桑葚紫"], ["モーブ", "藕合紫"],
+      ["モーベット", "淡紫"], ["マロー", "錦葵紫"], ["ビオレ", "紫羅蘭"], ["ミヨゾティ", "勿忘草藍"],
+      ["ビリジャン", "翡翠綠"], ["ブループリュス", "普魯士藍"], ["スマルト", "深鈷藍"], ["ブールジョン", "嫩芽黃"],
+      ["ジョーンシトロン", "檸檬黃"], ["ジョーンドナープル", "那不勒斯黃"], ["ジョーンミエル", "蜂蜜黃"],
+      ["エルブ", "香草綠"], ["スプラウト", "嫩芽綠"], ["プルプル", "深紫"], ["サロー", "灰柳綠"], ["リラ", "淡紫"],
+      ["マーシュローズ", "沼澤玫瑰"], ["タウニー", "褐"], ["オイル", "油彩"], ["トープ", "灰褐"], ["タン", "棕褐"]
+    ];
+
+    function colorNameZh(name) {
+      if (COLOR_NAME_ZH_EXACT[name]) return COLOR_NAME_ZH_EXACT[name];
+      let translated = name;
+      for (const [from, to] of COLOR_NAME_ZH_PARTS) translated = translated.replaceAll(from, to);
+      translated = translated.replace(/[桜緑浅黄黒亜鉄]/g, character => ({ "桜":"櫻", "緑":"綠", "浅":"淺", "黄":"黃", "黒":"黑", "亜":"亞", "鉄":"鐵" })[character]);
+      return translated;
+    }
+
+    const TRAIT_GROUPS = [
+      { label: "創意發光", match: /創|想像|構想|芸術|感性|アイデア|詩|音楽|美学|着想|表現|色彩/, copy: "把腦中的新點子變成自己的作品", mission: "挑三種喜歡的顏色，畫一個只有你想得到的小世界。" },
+      { label: "溫柔同行", match: /愛|優|友情|思いやり|協力|親身|気配り|配慮|慈|助け|人道|犠牲/, copy: "看見別人的心情，也願意伸出手", mission: "對家人或朋友說一句你欣賞他的地方。" },
+      { label: "好奇探索", match: /好奇|探求|研究|知識|知性|知能|知力|学問|洞察|観察|冒険|スリル|謎|神秘/, copy: "對世界保持好奇，喜歡找出答案", mission: "選一件今天好奇的事，問一個「為什麼」。" },
+      { label: "想得有條理", match: /論理|理性|理解|明晰|知覚|記憶|秩序|体系|状況判断|正確|緻密|判断|真理/, copy: "把線索整理清楚，再找出自己的答案", mission: "挑一件小事，試著用「先、再、最後」說明做法。" },
+      { label: "真誠可靠", match: /誠|信頼|正直|良心|道徳|倫理|高潔|品格|礼儀|公正|責任|純粋|清らか/, copy: "真心對待別人，也重視答應過的事", mission: "完成一件今天答應自己的小事。" },
+      { label: "目標清楚", match: /理想|目標|目的|信念|希望|向上|成長|前進|意志|意欲/, copy: "知道自己想往哪裡走，願意慢慢靠近", mission: "畫下一個想完成的小目標，寫出第一步。" },
+      { label: "美感滿滿", match: /美貌|上品|優雅|洗練|審美|ファッション|気品|美しい|容姿|身だしなみ|センス/, copy: "能發現顏色、形狀和生活裡的美", mission: "找出今天看到最喜歡的一個配色。" },
+      { label: "勇敢前進", match: /勇|挑戦|行動|前向き|積極|大胆|決断|不屈|先駆|開拓|突破|逆境/, copy: "遇到新挑戰時，願意勇敢試一次", mission: "做一件想嘗試的小事，完成後替自己拍拍手。" },
+      { label: "安心沉著", match: /冷静|安定|慎重|穏|静|平和|落ち着|リラックス|堅実|節度|中立|孤独/, copy: "先想一想再行動，帶給身邊的人安心感", mission: "安靜觀察一分鐘，說出你剛剛發現的三件事。" },
+      { label: "認真到底", match: /努力|根気|忍耐|継続|持続|我慢|完全|徹底|訓練|鍛錬|頑固|貫徹|責任/, copy: "願意一步一步，把想做的事完成", mission: "選一件小任務，專心做完再休息。" },
+      { label: "帶隊有方法", match: /指導|リーダー|組織|経営|まとめ役|主役|トップ|権威|企画|体系/, copy: "知道怎麼整理想法，也能邀請大家一起做", mission: "玩遊戲時，試著幫大家分配一個小任務。" },
+      { label: "樂於分享", match: /社交|会話|言葉|外交|話好き|人づきあい|表情|ユーモア|サービス|人脈/, copy: "樂於說出想法，也能讓氣氛更有趣", mission: "和家人分享今天最好玩的一件事。" },
+      { label: "快樂能量", match: /明る|楽|喜|微笑|笑|陽気|快活|楽天|希望|幸福|幸せ|生命力|エネルギー|パワー/, copy: "用笑容和活力，讓身邊的人也亮起來", mission: "找一首喜歡的歌，和家人一起動一動。" },
+      { label: "自信做自己", match: /個性|独創|自主|自信|自尊|自分|オリジナル|ユニーク|自由|奔放|気まぐれ|移り気|主張/, copy: "有自己的想法，也敢走出不同的路", mission: "選一樣最能代表你的東西，說說為什麼喜歡它。" },
+      { label: "合作有默契", match: /協調|調和|バランス|公平|公正|礼儀|信頼|誠実|円満|適応|順応|柔軟/, copy: "懂得聽聽別人的想法，一起找到好方法", mission: "和家人一起完成一件兩個人合作的小事。" },
+      { label: "細心觀察", match: /細|繊細|敏感|感受|直観|几帳面|正確|入念|緻密|用意周到|心配/, copy: "會注意到小細節，也能發現別人沒看見的美好", mission: "找出房間裡五個相近、卻不完全一樣的顏色。" }
+    ];
+
+    const FALLBACK_TRAITS = [
+      { label: "慢慢長大", copy: "每天多認識自己一點，也欣賞自己的不同", mission: "說出今天自己做得很棒的一件事。" },
+      { label: "發現美好", copy: "在日常裡找到值得珍惜的小亮點", mission: "找一個讓你心情變好的顏色。" },
+      { label: "自在探索", copy: "照著自己的節奏接近新事物", mission: "選一件有興趣的小事，用自己的方法玩玩看。" },
+      { label: "用心感受", copy: "留意心裡的感覺，也試著把它說出來", mission: "挑一個最像今天心情的顏色，說說原因。" },
+      { label: "溫暖陪伴", copy: "珍惜和家人朋友相處的小時光", mission: "邀請一位家人，一起完成一幅小小的畫。" },
+      { label: "相信自己", copy: "在一次次嘗試裡看見自己的力量", mission: "完成一件小挑戰，再對自己說一句鼓勵的話。" }
+    ];
+
+    const MISSION_FOLLOWUPS = [
+      "完成後，聽聽孩子最喜歡哪個部分。",
+      "不用追求做得漂亮，享受一起完成的過程就好。",
+      "如果孩子有不同玩法，也讓他帶著你試一次。",
+      "過程中，多問問孩子為什麼這樣選。",
+      "做完後，記得和孩子一起替這次嘗試拍拍手。",
+      "你可以在旁邊陪著，但把決定留給孩子。",
+      "最後請孩子替成果取一個只有你們懂的名字。",
+      "今天先做一小步，也算完成了很棒的任務。"
+    ];
+
+    const form = document.getElementById("birthday-form");
+    const yearSelect = document.getElementById("birth-year");
+    const monthSelect = document.getElementById("birth-month");
+    const daySelect = document.getElementById("birth-day");
+    const error = document.getElementById("form-error");
+    const result = document.getElementById("result");
+    const shareDialog = document.getElementById("share-dialog");
+    const sharePreview = document.getElementById("share-preview");
+    const downloadCard = document.getElementById("download-card");
+    const nativeShareCard = document.getElementById("native-share-card");
+    let currentResult = null;
+    let shareCardBlob = null;
+    let shareCardUrl = "";
+
+    function pad(value) { return String(value).padStart(2, "0"); }
+
+    function populateDateFields() {
+      const currentYear = new Date().getFullYear();
+      for (let year = currentYear; year >= 2000; year -= 1) {
+        yearSelect.add(new Option(`${year} 年`, year));
+      }
+      for (let month = 1; month <= 12; month += 1) {
+        monthSelect.add(new Option(`${month} 月`, month));
+      }
+    }
+
+    function updateDays() {
+      const previousDay = Number(daySelect.value);
+      const year = Number(yearSelect.value);
+      const month = Number(monthSelect.value);
+      daySelect.innerHTML = '<option value="">日</option>';
+      daySelect.disabled = !year || !month;
+      if (!year || !month) return;
+
+      const daysInMonth = new Date(year, month, 0).getDate();
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        daySelect.add(new Option(`${day} 日`, day));
+      }
+      if (previousDay && previousDay <= daysInMonth) daySelect.value = String(previousDay);
+    }
+
+    function textSeed(text) {
+      return Array.from(text).reduce((total, character, index) => total + character.charCodeAt(0) * (index + 1), 0);
+    }
+
+    function pickTraits(entry) {
+      const unique = [];
+      const sources = [...entry.words.split("・"), entry.personality];
+      for (const source of sources) {
+        const matches = TRAIT_GROUPS.filter(group => group.match.test(source));
+        for (const item of matches) {
+          if (!unique.some(found => found.label === item.label)) unique.push(item);
+          if (unique.length === 2) return unique;
+        }
+      }
+      let fallbackIndex = textSeed(`${entry.words}${entry.personality}`) % FALLBACK_TRAITS.length;
+      while (unique.length < 2) {
+        const fallback = FALLBACK_TRAITS[fallbackIndex % FALLBACK_TRAITS.length];
+        if (!unique.some(found => found.label === fallback.label)) unique.push(fallback);
+        fallbackIndex += 1;
+      }
+      return unique;
+    }
+
+    function buildDailyMission(entry, traits, month, day) {
+      const seed = textSeed(`${month}${day}${entry.name}${entry.words}${entry.personality}`);
+      const missionFollowup = MISSION_FOLLOWUPS[Math.floor(seed / 13) % MISSION_FOLLOWUPS.length];
+      return `${traits[seed % traits.length].mission}${missionFollowup}`;
+    }
+
+    function readableTextColor(hex) {
+      const value = hex.replace("#", "");
+      const rgb = [0, 2, 4].map(index => parseInt(value.slice(index, index + 2), 16) / 255)
+        .map(channel => channel <= .03928 ? channel / 12.92 : Math.pow((channel + .055) / 1.055, 2.4));
+      const luminance = .2126 * rgb[0] + .7152 * rgb[1] + .0722 * rgb[2];
+      return luminance > .179 ? "#000000" : "#FFFFFF";
+    }
+
+    function renderResult(entry, year, month, day) {
+      const traits = pickTraits(entry);
+      const zhName = colorNameZh(entry.name);
+      const dateKey = `${pad(month)}${pad(day)}`;
+      const headline = DAILY_PARENT_HEADLINE[dateKey];
+      const copy = DAILY_PARENT_COPY[dateKey];
+      const mission = buildDailyMission(entry, traits, month, day);
+      const swatch = document.getElementById("swatch");
+      swatch.style.backgroundColor = entry.hex;
+      swatch.style.color = readableTextColor(entry.hex);
+
+      document.getElementById("result-date").textContent = `${month} 月 ${day} 日`;
+      document.getElementById("color-name").textContent = zhName;
+      document.getElementById("color-code").textContent = entry.hex.toUpperCase();
+      document.getElementById("result-headline").textContent = headline;
+      document.getElementById("result-copy").textContent = copy;
+      document.getElementById("trait-list").innerHTML = traits.map(item => `<span class="trait">✦ ${item.label}</span>`).join("");
+      document.getElementById("mission-copy").textContent = mission;
+
+      currentResult = { entry, year, month, day, traits, zhName, headline, copy, mission };
+      result.classList.add("show");
+      result.focus({ preventScroll: true });
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "birthday_color_quiz_complete" });
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const year = Number(yearSelect.value);
+      const month = Number(monthSelect.value);
+      const day = Number(daySelect.value);
+      if (!year || !month || !day) {
+        error.textContent = "請先完整選擇孩子的出生年月日";
+        error.classList.add("show");
+        return;
+      }
+
+      const chosenDate = new Date(year, month - 1, day);
+      const today = new Date();
+      today.setHours(23, 59, 59, 999);
+      if (chosenDate > today) {
+        error.textContent = "出生日期不能晚於今天，請再確認一次";
+        error.classList.add("show");
+        return;
+      }
+
+      error.classList.remove("show");
+      const entry = BIRTHDAY_COLORS[`${pad(month)}${pad(day)}`];
+      if (!entry) {
+        error.textContent = "這個日期暫時找不到代表色，請再確認一次";
+        error.classList.add("show");
+        return;
+      }
+      renderResult(entry, year, month, day);
+    });
+
+    yearSelect.addEventListener("change", updateDays);
+    monthSelect.addEventListener("change", updateDays);
+
+    document.getElementById("reset-button").addEventListener("click", () => {
+      form.reset();
+      daySelect.innerHTML = '<option value="">日</option>';
+      daySelect.disabled = true;
+      error.textContent = "請先完整選擇孩子的出生年月日";
+      error.classList.remove("show");
+      result.classList.remove("show");
+      currentResult = null;
+      if (shareDialog.open) shareDialog.close();
+      document.getElementById("form-title").scrollIntoView({ behavior: "smooth", block: "center" });
+      yearSelect.focus({ preventScroll: true });
+    });
+
+    function roundedRect(context, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      context.beginPath();
+      context.moveTo(x + r, y);
+      context.arcTo(x + width, y, x + width, y + height, r);
+      context.arcTo(x + width, y + height, x, y + height, r);
+      context.arcTo(x, y + height, x, y, r);
+      context.arcTo(x, y, x + width, y, r);
+      context.closePath();
+    }
+
+    function wrapCanvasText(context, text, x, y, maxWidth, lineHeight, maxLines = 4) {
+      const characters = Array.from(text);
+      const lines = [];
+      let line = "";
+      for (const character of characters) {
+        const testLine = line + character;
+        if (context.measureText(testLine).width > maxWidth && line) {
+          lines.push(line);
+          line = character;
+          if (lines.length === maxLines - 1) break;
+        } else {
+          line = testLine;
+        }
+      }
+      const consumed = lines.join("").length;
+      if (consumed < characters.length) {
+        let lastLine = characters.slice(consumed).join("");
+        while (context.measureText(lastLine).width > maxWidth && lastLine.length > 1) lastLine = lastLine.slice(0, -1);
+        if (consumed + lastLine.length < characters.length) lastLine = `${lastLine.slice(0, -1)}…`;
+        lines.push(lastLine);
+      } else if (line) {
+        lines.push(line);
+      }
+      lines.slice(0, maxLines).forEach((item, index) => context.fillText(item, x, y + index * lineHeight));
+      return y + Math.min(lines.length, maxLines) * lineHeight;
+    }
+
+    function drawShareCard(data) {
+      const { entry, month, day, traits, zhName, headline, copy, mission } = data;
+      const canvas = document.createElement("canvas");
+      canvas.width = 1080;
+      canvas.height = 1350;
+      const context = canvas.getContext("2d");
+
+      const background = context.createLinearGradient(0, 0, 1080, 1350);
+      background.addColorStop(0, "#FFF5FA");
+      background.addColorStop(.52, "#F2F7FF");
+      background.addColorStop(1, "#FFF8D9");
+      context.fillStyle = background;
+      context.fillRect(0, 0, 1080, 1350);
+
+      context.globalAlpha = .95;
+      context.fillStyle = "#FDE84C";
+      context.beginPath();
+      context.arc(956, 112, 122, 0, Math.PI * 2);
+      context.fill();
+      context.fillStyle = "#06B7C9";
+      context.globalAlpha = .16;
+      context.beginPath();
+      context.arc(82, 280, 160, 0, Math.PI * 2);
+      context.fill();
+      context.fillStyle = "#F05091";
+      context.globalAlpha = .12;
+      context.beginPath();
+      context.arc(1018, 1050, 220, 0, Math.PI * 2);
+      context.fill();
+      context.globalAlpha = 1;
+
+      context.fillStyle = "#004098";
+      roundedRect(context, 64, 58, 410, 58, 29);
+      context.fill();
+      context.fillStyle = "#FFFFFF";
+      context.font = '700 26px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.textBaseline = "middle";
+      context.fillText("親子天下｜孩子的生日代表色", 88, 87);
+
+      context.textAlign = "center";
+      context.fillStyle = "#26334A";
+      context.font = '800 34px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText(`${month} 月 ${day} 日・生日代表色`, 540, 176);
+
+      context.shadowColor = "rgba(38, 51, 74, .16)";
+      context.shadowBlur = 34;
+      context.shadowOffsetY = 16;
+      context.fillStyle = entry.hex;
+      context.beginPath();
+      context.arc(540, 360, 164, 0, Math.PI * 2);
+      context.fill();
+      context.shadowColor = "transparent";
+      context.lineWidth = 14;
+      context.strokeStyle = "rgba(255,255,255,.88)";
+      context.stroke();
+
+      context.fillStyle = readableTextColor(entry.hex);
+      context.font = '800 48px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText(zhName, 540, 342);
+      context.font = '700 27px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText(entry.hex.toUpperCase(), 540, 393);
+
+      context.fillStyle = "#FFFFFF";
+      roundedRect(context, 64, 564, 952, 472, 42);
+      context.fill();
+
+      context.textAlign = "left";
+      context.textBaseline = "alphabetic";
+      context.fillStyle = "#004098";
+      context.font = '800 38px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText(headline, 112, 640);
+
+      let pillX = 112;
+      traits.forEach((trait, index) => {
+        context.font = '700 25px "Noto Sans TC", "PingFang TC", sans-serif';
+        const pillWidth = context.measureText(`✦ ${trait.label}`).width + 48;
+        context.fillStyle = index === 0 ? "#FFF0F6" : "#EAF3FF";
+        roundedRect(context, pillX, 680, pillWidth, 54, 27);
+        context.fill();
+        context.fillStyle = index === 0 ? "#D73E7D" : "#004098";
+        context.textBaseline = "middle";
+        context.fillText(`✦ ${trait.label}`, pillX + 24, 707);
+        pillX += pillWidth + 16;
+      });
+
+      context.textBaseline = "alphabetic";
+      context.fillStyle = "#46536A";
+      context.font = '500 29px "Noto Sans TC", "PingFang TC", sans-serif';
+      wrapCanvasText(context, copy, 112, 790, 856, 47, 4);
+
+      context.fillStyle = "#FFF8C8";
+      roundedRect(context, 92, 1068, 896, 168, 32);
+      context.fill();
+      context.fillStyle = "#26334A";
+      context.font = '800 28px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText("給孩子的小小色彩任務", 128, 1124);
+      context.font = '500 27px "Noto Sans TC", "PingFang TC", sans-serif';
+      wrapCanvasText(context, mission, 128, 1173, 816, 42, 2);
+
+      context.textAlign = "center";
+      context.fillStyle = "#657087";
+      context.font = '500 22px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText("每個孩子都不只一種顏色，陪你多看見孩子一點。", 540, 1302);
+
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error("無法產生分享小卡")), "image/png");
+      });
+    }
+
+    function safeFilename(value) {
+      return value.replace(/[\\/:*?"<>|]/g, "-");
+    }
+
+    document.getElementById("share-button").addEventListener("click", async event => {
+      if (!currentResult) return;
+      const button = event.currentTarget;
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "正在製作小卡…";
+      try {
+        shareCardBlob = await drawShareCard(currentResult);
+        if (shareCardUrl) URL.revokeObjectURL(shareCardUrl);
+        shareCardUrl = URL.createObjectURL(shareCardBlob);
+        sharePreview.src = shareCardUrl;
+        downloadCard.href = shareCardUrl;
+        downloadCard.download = safeFilename(`孩子的生日代表色-${currentResult.month}月${currentResult.day}日-${currentResult.zhName}.png`);
+        if (typeof shareDialog.showModal === "function") shareDialog.showModal();
+        else shareDialog.setAttribute("open", "");
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "birthday_color_share_card_created" });
+      } catch (cardError) {
+        button.textContent = "小卡製作失敗，請再試一次";
+        setTimeout(() => { button.textContent = originalText; }, 2200);
+        return;
+      } finally {
+        button.disabled = false;
+        if (button.textContent === "正在製作小卡…") button.textContent = originalText;
+      }
+    });
+
+    document.getElementById("dialog-close").addEventListener("click", () => {
+      if (typeof shareDialog.close === "function") shareDialog.close();
+      else shareDialog.removeAttribute("open");
+    });
+
+    shareDialog.addEventListener("click", event => {
+      if (event.target === shareDialog) shareDialog.close();
+    });
+
+    nativeShareCard.addEventListener("click", async () => {
+      if (!shareCardBlob || !currentResult) return;
+      const filename = downloadCard.download;
+      const file = new File([shareCardBlob], filename, { type: "image/png" });
+      try {
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: "孩子的生日代表色",
+            text: `${currentResult.month} 月 ${currentResult.day} 日｜${currentResult.zhName}`
+          });
+        } else {
+          downloadCard.click();
+        }
+      } catch (shareError) {
+        if (shareError && shareError.name !== "AbortError") downloadCard.click();
+      }
+    });
+
+    window.addEventListener("beforeunload", () => {
+      if (shareCardUrl) URL.revokeObjectURL(shareCardUrl);
+    });
+
+    populateDateFields();
+  </script>
+</body>
+</html>
