@@ -2146,19 +2146,21 @@
       context.globalAlpha = 1;
 
       context.fillStyle = "#FFFFFF";
-      roundedRect(context, 64, 56, 420, 66, 33);
+      roundedRect(context, 64, 48, 660, 84, 42);
       context.fill();
       context.textBaseline = "middle";
       if (parentingLogo) {
-        context.drawImage(parentingLogo, 88, 69, 130, 40);
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = "high";
+        context.drawImage(parentingLogo, 92, 58, 208, 64);
       } else {
         context.fillStyle = "#F05091";
-        context.font = '900 27px "Noto Sans TC", "PingFang TC", sans-serif';
-        context.fillText("親子天下", 88, 89);
+        context.font = '900 34px "Noto Sans TC", "PingFang TC", sans-serif';
+        context.fillText("親子天下", 92, 90);
       }
       context.fillStyle = "#004098";
-      context.font = '700 24px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("孩子的生日代表色", 242, 89);
+      context.font = '700 28px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText("孩子的生日代表色", 330, 90);
 
       context.textAlign = "center";
       context.fillStyle = "#26334A";
