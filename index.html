@@ -1532,6 +1532,22 @@
 
     const RECOMMENDED_CONTENT = [
       {
+        id: "infant-safe-sleep", kind: "universal", type: "article", source: "親子天下",
+        title: "嬰兒睡眠安全：安全也好眠的6個實用方法",
+        summary: "從仰睡、床面淨空到同房不同床，替寶寶建立安全又可執行的睡眠環境。",
+        url: "https://www.parenting.com.tw/article/6001733",
+        ageBands: ["0-2"], minAgeMonths: 0, maxAgeMonths: 11,
+        earlyInfantPriority: 30, tags: []
+      },
+      {
+        id: "infant-tummy-time", kind: "universal", type: "article", source: "親子天下",
+        title: "Tummy Time是什麼？6大姿勢與安全練習方法",
+        summary: "在寶寶清醒且有人看顧時練習趴趴時間，陪他發展頭頸與身體力量。",
+        url: "https://www.parenting.com.tw/article/6000987",
+        ageBands: ["0-2"], minAgeMonths: 0, maxAgeMonths: 7,
+        earlyInfantPriority: 20, tags: []
+      },
+      {
         id: "play-emotion-0-2", kind: "strength", type: "article", source: "親子天下",
         title: "陪0～2歲寶寶玩出好情緒",
         summary: "從居家遊戲陪寶寶發展動作、語言、認知與情緒。",
@@ -1568,6 +1584,7 @@
         summary: "看懂寶寶細小的表情、聲音與動作，讓每次回應都成為互動練習。",
         url: "https://www.parenting.com.tw/article/5097300",
         ageBands: ["0-2"], minAgeMonths: 0, maxAgeMonths: 23,
+        earlyInfantPriority: 10,
         tags: ["樂於分享", "細心觀察", "溫柔同行"]
       },
       {
@@ -1958,12 +1975,17 @@
         )
         .map(item => ({
           ...item,
+          carePriority: ageMonths < 6 ? (item.earlyInfantPriority || 0) : 0,
           matchCount: item.kind === "strength"
             ? item.tags.filter(tag => traitLabels.includes(tag)).length
             : 0,
           order: textSeed(`${dateKey}:${item.id}`) % 997
         }))
-        .sort((left, right) => right.matchCount - left.matchCount || left.order - right.order);
+        .sort((left, right) =>
+          right.carePriority - left.carePriority ||
+          right.matchCount - left.matchCount ||
+          left.order - right.order
+        );
 
       const selected = candidates.slice(0, 3);
       const video = candidates.find(item => item.type === "video");
