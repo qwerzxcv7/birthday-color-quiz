@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <meta name="supported-color-schemes" content="light">
+  <meta name="theme-color" content="#FFF9FC">
   <meta name="description" content="輸入孩子的出生年月日，找出專屬生日代表色與兒童版正向解讀。">
   <title>孩子的生日代表色｜親子天下</title>
 
@@ -16,6 +19,7 @@
 
   <style>
     :root {
+      color-scheme: only light;
       --pink: #F05091;
       --pink-dark: #D73E7D;
       --pink-pale: #FFF0F6;
@@ -32,7 +36,10 @@
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      background-color: #FFF9FC;
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -42,6 +49,7 @@
         radial-gradient(circle at 8% 10%, rgba(253,232,76,.38) 0 80px, transparent 82px),
         radial-gradient(circle at 92% 14%, rgba(6,183,201,.18) 0 110px, transparent 112px),
         linear-gradient(155deg, #FFF9FC 0%, #F6F9FF 48%, #FFF7E2 100%);
+      background-color: #FFF9FC;
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       line-height: 1.65;
       padding: 24px 14px 36px;
