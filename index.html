@@ -1404,6 +1404,14 @@
     };
 
     const COLOR_NAME_ZH_EXACT = {
+      "フクシャパープル":"紫紅色", "ライムライト":"萊姆黃", "オレンジバーミリオン":"橙朱紅", "ディープモーベット":"深藕紫",
+      "フクシャピンク":"Fuchsia Pink", "エメラルドグリーン":"祖母綠", "ターコイズグリーン":"綠松石綠", "ターコイズ":"綠松石色",
+      "ティールグリーン":"深藍綠", "シャルトルーズイエロー":"亮黃綠", "ペールサックスブルー":"淺薩克斯藍", "ブルーカナール":"Blue Canard",
+      "マジョリカブルー":"Majolica Blue", "ペールモーベット":"淡藕紫", "ファウンテンブルー":"Fountain Blue", "セルリアンブルー":"天青藍",
+      "ブルーシェル":"貝殼藍", "ペールヨットブルー":"Pale Yacht Blue", "ヨットブルー":"Yacht Blue", "イエローオーカー":"黃赭色",
+      "ディープティールグリーン":"深藍綠", "タンジェリンオレンジ":"橘紅", "アマランスパープル":"莧菜紫", "ライトターコイズ":"淺綠松石色",
+      "アッシュグレイ":"灰燼灰", "ガンメタル":"炮銅色", "マーシュローズ":"Marsh Rose", "タウニーオリーブ":"褐橄欖綠",
+      "ペールライムライト":"淡萊姆黃", "オイルイエロー":"Oil Yellow", "ベージュホワイト":"米白色", "ターコイズブルー":"綠松石藍",
       "葡萄鼠":"葡萄灰紫", "漆黒":"漆黑", "苔色":"苔綠", "草色":"草綠", "白緑":"白綠", "深緑":"深綠",
       "萌黄色":"萌芽綠", "空色":"天空藍", "浅葱色":"淺蔥藍", "露草":"露草藍", "鴨の羽色":"鴨羽藍", "若草色":"嫩草綠", "若芽":"嫩芽綠",
       "若紫":"嫩紫", "紅藤色":"紅藤紫", "うぐいす色":"鶯綠", "海松色":"海松綠", "勿忘草色":"勿忘草藍", "紺色":"藏青",
@@ -2145,38 +2153,31 @@
       context.fill();
       context.globalAlpha = 1;
 
-      context.fillStyle = "#004098";
-      roundedRect(context, 64, 56, 280, 58, 29);
+      context.fillStyle = "#FFFFFF";
+      roundedRect(context, 64, 48, 210, 88, 44);
       context.fill();
       context.textBaseline = "middle";
-      context.fillStyle = "#FFFFFF";
-      context.font = '700 25px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("孩子生日代表色", 88, 85);
-
-      context.fillStyle = "#FFFFFF";
-      roundedRect(context, 812, 48, 204, 76, 38);
-      context.fill();
       if (parentingLogo) {
         context.imageSmoothingEnabled = true;
         context.imageSmoothingQuality = "high";
-        context.drawImage(parentingLogo, 849, 66, 130, 40);
+        context.drawImage(parentingLogo, 92, 69, 154, 47);
       } else {
         context.fillStyle = "#F05091";
-        context.font = '900 27px "Noto Sans TC", "PingFang TC", sans-serif';
-        context.fillText("親子天下", 850, 86);
+        context.font = '900 30px "Noto Sans TC", "PingFang TC", sans-serif';
+        context.fillText("親子天下", 92, 92);
       }
 
       context.textAlign = "center";
       context.fillStyle = "#26334A";
       context.font = '800 34px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText(`${month} 月 ${day} 日・生日代表色`, 540, 176);
+      context.fillText(`${month} 月 ${day} 日・生日代表色`, 540, 166);
 
       context.shadowColor = "rgba(38, 51, 74, .16)";
       context.shadowBlur = 34;
       context.shadowOffsetY = 16;
       context.fillStyle = entry.hex;
       context.beginPath();
-      context.arc(540, 360, 164, 0, Math.PI * 2);
+      context.arc(540, 375, 164, 0, Math.PI * 2);
       context.fill();
       context.shadowColor = "transparent";
       context.lineWidth = 14;
@@ -2185,16 +2186,23 @@
 
       context.fillStyle = readableTextColor(entry.hex);
       context.font = '800 48px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText(zhName, 540, 342);
+      context.fillText(zhName, 540, 357);
       context.font = '700 27px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText(entry.hex.toUpperCase(), 540, 393);
-
-      context.fillStyle = "#FFFFFF";
-      roundedRect(context, 64, 564, 952, 472, 42);
-      context.fill();
+      context.fillText(entry.hex.toUpperCase(), 540, 408);
 
       context.textAlign = "left";
       context.textBaseline = "alphabetic";
+      context.font = '500 29px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.save();
+      context.globalAlpha = 0;
+      const copyBottom = wrapCanvasText(context, copy, 112, 790, 856, 47, 4);
+      context.restore();
+      const infoCardBottom = Math.max(920, Math.min(1028, copyBottom + 48));
+
+      context.fillStyle = "#FFFFFF";
+      roundedRect(context, 64, 564, 952, infoCardBottom - 564, 42);
+      context.fill();
+
       context.fillStyle = "#004098";
       context.font = '800 38px "Noto Sans TC", "PingFang TC", sans-serif';
       context.fillText(headline, 112, 640);
@@ -2217,22 +2225,23 @@
       context.font = '500 29px "Noto Sans TC", "PingFang TC", sans-serif';
       wrapCanvasText(context, copy, 112, 790, 856, 47, 4);
 
+      const missionTop = infoCardBottom + 32;
       context.fillStyle = "#FFF8C8";
-      roundedRect(context, 92, 1068, 896, 168, 32);
+      roundedRect(context, 92, missionTop, 896, 168, 32);
       context.fill();
       context.fillStyle = "#26334A";
       context.font = '800 28px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("給孩子的小小色彩任務", 128, 1124);
+      context.fillText("給孩子的小小色彩任務", 128, missionTop + 48);
       context.font = '500 27px "Noto Sans TC", "PingFang TC", sans-serif';
-      wrapCanvasText(context, mission, 128, 1173, 816, 42, 2);
+      wrapCanvasText(context, mission, 128, missionTop + 91, 816, 42, 2);
 
       context.textAlign = "center";
       context.fillStyle = "#657087";
       context.font = '500 20px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("每個孩子都不只一種顏色，陪你多看見孩子一點。", 540, 1286);
+      context.fillText("每個孩子都不只一種顏色，陪你多看見孩子一點。", 540, Math.min(1286, missionTop + 240));
       context.fillStyle = "#8A91A2";
       context.font = '500 15px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("資料參考：野村順一《「色の秘密」366日 誕生色事典》｜兒童版解讀：親子天下", 540, 1325);
+      context.fillText("資料參考：野村順一《「色の秘密」366日 誕生色事典》｜兒童版解讀：親子天下", 540, Math.min(1325, missionTop + 286));
 
       return new Promise((resolve, reject) => {
         canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error("無法產生分享小卡")), "image/png");
