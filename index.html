@@ -1930,6 +1930,12 @@
       return Math.max(0, ageMonths);
     }
 
+    function formatRecommendationAge(age, ageMonths) {
+      if (ageMonths === 0) return "未滿1個月";
+      if (ageMonths < 12) return `${ageMonths}個月大`;
+      return `${age}歲`;
+    }
+
     function getAgeBand(age) {
       if (age <= 2) return "0-2";
       if (age <= 6) return "3-6";
@@ -1970,8 +1976,9 @@
       const ageMonths = calculateAgeMonths(year, month, day);
       const ageBand = getAgeBand(age);
       const recommendations = pickRecommendations(ageBand, ageMonths, traits, dateKey);
+      const ageLabel = formatRecommendationAge(age, ageMonths);
 
-      document.getElementById("recommendation-title").textContent = `您的孩子目前${age}歲，推薦您實用教養資訊`;
+      document.getElementById("recommendation-title").textContent = `您的孩子目前${ageLabel}，推薦您實用教養資訊`;
       recommendationGrid.replaceChildren();
 
       for (const item of recommendations) {
