@@ -1536,21 +1536,24 @@
         title: "陪0～2歲寶寶玩出好情緒",
         summary: "從居家遊戲陪寶寶發展動作、語言、認知與情緒。",
         url: "https://www.parenting.com.tw/article/5057557",
-        ageBands: ["0-2"], tags: ["快樂能量", "好奇探索", "溫柔同行"]
+        ageBands: ["0-2"], minAgeMonths: 0, maxAgeMonths: 35,
+        tags: ["快樂能量", "好奇探索", "溫柔同行"]
       },
       {
         id: "baby-play-video", kind: "strength", type: "video", source: "育兒100問",
         title: "1歲到1歲半寶寶遊戲攻略：在家玩出發展力",
         summary: "五個不必添購玩具的陪玩方法，練習動作、認知與生活自理。",
         url: "https://www.youtube.com/watch?v=R1tsu4bma_Y",
-        ageBands: ["0-2"], tags: ["好奇探索", "快樂能量", "自在探索"]
+        ageBands: ["0-2"], minAgeMonths: 12, maxAgeMonths: 18,
+        tags: ["好奇探索", "快樂能量", "自在探索"]
       },
       {
         id: "reading-0-5", kind: "strength", type: "article", source: "親子天下",
         title: "什麼是親子共讀？0～5歲的共讀技巧、好處、書單一次掌握",
         summary: "用互動與對話陪孩子接近閱讀，同時發展語言、理解與想像力。",
         url: "https://www.parenting.com.tw/article/5092189",
-        ageBands: ["0-2", "3-6"], tags: ["好奇探索", "創意發光", "溫柔同行"]
+        ageBands: ["0-2", "3-6"], minAgeMonths: 0, maxAgeMonths: 71,
+        tags: ["好奇探索", "創意發光", "溫柔同行"]
       },
       {
         id: "baby-language", kind: "strength", type: "article", source: "親子天下",
@@ -1564,35 +1567,46 @@
         title: "原來是在跟我溝通？如何接住寶寶的溝通意圖",
         summary: "看懂寶寶細小的表情、聲音與動作，讓每次回應都成為互動練習。",
         url: "https://www.parenting.com.tw/article/5097300",
-        ageBands: ["0-2"], tags: ["樂於分享", "細心觀察", "溫柔同行"]
+        ageBands: ["0-2"], minAgeMonths: 0, maxAgeMonths: 23,
+        tags: ["樂於分享", "細心觀察", "溫柔同行"]
       },
       {
         id: "baby-7-8-months", kind: "strength", type: "article", source: "親子天下",
         title: "7～8個月寶寶六大能力發展關鍵",
         summary: "從聲音、模仿到遊戲探索，看見寶寶正在長出的新能力。",
         url: "https://www.parenting.com.tw/article/5089346",
-        ageBands: ["0-2"], tags: ["好奇探索", "細心觀察", "快樂能量"]
+        ageBands: ["0-2"], minAgeMonths: 7, maxAgeMonths: 8,
+        tags: ["好奇探索", "細心觀察", "快樂能量"]
       },
       {
         id: "baby-9-10-months", kind: "strength", type: "article", source: "親子天下",
         title: "9～10個月寶寶六大能力發展關鍵",
         summary: "透過玩聲音、模仿和回應指令，理解寶寶的觀察與互動力。",
         url: "https://www.parenting.com.tw/article/5089890",
-        ageBands: ["0-2"], tags: ["細心觀察", "好奇探索", "自信做自己"]
+        ageBands: ["0-2"], minAgeMonths: 9, maxAgeMonths: 10,
+        tags: ["細心觀察", "好奇探索", "自信做自己"]
       },
       {
         id: "baby-6-7-months", kind: "strength", type: "article", source: "親子天下",
         title: "6～7個月寶寶六大能力發展關鍵",
         summary: "從聲音、玩具與互動反應，看見寶寶如何建立語言和認知連結。",
         url: "https://www.parenting.com.tw/article/5089241",
-        ageBands: ["0-2"], tags: ["好奇探索", "細心觀察", "樂於分享"]
+        ageBands: ["0-2"], minAgeMonths: 6, maxAgeMonths: 7,
+        tags: ["好奇探索", "細心觀察", "樂於分享"]
+      },
+      {
+        id: "toddler-guide", kind: "universal", type: "article", source: "親子天下",
+        title: "正向教養分齡指南：學步兒（1～2歲）",
+        summary: "理解學步兒的動作、語言與探索發展，用合齡方式陪孩子練習獨立。",
+        url: "https://www.parenting.com.tw/article/6000005",
+        ageBands: ["0-2"], minAgeMonths: 12, maxAgeMonths: 35, tags: []
       },
       {
         id: "preschool-guide", kind: "universal", type: "article", source: "親子天下",
         title: "正向教養分齡指南：學齡前幼兒（3～5歲）",
         summary: "掌握學齡前孩子的獨立、好奇與表達發展，用適齡方式陪伴。",
         url: "https://www.parenting.com.tw/article/6000007",
-        ageBands: ["3-6"], tags: []
+        ageBands: ["3-6"], minAgeMonths: 36, maxAgeMonths: 71, tags: []
       },
       {
         id: "reading-motivation", kind: "strength", type: "article", source: "親子天下",
@@ -1669,7 +1683,8 @@
         title: "12歲前，累積親子幸福存款",
         summary: "把相處、傾聽和共同回憶累積成孩子心裡可靠的支持。",
         url: "https://www.parenting.com.tw/article/5066549",
-        ageBands: ["7-12"], tags: ["溫柔同行", "樂於分享", "溫暖陪伴"]
+        ageBands: ["7-12"], maxAgeMonths: 143,
+        tags: ["溫柔同行", "樂於分享", "溫暖陪伴"]
       },
       {
         id: "focus-not-average", kind: "strength", type: "article", source: "親子天下",
@@ -1908,6 +1923,13 @@
       return Math.max(0, age);
     }
 
+    function calculateAgeMonths(year, month, day) {
+      const today = new Date();
+      let ageMonths = (today.getFullYear() - year) * 12 + (today.getMonth() + 1 - month);
+      if (today.getDate() < day) ageMonths -= 1;
+      return Math.max(0, ageMonths);
+    }
+
     function getAgeBand(age) {
       if (age <= 2) return "0-2";
       if (age <= 6) return "3-6";
@@ -1919,10 +1941,15 @@
       return "60+";
     }
 
-    function pickRecommendations(ageBand, traits, dateKey) {
+    function pickRecommendations(ageBand, ageMonths, traits, dateKey) {
       const traitLabels = traits.map(item => item.label);
       const candidates = RECOMMENDED_CONTENT
-        .filter(item => item.ageBands.includes(ageBand) && item.kind !== "concern")
+        .filter(item =>
+          item.ageBands.includes(ageBand) &&
+          item.kind !== "concern" &&
+          (item.minAgeMonths === undefined || ageMonths >= item.minAgeMonths) &&
+          (item.maxAgeMonths === undefined || ageMonths <= item.maxAgeMonths)
+        )
         .map(item => ({
           ...item,
           matchCount: item.kind === "strength"
@@ -1940,8 +1967,9 @@
 
     function renderRecommendations(year, month, day, traits, dateKey) {
       const age = calculateAge(year, month, day);
+      const ageMonths = calculateAgeMonths(year, month, day);
       const ageBand = getAgeBand(age);
-      const recommendations = pickRecommendations(ageBand, traits, dateKey);
+      const recommendations = pickRecommendations(ageBand, ageMonths, traits, dateKey);
 
       document.getElementById("recommendation-title").textContent = `您的孩子目前${age}歲，推薦您實用教養資訊`;
       recommendationGrid.replaceChildren();
