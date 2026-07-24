@@ -2182,6 +2182,32 @@
       return y + Math.min(lines.length, maxLines) * lineHeight;
     }
 
+    function canvasTextLineCount(context, text, maxWidth) {
+      if (!text) return 0;
+      let lines = 1;
+      let line = "";
+      Array.from(text).forEach(character => {
+        const testLine = line + character;
+        if (context.measureText(testLine).width > maxWidth && line) {
+          lines += 1;
+          line = character;
+        } else {
+          line = testLine;
+        }
+      });
+      return lines;
+    }
+
+    function fitCanvasFontSize(context, text, maxWidth, maxLines, maxSize, minSize, weight) {
+      let size = maxSize;
+      while (size > minSize) {
+        context.font = `${weight} ${size}px "Noto Sans TC", "PingFang TC", sans-serif`;
+        if (canvasTextLineCount(context, text, maxWidth) <= maxLines) break;
+        size -= 2;
+      }
+      return size;
+    }
+
     function loadCanvasImage(source) {
       return new Promise((resolve, reject) => {
         const image = new Image();
@@ -2229,35 +2255,34 @@
       context.globalAlpha = 1;
 
       context.fillStyle = "#FFFFFF";
-      roundedRect(context, 64, 48, 952, 122, 54);
+      roundedRect(context, 64, 48, 286, 108, 48);
       context.fill();
       context.textBaseline = "middle";
       if (parentingLogo) {
         context.imageSmoothingEnabled = true;
         context.imageSmoothingQuality = "high";
-        context.drawImage(parentingLogo, 96, 78, 214, 66);
+        context.drawImage(parentingLogo, 94, 69, 226, 69);
       } else {
         context.fillStyle = "#F05091";
         context.font = '900 34px "Noto Sans TC", "PingFang TC", sans-serif';
-        context.fillText("親子天下", 96, 111);
+        context.fillText("親子天下", 94, 103);
       }
 
-      context.strokeStyle = "#E7EAF0";
-      context.lineWidth = 2;
-      context.beginPath();
-      context.moveTo(348, 78);
-      context.lineTo(348, 140);
-      context.stroke();
-
       context.textAlign = "left";
+      context.fillStyle = "#F05091";
+      context.font = '800 21px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText("BIRTHDAY COLOR", 392, 63);
       context.fillStyle = "#004098";
-      context.font = '900 42px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("孩子生日代表色", 386, 111);
+      context.font = '900 58px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText("孩子生日代表色", 392, 111);
+      context.fillStyle = "#F05091";
+      roundedRect(context, 392, 143, 112, 8, 4);
+      context.fill();
 
       context.textAlign = "center";
       context.fillStyle = "#26334A";
       context.font = '800 44px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText(`${month} 月 ${day} 日的專屬色彩`, 540, 242);
+      context.fillText(`${month} 月 ${day} 日的專屬色彩`, 540, 236);
 
       context.shadowColor = "rgba(38, 51, 74, .16)";
       context.shadowBlur = 42;
@@ -2286,27 +2311,28 @@
 
       context.textAlign = "left";
       context.textBaseline = "alphabetic";
-      context.font = '800 46px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.save();
-      context.globalAlpha = 0;
-      const headlineBottom = wrapCanvasText(context, headline, 112, 900, 856, 60, 2);
-      context.restore();
-      const pillTop = headlineBottom + 18;
-      const copyTop = pillTop + 126;
-      context.font = '500 36px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.save();
-      context.globalAlpha = 0;
-      const copyBottom = wrapCanvasText(context, copy, 112, copyTop, 856, 58, 4);
-      context.restore();
-      const infoCardBottom = Math.max(1340, Math.min(1420, copyBottom + 58));
+      const headlineFontSize = fitCanvasFontSize(context, headline, 856, 2, 56, 46, "800");
+      const headlineLineHeight = headlineFontSize + 14;
+      context.font = `800 ${headlineFontSize}px "Noto Sans TC", "PingFang TC", sans-serif`;
+      const headlineLines = Math.min(canvasTextLineCount(context, headline, 856), 2);
+      const headlineBottom = 890 + headlineLines * headlineLineHeight;
+      const pillTop = headlineBottom + 4;
+      const copyTop = pillTop + 116;
+      const copyFontSize = fitCanvasFontSize(context, copy, 856, 4, 46, 36, "500");
+      const copyLineHeight = Math.round(copyFontSize * 1.5);
+      context.font = `500 ${copyFontSize}px "Noto Sans TC", "PingFang TC", sans-serif`;
+      const copyLines = Math.min(canvasTextLineCount(context, copy, 856), 4);
+      const copyLastBaseline = copyTop + Math.max(0, copyLines - 1) * copyLineHeight;
+      const copyBottom = copyLastBaseline + copyFontSize + 34;
+      const infoCardBottom = Math.min(1430, copyBottom);
 
       context.fillStyle = "#FFFFFF";
       roundedRect(context, 64, 810, 952, infoCardBottom - 810, 46);
       context.fill();
 
       context.fillStyle = "#004098";
-      context.font = '800 46px "Noto Sans TC", "PingFang TC", sans-serif';
-      wrapCanvasText(context, headline, 112, 900, 856, 60, 2);
+      context.font = `800 ${headlineFontSize}px "Noto Sans TC", "PingFang TC", sans-serif`;
+      wrapCanvasText(context, headline, 112, 890, 856, headlineLineHeight, 2);
 
       let pillX = 112;
       traits.forEach((trait, index) => {
@@ -2323,24 +2349,25 @@
 
       context.textBaseline = "alphabetic";
       context.fillStyle = "#46536A";
-      context.font = '500 36px "Noto Sans TC", "PingFang TC", sans-serif';
-      wrapCanvasText(context, copy, 112, copyTop, 856, 58, 4);
+      context.font = `500 ${copyFontSize}px "Noto Sans TC", "PingFang TC", sans-serif`;
+      wrapCanvasText(context, copy, 112, copyTop, 856, copyLineHeight, 4);
 
-      const missionTop = infoCardBottom + 36;
-      context.font = '500 32px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.save();
-      context.globalAlpha = 0;
-      const missionTextBottom = wrapCanvasText(context, mission, 128, missionTop + 124, 816, 50, 3);
-      context.restore();
-      const missionHeight = Math.min(320, Math.max(300, missionTextBottom - missionTop + 42));
+      const missionTop = infoCardBottom + 28;
+      const missionFontSize = fitCanvasFontSize(context, mission, 816, 3, 40, 34, "500");
+      const missionLineHeight = Math.round(missionFontSize * 1.5);
+      context.font = `500 ${missionFontSize}px "Noto Sans TC", "PingFang TC", sans-serif`;
+      const missionLines = Math.min(canvasTextLineCount(context, mission, 816), 3);
+      const missionBodyTop = missionTop + 112;
+      const missionLastBaseline = missionBodyTop + Math.max(0, missionLines - 1) * missionLineHeight;
+      const missionHeight = missionLastBaseline - missionTop + missionFontSize + 34;
       context.fillStyle = "#FFF8C8";
       roundedRect(context, 92, missionTop, 896, missionHeight, 36);
       context.fill();
       context.fillStyle = "#26334A";
-      context.font = '800 36px "Noto Sans TC", "PingFang TC", sans-serif';
-      context.fillText("給孩子的小小色彩任務", 128, missionTop + 66);
-      context.font = '500 32px "Noto Sans TC", "PingFang TC", sans-serif';
-      wrapCanvasText(context, mission, 128, missionTop + 124, 816, 50, 3);
+      context.font = '800 40px "Noto Sans TC", "PingFang TC", sans-serif';
+      context.fillText("給孩子的小小色彩任務", 128, missionTop + 62);
+      context.font = `500 ${missionFontSize}px "Noto Sans TC", "PingFang TC", sans-serif`;
+      wrapCanvasText(context, mission, 128, missionBodyTop, 816, missionLineHeight, 3);
 
       context.textAlign = "center";
       context.fillStyle = "#657087";
